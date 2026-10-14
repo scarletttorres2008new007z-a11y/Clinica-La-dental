@@ -28,6 +28,8 @@
   text-transform: uppercase; padding: 5px 10px; border-radius: 999px; opacity: .85; white-space: nowrap;
 }
 .polaroid > .demo-stamp { font-size: 9px; padding: 4px 8px; left: 14px; top: 14px; }
+.feed__post > .demo-stamp { font-size: 7px; padding: 3px 6px; left: 50%; top: auto; bottom: 8px; transform: translateX(-50%); letter-spacing: .04em; }
+.feed__post > .demo-stamp .demo-stamp__pre { display: none; }
 
 /* ---------- Crédito en el pie de página y bloqueo de copia ---------- */
 .demo-credit { margin-top: 6px; color: var(--gold); font-weight: 600; }
