@@ -58,7 +58,9 @@
   .nav__cta { margin: 0 0 0 10px; min-height: 46px; padding: 0 20px; font-size: 15px; }
 
   .hero { padding: 64px 0 80px; }
-  .hero__grid { grid-template-columns: 1.05fr .95fr; align-items: center; gap: 50px; }
+  .hero__grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 50px; }
+  .hero__text { display: block; }
+  .hero__lead { margin-top: 18px; }
   .hero__actions .btn { flex: 0 0 auto; }
   .hero__facts { max-width: 520px; }
   .hero__facts strong { font-size: 30px; }
