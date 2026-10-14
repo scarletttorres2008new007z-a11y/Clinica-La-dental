@@ -75,10 +75,11 @@
 .intro__logo .logo__tag { opacity: 0; transform: translateY(8px); animation: fadeUp .6s var(--ease-out) 1.9s forwards; }
 
 .intro__line {
-  font-family: var(--font-display); font-weight: 600; font-size: clamp(16px, 4.4vw, 22px); color: var(--ink);
+  font-family: var(--font-logo); font-weight: 600; font-size: clamp(16px, 4.4vw, 22px); color: var(--ink);
   opacity: 0; transform: translateY(10px); animation: fadeUp .6s var(--ease-out) 2.1s forwards;
 }
 .intro__btn {
+  font-family: var(--font-logo); font-weight: 600;
   opacity: 0; transform: translateY(24px) scale(.9);
   animation: btnIn .7s var(--ease-back) 2.35s forwards;
   min-height: 58px; padding: 0 30px; font-size: 18px;

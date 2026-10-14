@@ -12,10 +12,10 @@
   .header .logo--sm { font-size: 24px; }
   .hero__facts strong { font-size: 22px; }
   .hero__facts span { font-size: 12px; }
-  .chip { font-size: 13px; }
-  .chip--price strong { font-size: 26px; }
-  .coin { width: 92px; height: 92px; }
-  .coin strong { font-size: 30px; }
+  .chip { font-size: 12.5px; padding: 9px 12px; }
+  .chip strong { font-size: 21px; }
+  .chip--price strong { font-size: 23px; }
+  .smile__steps li { font-size: 12.5px; padding: 7px 12px; }
   .price strong { font-size: 48px; }
   .value { padding: 14px 12px; }
   .actionbar__main { font-size: 15px; }
@@ -27,10 +27,19 @@
   .logo--xl { font-size: clamp(48px, 15vh, 80px); }
   .intro__btn { min-height: 50px; }
   .intro__teeth span { flex-basis: 44px; }
-  /* Celular acostado: solo los tres botones redondos, para no tapar contenido */
+
+  /* La boca va a un lado del texto para que se vea completa */
+  .smile__pin { grid-template-rows: 1fr; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; padding-bottom: 0; }
+  .smile__text { padding-top: 0; text-align: left; }
+  .smile__text .eyebrow { justify-content: flex-start; }
+  .smile__text .heading { font-size: 30px; }
+  .smile__text p:not(.eyebrow) { margin-left: 0; font-size: 15px; }
+  .smile__stage { height: 100%; }
+  .smile__steps { display: none; }
+
+  /* Solo los tres botones redondos, para no tapar contenido */
   .actionbar { left: auto; right: 12px; padding: 6px; border-radius: 20px; }
-  .actionbar__main { flex: 0 0 50px; width: 50px; background: #25D366; box-shadow: 0 3px 0 #128C4B; }
-  .actionbar__main svg { color: var(--white); }
+  .actionbar__main { flex: 0 0 50px; width: 50px; }
   .actionbar__main span { display: none; }
 }
 
@@ -50,13 +59,14 @@
   .header .logo--sm { font-size: 32px; }
   .burger { display: none; }
   .nav {
-    position: static; display: flex; align-items: center; gap: 4px; padding: 0; background: none; border: 0;
+    position: static; display: flex; align-items: center; gap: 4px; padding: 0; background: none; box-shadow: none;
     transform: none; opacity: 1; visibility: visible; transition: none;
   }
   .nav a:not(.btn) { white-space: nowrap; font-size: 15.5px; padding: 10px 12px; border: 0; border-radius: 12px; transition: background-color .2s, color .2s; }
   .nav a:not(.btn):hover { background: var(--mint-pale); color: var(--mint-deep); }
   .nav__cta { margin: 0 0 0 10px; min-height: 46px; padding: 0 20px; font-size: 15px; }
 
+  /* Inicio: texto a la izquierda y la muela a la derecha */
   .hero { padding: 64px 0 80px; }
   .hero__grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 50px; }
   .hero__text { display: block; }
@@ -66,8 +76,19 @@
   .hero__facts strong { font-size: 30px; }
   .hero__visual { max-width: 480px; margin: 0 0 0 auto; }
 
+  /* Boca 3D: texto a la izquierda y la boca grande a la derecha */
+  .smile { height: 220vh; }
+  .smile__pin { grid-template-rows: 1fr; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; max-width: 1180px; margin: 0 auto; padding-bottom: 0; }
+  .smile__text { padding-top: 0; text-align: left; }
+  .smile__text .eyebrow { justify-content: flex-start; }
+  .smile__text .heading { font-size: clamp(40px, 4vw, 54px); }
+  .smile__text p:not(.eyebrow) { margin-left: 0; font-size: 18px; }
+  .smile__stage { height: 100%; }
+  .smile__steps { bottom: 40px; }
+
   .section { padding: 110px 0; }
   .section__head { margin-bottom: 50px; }
+  .treat { padding-top: 90px; }
   .treat .section__head { margin-bottom: 10px; }
   .carousel { --card-w: 370px; }
 
@@ -85,8 +106,7 @@
   .footer__copy { padding-bottom: 30px; }
   /* En computadora la barra queda como tres botones redondos en la esquina */
   .actionbar { left: auto; right: 22px; bottom: 22px; flex-direction: column; padding: 6px; border-radius: 20px; }
-  .actionbar__main { flex: 0 0 50px; width: 50px; background: #25D366; box-shadow: 0 3px 0 #128C4B; }
-  .actionbar__main svg { color: var(--white); }
+  .actionbar__main { flex: 0 0 50px; width: 50px; }
   .actionbar__main span { display: none; }
 }
 
