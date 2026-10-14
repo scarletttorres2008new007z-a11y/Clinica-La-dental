@@ -73,7 +73,15 @@
 
 /* ---------- Inicio (fondo menta sólido, como sus publicaciones) ---------- */
 .hero { position: relative; background: var(--mint); padding: 34px 0 56px; overflow: clip; }
-.hero__grid { position: relative; display: grid; gap: 10px; }
+/* En celular la foto va justo después del título, para que se vea al entrar */
+.hero__grid { position: relative; display: flex; flex-direction: column; }
+.hero__text { display: contents; }
+.hero .kicker { order: 1; align-self: flex-start; }
+.hero__title { order: 2; }
+.hero__visual { order: 3; }
+.hero__lead { order: 4; }
+.hero__actions { order: 5; }
+.hero__facts { order: 6; }
 
 .kicker {
   display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px;
@@ -85,7 +93,7 @@
 .hero__title { font-size: clamp(38px, 10.6vw, 66px); line-height: 1.06; }
 /* En el fondo menta las letras llevan un grosor blanco y verde */
 .hero .title-3d .ch { text-shadow: 1px 1px 0 var(--white), 2px 2px 0 var(--white), 3px 3px 0 var(--mint-deep); }
-.hero__lead { margin-top: 18px; max-width: 32em; font-size: 17.5px; color: var(--ink); font-weight: 600; }
+.hero__lead { margin-top: 10px; max-width: 32em; font-size: 17.5px; color: var(--ink); font-weight: 600; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
 .hero__actions .btn { flex: 1 1 200px; }
 .hero .btn--ghost { box-shadow: inset 0 0 0 2px var(--ink), 0 5px 0 var(--mint-deep); color: var(--ink); }
@@ -97,7 +105,7 @@
 .hero__facts span { display: block; font-size: 13px; font-weight: 700; line-height: 1.25; color: var(--ink); margin-top: 2px; }
 
 /* Foto de la entrada en 3D */
-.hero__visual { perspective: 1100px; width: 100%; max-width: 380px; margin: 34px auto 0; padding: 26px 22px 34px; }
+.hero__visual { perspective: 1100px; width: 100%; max-width: 340px; margin: 8px auto 0; padding: 26px 22px 30px; }
 #heroScene { --rx0: 6deg; --ry0: -14deg; }
 .photo--hero img { aspect-ratio: 1; }
 .chip {
