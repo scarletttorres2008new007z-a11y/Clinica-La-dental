@@ -8,7 +8,7 @@
 
   // Sello en cada foto
   const addStamps = () => {
-    document.querySelectorAll(".about__photo, .feed__post, .polaroid, .map-card").forEach((el) => {
+    document.querySelectorAll(".photo, .tcard__photo, .polaroid, .map-card").forEach((el) => {
       if (el.querySelector(":scope > .demo-stamp")) return;
       if (getComputedStyle(el).position === "static") el.style.position = "relative";
       const s = document.createElement("span");
