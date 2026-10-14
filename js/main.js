@@ -138,7 +138,7 @@ safe("diente 3D", () => {
     } else {
       const onScroll = () => {
         const r = area.getBoundingClientRect();
-        const p = (r.top + r.height / 2) / window.innerHeight - 0.5; // -0.5 a 0.5
+        const p = Math.max(-0.5, Math.min(0.5, (r.top + r.height / 2) / window.innerHeight - 0.5)); // -0.5 a 0.5
         el.style.setProperty("--rx", `${p * 22}deg`);
         el.style.setProperty("--ry", `${-p * 14}deg`);
       };
