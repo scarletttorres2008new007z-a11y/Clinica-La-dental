@@ -151,14 +151,17 @@
           </ul>
         </div>
 
-        <!-- Foto real de la entrada, en 3D: se inclina con el mouse o al bajar -->
+        <!-- Diente 3D real (js/tooth3d.js) dentro del círculo y la sonrisa dorada del logo -->
         <div class="hero__visual" id="heroVisual" data-reveal="tilt">
           <div class="scene" id="heroScene">
-            <figure class="photo photo--hero">
-              <img src="assets/img/fachada.webp" alt="Entrada de La Dental en el Centro Comercial Periplaza Apopa" width="618" height="618">
-            </figure>
-            <p class="chip chip--top"><svg><use href="#i-pin"/></svg> Periplaza Apopa, local 31-D</p>
-            <p class="chip chip--price"><span>Brackets con cuotas desde</span><strong>$24.99</strong></p>
+            <div class="stage">
+              <span class="stage__circle" aria-hidden="true"></span>
+              <svg class="stage__arc" viewBox="0 0 300 160" aria-hidden="true"><path d="M10 10 C 40 170, 260 170, 290 10"/></svg>
+              <img class="stage__img" src="assets/img/diente-3d.webp" alt="Diente sano en 3D" width="600" height="600">
+              <canvas class="stage__canvas" id="toothCanvas" aria-hidden="true"></canvas>
+            </div>
+            <p class="chip chip--top"><strong>0%</strong><span>de prima en<br>ortodoncia</span></p>
+            <p class="chip chip--price"><span>Cuotas desde</span><strong>$24.99</strong></p>
           </div>
         </div>
       </div>
@@ -316,6 +319,10 @@
     <section class="section clinic" id="clinica">
       <div class="container clinic__grid">
         <div class="clinic__gallery" id="gallery" aria-label="Fotos de la clínica">
+          <figure class="photo photo--door">
+            <img src="assets/img/fachada.webp" alt="Entrada de La Dental en el Centro Comercial Periplaza Apopa" width="618" height="618" loading="lazy">
+            <figcaption>Nuestra entrada</figcaption>
+          </figure>
           <figure class="photo photo--left">
             <img src="assets/img/recepcion.webp" alt="Recepción de La Dental con pared verde" width="618" height="618" loading="lazy">
             <figcaption>Recepción</figcaption>
@@ -518,6 +525,7 @@
   <script src="js/config.js"></script>
   <script src="js/intro.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/tooth3d.js"></script>
   <script src="js/demo.js"></script>
 </body>
 </html>
