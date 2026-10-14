@@ -20,7 +20,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Estilos (el orden importa) -->
   <link rel="stylesheet" href="css/base.css">
@@ -59,9 +59,6 @@
       </symbol>
       <symbol id="i-facebook" viewBox="0 0 24 24">
         <path fill="currentColor" d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v7h4v-7h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/>
-      </symbol>
-      <symbol id="i-spark" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z"/>
       </symbol>
       <symbol id="i-calendar" viewBox="0 0 24 24">
         <rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -118,12 +115,11 @@
       </a>
 
       <nav class="nav" id="nav" aria-label="Menú principal">
-        <a href="#nosotros">Nosotros</a>
-        <a href="#tu-sonrisa">Tu sonrisa</a>
         <a href="#tratamientos">Tratamientos</a>
         <a href="#ortodoncia">Ortodoncia</a>
-        <a href="#redes">En redes</a>
+        <a href="#clinica">La clínica</a>
         <a href="#preguntas">Preguntas</a>
+        <a href="#agenda">Ubicación</a>
         <a class="btn btn--gold nav__cta" href="#agenda">Agenda tu cita</a>
       </nav>
 
@@ -137,459 +133,205 @@
 
     <!-- ========== Inicio ========== -->
     <section class="hero" id="inicio">
-      <!-- Formas blancas como en sus publicaciones de Instagram -->
-      <svg class="hero__blob hero__blob--a" viewBox="0 0 200 200" aria-hidden="true"><path d="M44 18C78-6 140 4 170 40s28 92-6 124-96 40-130 8S10 42 44 18z"/></svg>
-      <svg class="hero__blob hero__blob--b" viewBox="0 0 200 200" aria-hidden="true"><path d="M60 10c40-14 100 6 124 50s4 104-42 126S38 196 16 152 20 24 60 10z"/></svg>
-
       <div class="container hero__grid">
         <div class="hero__text">
-          <p class="kicker" data-reveal="up"><svg class="kicker__icon"><use href="#i-spark"/></svg> Clínicas especializadas en Apopa</p>
-          <h1 class="hero__title">
-            <span class="title-3d" data-split>Tu sonrisa</span>
-            <span class="hero__script" data-reveal="up">en manos de</span>
-            <span class="title-3d" data-split>especialistas</span>
-          </h1>
+          <p class="kicker" data-reveal="up"><svg class="kicker__icon"><use href="#i-pin"/></svg> Clínicas especializadas · Periplaza Apopa</p>
+          <h1 class="hero__title title-3d" data-split>Tu sonrisa en manos de especialistas</h1>
           <p class="hero__lead" data-reveal="up">
-            Pon la salud de tus dientes en manos de especialistas y agenda tu consulta para un diagnóstico preventivo y oportuno.
+            Ortodoncia, limpieza dental, caries, endodoncia, extracción de cordales y prótesis dentales en un mismo lugar.
           </p>
           <div class="hero__actions" data-reveal="up">
             <a class="btn btn--primary" href="#agenda"><svg class="btn__icon"><use href="#i-calendar"/></svg> Agenda tu cita</a>
             <a class="btn btn--ghost" data-tel><svg class="btn__icon"><use href="#i-phone"/></svg> <span data-phone-label>7979-5986</span></a>
           </div>
+          <ul class="hero__facts">
+            <li data-reveal="up"><strong>6</strong><span>tratamientos en un mismo lugar</span></li>
+            <li data-reveal="up"><strong>0%</strong><span>de prima en ortodoncia</span></li>
+            <li data-reveal="up"><strong>31-D</strong><span>local en Periplaza Apopa</span></li>
+          </ul>
         </div>
 
-        <!-- Escena 3D: diente dentro del círculo blanco del logo -->
-        <div class="hero__stage" aria-hidden="true">
-          <div class="stage" id="stage">
-            <div class="stage__circle"></div>
-            <svg class="stage__arc" viewBox="0 0 300 160"><path d="M10 10 C 40 170, 260 170, 290 10"/></svg>
-            <div class="tooth3d" id="tooth3d">
-              <svg class="tooth3d__layer" viewBox="0 0 64 64"><use href="#i-tooth"/></svg>
-            </div>
-            <span class="stage__spark stage__spark--1"><svg><use href="#i-spark"/></svg></span>
-            <span class="stage__spark stage__spark--2"><svg><use href="#i-spark"/></svg></span>
-            <span class="stage__spark stage__spark--3"><svg><use href="#i-spark"/></svg></span>
-            <div class="float-card float-card--a"><strong>0%</strong><span>de prima en ortodoncia</span></div>
-            <div class="float-card float-card--b"><span>Cuotas desde</span><strong>$24.99</strong></div>
+        <!-- Foto real de la entrada, en 3D: se inclina con el mouse o al bajar -->
+        <div class="hero__visual" id="heroVisual" data-reveal="tilt">
+          <div class="scene" id="heroScene">
+            <figure class="photo photo--hero">
+              <img src="assets/img/fachada.webp" alt="Entrada de La Dental en el Centro Comercial Periplaza Apopa" width="618" height="618">
+            </figure>
+            <p class="chip chip--top"><svg><use href="#i-pin"/></svg> Periplaza Apopa, local 31-D</p>
+            <p class="chip chip--price"><span>Brackets con cuotas desde</span><strong>$24.99</strong></p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Atajo: elegir tratamiento y saltar al formulario -->
+    <!-- ========== Tratamientos (carrusel 3D con fotos) ========== -->
+    <section class="section treat" id="tratamientos">
       <div class="container">
-        <div class="quick" data-reveal="tilt">
-          <p class="quick__title"><svg><use href="#i-calendar"/></svg> ¿Qué necesitas hoy?</p>
-          <div class="quick__chips" id="quickChips">
-            <button type="button" data-pick="Ortodoncia (brackets)">Brackets</button>
-            <button type="button" data-pick="Limpieza dental">Limpieza</button>
-            <button type="button" data-pick="Caries">Caries</button>
-            <button type="button" data-pick="Endodoncia">Endodoncia</button>
-            <button type="button" data-pick="Extracción de cordales">Cordales</button>
-            <button type="button" data-pick="Prótesis dentales">Prótesis</button>
+        <header class="section__head">
+          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">01</span> Tratamientos</p>
+          <h2 class="title-3d" data-split>¿En qué te podemos ayudar?</h2>
+          <p class="section__lead" data-reveal="up">Desliza para conocer cada tratamiento y escríbenos por el que necesitas.</p>
+        </header>
+      </div>
+
+      <div class="carousel" data-reveal="up">
+        <div class="carousel__track" id="track">
+          <article class="tcard">
+            <figure class="tcard__photo"><img src="assets/img/trat-ortodoncia.webp" alt="Modelo de dientes con brackets de colores" width="480" height="360" loading="lazy"></figure>
+            <div class="tcard__body">
+              <p class="tcard__tag">0% de prima</p>
+              <h3>Ortodoncia</h3>
+              <p>Brackets para alinear tus dientes y corregir tu mordida.</p>
+              <ul class="checks">
+                <li>Dientes chuecos, encimados o separados</li>
+                <li>Mordida que no cierra bien</li>
+              </ul>
+              <a class="btn btn--primary" data-wa="Hola La Dental, quisiera información sobre ortodoncia (brackets) con 0% de prima."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Preguntar</a>
+            </div>
+          </article>
+
+          <article class="tcard">
+            <figure class="tcard__photo"><img src="assets/img/trat-limpieza.webp" alt="Limpieza dental con ultrasonido" width="480" height="360" loading="lazy"></figure>
+            <div class="tcard__body">
+              <p class="tcard__tag">Prevención</p>
+              <h3>Limpieza dental</h3>
+              <p>Retira el sarro y la placa que el cepillo no alcanza.</p>
+              <ul class="checks">
+                <li>Sarro o manchas en tus dientes</li>
+                <li>Encías que sangran o mal aliento</li>
+              </ul>
+              <a class="btn btn--primary" data-wa="Hola La Dental, quisiera agendar una limpieza dental."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Agendar</a>
+            </div>
+          </article>
+
+          <article class="tcard">
+            <figure class="tcard__photo"><img src="assets/img/trat-caries.webp" alt="Diente con caries visto con espejo dental" width="480" height="360" loading="lazy"></figure>
+            <div class="tcard__body">
+              <p class="tcard__tag">A tiempo</p>
+              <h3>Caries</h3>
+              <p>Las tratamos antes de que lleguen al nervio y se conviertan en dolor.</p>
+              <ul class="checks">
+                <li>Molestia con lo frío o lo dulce</li>
+                <li>Manchas oscuras o pequeños agujeros</li>
+              </ul>
+              <a class="btn btn--primary" data-wa="Hola La Dental, creo que tengo caries y quisiera una consulta."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Preguntar</a>
+            </div>
+          </article>
+
+          <article class="tcard">
+            <figure class="tcard__photo"><img src="assets/img/trat-endodoncia.webp" alt="Paciente en revisión dental" width="480" height="360" loading="lazy"></figure>
+            <div class="tcard__body">
+              <p class="tcard__tag">Salva tu diente</p>
+              <h3>Endodoncia</h3>
+              <p>Tratamiento de conducto para salvar un diente dañado y quitar el dolor.</p>
+              <ul class="checks">
+                <li>Dolor fuerte o que no se quita</li>
+                <li>Encía inflamada cerca de un diente</li>
+              </ul>
+              <a class="btn btn--primary" data-wa="Hola La Dental, quisiera información sobre endodoncia."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Preguntar</a>
+            </div>
+          </article>
+
+          <article class="tcard">
+            <figure class="tcard__photo"><img src="assets/img/trat-cordales.webp" alt="Muela del juicio saliendo al fondo de la boca" width="480" height="360" loading="lazy"></figure>
+            <div class="tcard__body">
+              <p class="tcard__tag">Muelas del juicio</p>
+              <h3>Extracción de cordales</h3>
+              <p>Cuando causan dolor, inflamación o no tienen espacio para salir.</p>
+              <ul class="checks">
+                <li>Dolor al fondo de la boca</li>
+                <li>Encía inflamada detrás de las muelas</li>
+              </ul>
+              <a class="btn btn--primary" data-wa="Hola La Dental, quisiera información sobre extracción de cordales."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Preguntar</a>
+            </div>
+          </article>
+
+          <article class="tcard">
+            <figure class="tcard__photo"><img src="assets/img/trat-protesis.webp" alt="Especialista mostrando una prótesis dental a un paciente" width="480" height="360" loading="lazy"></figure>
+            <div class="tcard__body">
+              <p class="tcard__tag">Vuelve a sonreír</p>
+              <h3>Prótesis dentales</h3>
+              <p>Reemplazan las piezas que te faltan para sonreír y masticar con confianza.</p>
+              <ul class="checks">
+                <li>Te falta uno o más dientes</li>
+                <li>Te cuesta masticar algunos alimentos</li>
+              </ul>
+              <a class="btn btn--primary" data-wa="Hola La Dental, quisiera información sobre prótesis dentales."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Preguntar</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="carousel__nav container">
+          <button class="round-btn round-btn--prev" id="trackPrev" type="button" aria-label="Tratamiento anterior"><svg><use href="#i-arrow"/></svg></button>
+          <div class="carousel__dots" id="trackDots"></div>
+          <button class="round-btn" id="trackNext" type="button" aria-label="Siguiente tratamiento"><svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Ortodoncia: su promoción ========== -->
+    <section class="promo" id="ortodoncia">
+      <div class="container promo__grid">
+        <div class="promo__visual" data-reveal="tilt">
+          <div class="scene" id="promoScene">
+            <figure class="photo photo--post">
+              <img src="assets/img/post-ortodoncia.webp" alt="Publicación de La Dental: 0% de prima en tu tratamiento de ortodoncia, cuotas desde $24.99" width="412" height="412" loading="lazy">
+            </figure>
+            <p class="coin"><strong>0%</strong><span>de prima</span></p>
+          </div>
+        </div>
+
+        <div class="promo__text">
+          <p class="eyebrow eyebrow--dark" data-reveal="up"><span class="eyebrow__num">02</span> Ortodoncia</p>
+          <h2 class="title-3d title-3d--light" data-split>Empieza tus brackets sin prima</h2>
+          <p class="promo__lead" data-reveal="up">Alinea tus dientes y corrige tu mordida. Empiezas con 0% de prima y pagas tu tratamiento en cuotas.</p>
+          <p class="price" data-reveal="up"><span>Cuotas desde</span><strong>$24.99</strong></p>
+          <div class="promo__actions" data-reveal="up">
+            <a class="btn btn--gold" data-wa="Hola La Dental, quiero aprovechar la promoción de ortodoncia con 0% de prima."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Quiero mis brackets</a>
+            <p class="promo__note">Pregunta por las condiciones en la clínica.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== La clínica en números (cuentan hacia arriba) ========== -->
-    <section class="stats" aria-label="La Dental en números">
-      <div class="container stats__grid">
-        <div class="stat" data-reveal="up">
-          <p class="stat__num"><span data-count="6">6</span></p>
-          <p class="stat__label">tratamientos en un mismo lugar</p>
-        </div>
-        <div class="stat" data-reveal="up">
-          <p class="stat__num"><span data-count="0">0</span>%</p>
-          <p class="stat__label">de prima en ortodoncia</p>
-        </div>
-        <div class="stat" data-reveal="up">
-          <p class="stat__num">$<span data-count="24.99" data-decimals="2">24.99</span></p>
-          <p class="stat__label">cuotas desde, para tus brackets</p>
-        </div>
-        <div class="stat" data-reveal="up">
-          <p class="stat__num"><span data-count="31">31</span>-D</p>
-          <p class="stat__label">tu local en Periplaza Apopa</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== Conócenos (quiénes son y cómo es la clínica) ========== -->
-    <section class="section about" id="nosotros">
-      <div class="container about__grid">
-        <!-- Fotos reales de la clínica, en capas con profundidad -->
-        <div class="about__media" id="aboutMedia" data-reveal="tilt">
-          <figure class="about__photo about__photo--main">
-            <img src="assets/img/recepcion.webp" alt="Recepción de La Dental con pared verde" width="618" height="618">
+    <!-- ========== La clínica (fotos reales que se abren en 3D) ========== -->
+    <section class="section clinic" id="clinica">
+      <div class="container clinic__grid">
+        <div class="clinic__gallery" id="gallery" aria-label="Fotos de la clínica">
+          <figure class="photo photo--left">
+            <img src="assets/img/recepcion.webp" alt="Recepción de La Dental con pared verde" width="618" height="618" loading="lazy">
             <figcaption>Recepción</figcaption>
           </figure>
-          <figure class="about__photo about__photo--door">
-            <img src="assets/img/fachada.webp" alt="Entrada de La Dental con su rótulo verde y dorado" width="618" height="618">
-            <figcaption>Nuestra entrada</figcaption>
-          </figure>
-          <figure class="about__photo about__photo--room">
-            <img src="assets/img/consultorio.webp" alt="Consultorio con sillón dental verde" width="618" height="618">
+          <figure class="photo photo--right">
+            <img src="assets/img/consultorio.webp" alt="Consultorio de La Dental con sillón dental" width="618" height="618" loading="lazy">
             <figcaption>Consultorio</figcaption>
           </figure>
-          <!-- Sello que gira con el nombre de la clínica -->
-          <div class="seal" aria-hidden="true">
-            <svg class="seal__ring" viewBox="0 0 120 120">
-              <defs><path id="sealPath" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs>
-              <text><textPath href="#sealPath">LA DENTAL · CLÍNICAS ESPECIALIZADAS · </textPath></text>
-            </svg>
-            <svg class="seal__tooth" viewBox="0 0 64 64"><use href="#i-tooth"/></svg>
-          </div>
         </div>
 
-        <div class="about__text">
-          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">01</span> Conócenos</p>
-          <h2 class="title-3d" data-split>Especialistas en tu sonrisa</h2>
-          <p class="about__lead" data-reveal="up">
-            En La Dental cuidamos tu boca de principio a fin: desde la limpieza y la revisión preventiva hasta tratamientos especializados como ortodoncia, endodoncia, extracción de cordales y prótesis dentales.
+        <div class="clinic__text">
+          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">03</span> La clínica</p>
+          <h2 class="title-3d" data-split>Conoce La Dental</h2>
+          <p class="clinic__lead" data-reveal="up">
+            Cuidamos tu boca de principio a fin: desde la limpieza y la revisión preventiva hasta tratamientos especializados, todo en el Centro Comercial Periplaza Apopa.
           </p>
-          <p class="about__lead about__lead--soft" data-reveal="up">
-            Todo en un mismo lugar, dentro del Centro Comercial Periplaza Apopa, para que cuidar tu sonrisa te quede cerca.
-          </p>
-
           <ul class="values">
             <li class="value" data-reveal="up">
               <span class="value__icon"><svg viewBox="0 0 64 64"><use href="#i-tooth"/></svg></span>
               <div><strong>Especialistas</strong><span>Clínicas especializadas en salud dental</span></div>
             </li>
             <li class="value" data-reveal="up">
-              <span class="value__icon value__icon--gold"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span>
-              <div><strong>Clínica moderna</strong><span>Consultorios equipados y espacios limpios</span></div>
-            </li>
-            <li class="value" data-reveal="up">
-              <span class="value__icon value__icon--gold"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span>
+              <span class="value__icon"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span>
               <div><strong>Prevención</strong><span>Diagnóstico preventivo y oportuno</span></div>
             </li>
             <li class="value" data-reveal="up">
               <span class="value__icon"><svg viewBox="0 0 24 24"><use href="#i-calendar"/></svg></span>
-              <div><strong>Todo en un lugar</strong><span>Seis tratamientos en una sola clínica</span></div>
+              <div><strong>Facilidades</strong><span>Ortodoncia con 0% de prima y cuotas</span></div>
+            </li>
+            <li class="value" data-reveal="up">
+              <span class="value__icon"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span>
+              <div><strong>Cerca de ti</strong><span>En Periplaza Apopa, local 31-D</span></div>
             </li>
           </ul>
-        </div>
-      </div>
-
-      <!-- Nuestro compromiso -->
-      <div class="container">
-        <div class="pledge">
-          <article class="pledge__item" data-reveal="tilt">
-            <span class="pledge__num">01</span>
-            <h3>Prevenir</h3>
-            <p>Revisiones para un diagnóstico preventivo y oportuno, antes de que aparezca el dolor.</p>
-          </article>
-          <article class="pledge__item" data-reveal="tilt">
-            <span class="pledge__num">02</span>
-            <h3>Tratar</h3>
-            <p>Especialistas para cada tratamiento: ortodoncia, endodoncia, cordales, prótesis y más.</p>
-          </article>
-          <article class="pledge__item" data-reveal="tilt">
-            <span class="pledge__num">03</span>
-            <h3>Acompañarte</h3>
-            <p>Te explicamos cada paso y te damos facilidades para empezar tu tratamiento.</p>
-          </article>
-        </div>
-
-        <!-- La frase de la pared del consultorio -->
-        <blockquote class="wall-quote" data-reveal="tilt">
-          <svg class="wall-quote__tooth" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-tooth"/><circle cx="25" cy="24" r="2.4"/><circle cx="39" cy="24" r="2.4"/><path d="M26 31c3 3 9 3 12 0"/></svg>
-          <div>
-            <p>El tiempo lo cura todo, <span>menos las caries</span></p>
-            <footer>que las cura el odontólogo.</footer>
-          </div>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- ========== Mapa de tu sonrisa (toca un diente) ========== -->
-    <section class="section mouth" id="tu-sonrisa">
-      <div class="container mouth__grid">
-        <header class="section__head section__head--left">
-          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">02</span> Mapa de tu sonrisa</p>
-          <h2 class="title-3d" data-split>¿Qué diente te molesta?</h2>
-          <p class="section__lead" data-reveal="up">Toca la zona de tu boca y te decimos qué puede necesitar.</p>
-        </header>
-
-        <div class="mouth__stage" data-reveal="tilt">
-          <div class="mouth__card" id="mouthCard">
-            <svg class="arch" id="arch" viewBox="0 0 360 300" role="group" aria-label="Dientes de arriba y de abajo">
-              <ellipse class="arch__gum" cx="180" cy="150" rx="170" ry="140"/>
-              <ellipse class="arch__inside" cx="180" cy="150" rx="104" ry="80"/>
-              <g id="archTeeth"></g>
-              <text class="arch__label" x="180" y="146" text-anchor="middle">Arriba</text>
-              <text class="arch__label" x="180" y="166" text-anchor="middle">Abajo</text>
-            </svg>
-          </div>
-          <div class="zone-legend" id="zoneLegend" role="tablist" aria-label="Zonas de la boca"></div>
-        </div>
-
-        <article class="zone-info" id="zoneInfo" aria-live="polite">
-          <p class="zone-info__eyebrow" id="zoneName"></p>
-          <h3 class="zone-info__title" id="zoneTitle"></h3>
-          <p class="zone-info__text" id="zoneText"></p>
-          <div class="zone-info__tags" id="zoneTags"></div>
-          <a class="btn btn--primary" id="zoneBtn" data-wa="">
-            <svg class="btn__icon"><use href="#i-whatsapp"/></svg> Quiero una revisión
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <!-- ========== Tratamientos (pestañas) ========== -->
-    <section class="section treat" id="tratamientos">
-      <div class="container">
-        <header class="section__head">
-          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">03</span> Tratamientos</p>
-          <h2 class="title-3d" data-split>Todo en un mismo lugar</h2>
-        </header>
-
-        <div class="treat__box" data-reveal="up">
-          <div class="treat__tabs" role="tablist" aria-label="Tratamientos" id="treatTabs">
-            <button role="tab" id="tab-orto" aria-controls="p-orto" aria-selected="true"><svg viewBox="0 0 64 64"><use href="#i-tooth"/></svg>Ortodoncia</button>
-            <button role="tab" id="tab-limpieza" aria-controls="p-limpieza" aria-selected="false"><svg viewBox="0 0 64 64"><use href="#i-tooth"/></svg>Limpieza dental</button>
-            <button role="tab" id="tab-caries" aria-controls="p-caries" aria-selected="false"><svg viewBox="0 0 64 64"><use href="#i-tooth"/></svg>Caries</button>
-            <button role="tab" id="tab-endo" aria-controls="p-endo" aria-selected="false"><svg viewBox="0 0 64 64"><use href="#i-tooth"/></svg>Endodoncia</button>
-            <button role="tab" id="tab-cordales" aria-controls="p-cordales" aria-selected="false"><svg viewBox="0 0 64 64"><use href="#i-tooth"/></svg>Extracción de cordales</button>
-            <button role="tab" id="tab-protesis" aria-controls="p-protesis" aria-selected="false"><svg viewBox="0 0 64 64"><use href="#i-tooth"/></svg>Prótesis dentales</button>
-          </div>
-
-          <div class="treat__panels">
-            <!-- Cada panel: ícono 3D, explicación, señales y botón -->
-            <article class="panel" role="tabpanel" id="p-orto" aria-labelledby="tab-orto">
-              <div class="panel__icon"><svg viewBox="0 0 64 64"><use href="#i-tooth" class="ic-tooth"/><rect x="25" y="20" width="14" height="10" rx="2" class="ic-gold"/><path d="M6 25h52" class="ic-line"/></svg></div>
-              <div class="panel__body">
-                <p class="panel__tag">0% de prima · cuotas desde $24.99</p>
-                <h3>Ortodoncia</h3>
-                <p>Brackets para alinear tus dientes y corregir tu mordida, con una sonrisa más pareja al final del tratamiento.</p>
-                <p class="panel__sub">Te puede servir si:</p>
-                <ul class="checks">
-                  <li>Tienes dientes chuecos, encimados o separados</li>
-                  <li>Tu mordida no cierra bien</li>
-                  <li>Quieres una sonrisa más pareja</li>
-                </ul>
-                <a class="btn btn--primary" data-wa="Hola La Dental, quisiera información sobre ortodoncia (brackets) con 0% de prima."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Preguntar por brackets</a>
-              </div>
-            </article>
-
-            <article class="panel" role="tabpanel" id="p-limpieza" aria-labelledby="tab-limpieza" hidden>
-              <div class="panel__icon"><svg viewBox="0 0 64 64"><use href="#i-tooth" class="ic-tooth"/><use href="#i-spark" x="40" y="2" width="18" height="18" class="ic-gold"/><use href="#i-spark" x="4" y="40" width="12" height="12" class="ic-gold"/></svg></div>
-              <div class="panel__body">
-                <p class="panel__tag">Prevención</p>
-                <h3>Limpieza dental</h3>
-                <p>Retira el sarro y la placa que el cepillo no alcanza. Tus encías quedan más sanas y tu aliento más fresco.</p>
-                <p class="panel__sub">Te puede servir si:</p>
-                <ul class="checks">
-                  <li>Notas sarro o manchas en tus dientes</li>
-                  <li>Te sangran las encías al cepillarte</li>
-                  <li>Tienes mal aliento</li>
-                </ul>
-                <a class="btn btn--primary" data-wa="Hola La Dental, quisiera agendar una limpieza dental."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Agendar limpieza</a>
-              </div>
-            </article>
-
-            <article class="panel" role="tabpanel" id="p-caries" aria-labelledby="tab-caries" hidden>
-              <div class="panel__icon"><svg viewBox="0 0 64 64"><use href="#i-tooth" class="ic-tooth"/><circle cx="38" cy="18" r="5" class="ic-dark"/><circle cx="24" cy="26" r="2.6" class="ic-dark"/></svg></div>
-              <div class="panel__body">
-                <p class="panel__tag">A tiempo</p>
-                <h3>Caries</h3>
-                <p>El tiempo lo cura todo, menos las caries. Las tratamos a tiempo, antes de que lleguen al nervio y se conviertan en dolor.</p>
-                <p class="panel__sub">Te puede servir si:</p>
-                <ul class="checks">
-                  <li>Sientes molestia con lo frío o lo dulce</li>
-                  <li>Ves manchas oscuras o pequeños agujeros</li>
-                  <li>Se te queda comida atorada en un diente</li>
-                </ul>
-                <a class="btn btn--primary" data-wa="Hola La Dental, creo que tengo caries y quisiera una consulta."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Revisar mis caries</a>
-              </div>
-            </article>
-
-            <article class="panel" role="tabpanel" id="p-endo" aria-labelledby="tab-endo" hidden>
-              <div class="panel__icon"><svg viewBox="0 0 64 64"><use href="#i-tooth" class="ic-tooth"/><path d="M27 22c-1 10-3 20-5 33M37 22c1 10 3 20 5 33" class="ic-root"/></svg></div>
-              <div class="panel__body">
-                <p class="panel__tag">Salva tu diente</p>
-                <h3>Endodoncia</h3>
-                <p>Tratamiento de conducto para salvar un diente dañado o infectado y quitar el dolor desde la raíz.</p>
-                <p class="panel__sub">Te puede servir si:</p>
-                <ul class="checks">
-                  <li>Tienes un dolor fuerte o que no se quita</li>
-                  <li>La sensibilidad al frío o al calor dura mucho</li>
-                  <li>Se te inflama la encía cerca de un diente</li>
-                </ul>
-                <a class="btn btn--primary" data-wa="Hola La Dental, quisiera información sobre endodoncia."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Preguntar por endodoncia</a>
-              </div>
-            </article>
-
-            <article class="panel" role="tabpanel" id="p-cordales" aria-labelledby="tab-cordales" hidden>
-              <div class="panel__icon"><svg viewBox="0 0 64 64"><g transform="rotate(-18 32 34)"><use href="#i-tooth" class="ic-tooth"/></g><path d="M50 8v14M44 16l6 6 6-6" class="ic-arrow"/></svg></div>
-              <div class="panel__body">
-                <p class="panel__tag">Muelas del juicio</p>
-                <h3>Extracción de cordales</h3>
-                <p>Retiro de las muelas del juicio cuando causan dolor, inflamación o no tienen espacio para salir.</p>
-                <p class="panel__sub">Te puede servir si:</p>
-                <ul class="checks">
-                  <li>Sientes dolor al fondo de la boca</li>
-                  <li>La encía detrás de tus muelas está inflamada</li>
-                  <li>Tus cordales no tienen espacio para salir</li>
-                </ul>
-                <a class="btn btn--primary" data-wa="Hola La Dental, quisiera información sobre extracción de cordales."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Revisar mis cordales</a>
-              </div>
-            </article>
-
-            <article class="panel" role="tabpanel" id="p-protesis" aria-labelledby="tab-protesis" hidden>
-              <div class="panel__icon"><svg viewBox="0 0 64 64"><use href="#i-tooth" class="ic-tooth" transform="translate(6 2) scale(.82)"/><rect x="6" y="54" width="52" height="7" rx="3.5" class="ic-gold"/><path d="M48 6v12M42 12h12" class="ic-arrow"/></svg></div>
-              <div class="panel__body">
-                <p class="panel__tag">Vuelve a sonreír</p>
-                <h3>Prótesis dentales</h3>
-                <p>Reemplazan las piezas que te faltan para que vuelvas a sonreír y masticar con confianza.</p>
-                <p class="panel__sub">Te puede servir si:</p>
-                <ul class="checks">
-                  <li>Te falta uno o más dientes</li>
-                  <li>Te cuesta masticar algunos alimentos</li>
-                  <li>Quieres volver a sonreír sin pena</li>
-                </ul>
-                <a class="btn btn--primary" data-wa="Hola La Dental, quisiera información sobre prótesis dentales."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Preguntar por prótesis</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== Cupón de ortodoncia ========== -->
-    <section class="promo" id="ortodoncia">
-      <div class="container">
-        <div class="coupon" id="coupon" data-reveal="tilt">
-          <div class="coupon__main">
-            <p class="coupon__hey">¡Aprovecha!</p>
-            <p class="coupon__big"><span class="coupon__num">0%</span><span class="coupon__word">de prima</span></p>
-            <p class="coupon__for">en tu tratamiento de ortodoncia</p>
-            <div class="coupon__price"><span>Cuotas desde</span><strong>$24.99</strong></div>
-          </div>
-          <div class="coupon__side">
-            <svg class="smile" viewBox="0 0 400 230" role="img" aria-label="Sonrisa con brackets de colores">
-              <path class="smile__gum" d="M41.3 65.4 A 362 362 0 0 0 358.7 65.4"/>
-              <g class="smile__teeth" id="smileTeeth"></g>
-              <path class="smile__wire" d="M35.3 110 A 405 405 0 0 0 364.7 110"/>
-            </svg>
-            <a class="btn btn--gold" data-wa="Hola La Dental, quiero aprovechar la promoción de ortodoncia con 0% de prima."><svg class="btn__icon"><use href="#i-whatsapp"/></svg> Quiero mis brackets</a>
-            <p class="coupon__note">Pregunta por las condiciones en la clínica.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== Tu primera visita (camino paso a paso) ========== -->
-    <section class="section visit-steps" id="primera-visita">
-      <div class="container">
-        <header class="section__head">
-          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">04</span> Tu primera visita</p>
-          <h2 class="title-3d" data-split>Así de fácil es empezar</h2>
-        </header>
-
-        <ol class="path" id="path">
-          <li class="path__line" aria-hidden="true"><span id="pathFill"></span></li>
-          <li class="step" data-reveal="up">
-            <span class="step__num">1</span>
-            <div><h3>Escríbenos o llámanos</h3><p>Agenda por WhatsApp o al <span data-phone-label>7979-5986</span>.</p></div>
-          </li>
-          <li class="step" data-reveal="up">
-            <span class="step__num">2</span>
-            <div><h3>Llega a Periplaza Apopa</h3><p>Estamos en el local 31-D del centro comercial.</p></div>
-          </li>
-          <li class="step" data-reveal="up">
-            <span class="step__num">3</span>
-            <div><h3>Revisión y diagnóstico</h3><p>Revisamos tu boca y te explicamos lo que encontramos.</p></div>
-          </li>
-          <li class="step" data-reveal="up">
-            <span class="step__num">4</span>
-            <div><h3>Tu plan de tratamiento</h3><p>Te decimos qué necesitas y cómo empezar.</p></div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ========== Así nos ves en redes (sus publicaciones) ========== -->
-    <section class="section social-feed" id="redes">
-      <div class="container feed__grid">
-        <header class="feed__profile" data-reveal="up">
-          <p class="eyebrow"><span class="eyebrow__num">05</span> En redes</p>
-          <div class="profile">
-            <span class="profile__avatar" aria-hidden="true">
-              <svg viewBox="0 0 64 64"><use href="#i-tooth"/></svg>
-            </span>
-            <div>
-              <p class="profile__name">La Dental</p>
-              <p class="profile__bio">Clínicas especializadas · Periplaza Apopa, local 31-D</p>
-            </div>
-          </div>
-          <h2 class="title-3d" data-split>Así nos ves en redes</h2>
-          <p class="section__lead">Promociones, tratamientos y consejos que compartimos con nuestros pacientes.</p>
-          <div class="feed__actions">
-            <a class="btn btn--primary" data-link="instagram" target="_blank" rel="noopener"><svg class="btn__icon"><use href="#i-instagram"/></svg> Síguenos</a>
-            <a class="btn btn--primary" data-link="facebook" target="_blank" rel="noopener"><svg class="btn__icon"><use href="#i-facebook"/></svg> Facebook</a>
-            <a class="btn btn--ghost" data-wa="Hola La Dental, vi sus publicaciones y quisiera información.">
-              <svg class="btn__icon"><use href="#i-whatsapp"/></svg> Escríbenos
-            </a>
-          </div>
-        </header>
-
-        <!-- Sus publicaciones reales de Instagram -->
-        <div class="feed" id="feed">
-          <figure class="feed__post"><img src="assets/img/post-ortodoncia.webp" alt="Publicación: 0% de prima en ortodoncia, cuotas desde $24.99" width="412" height="412" loading="lazy"></figure>
-          <figure class="feed__post"><img src="assets/img/post-caries.webp" alt="Publicación: ¿Con caries? Necesitas visitarnos" width="412" height="412" loading="lazy"></figure>
-          <figure class="feed__post"><img src="assets/img/post-cordales.webp" alt="Publicación: extracción de cordales" width="412" height="412" loading="lazy"></figure>
-          <figure class="feed__post"><img src="assets/img/post-protesis.webp" alt="Publicación: prótesis dentales" width="412" height="412" loading="lazy"></figure>
-          <figure class="feed__post"><img src="assets/img/post-lengua.webp" alt="Publicación: cepilla tu lengua" width="412" height="412" loading="lazy"></figure>
-          <figure class="feed__post"><img src="assets/img/post-endodoncia.webp" alt="Publicación: endodoncia" width="412" height="412" loading="lazy"></figure>
-          <figure class="feed__post"><img src="assets/img/post-cepillado.webp" alt="Publicación: ¿cuántas veces al día debo cepillar mis dientes?" width="412" height="412" loading="lazy"></figure>
-          <figure class="feed__post"><img src="assets/img/post-salud.webp" alt="Publicación: tu salud dental es importante" width="412" height="412" loading="lazy"></figure>
-          <figure class="feed__post"><img src="assets/img/post-limpieza.webp" alt="Publicación: limpieza dental" width="412" height="412" loading="lazy"></figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== Consejos (tarjetas apiladas como publicaciones) ========== -->
-    <section class="section tips" id="consejos">
-      <div class="container tips__grid">
-        <header class="section__head section__head--left">
-          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">06</span> Consejos de tu dentista</p>
-          <h2 class="title-3d" data-split>Cuida tu sonrisa en casa</h2>
-          <p class="section__lead" data-reveal="up">Desliza o toca "Siguiente" para ver cada consejo.</p>
-          <div class="deck__nav" data-reveal="up">
-            <button class="round-btn" id="deckPrev" type="button" aria-label="Consejo anterior"><svg><use href="#i-arrow"/></svg></button>
-            <span class="deck__count" id="deckCount">1 / 3</span>
-            <button class="btn btn--primary deck__next" id="deckNext" type="button">Siguiente <svg class="btn__icon"><use href="#i-arrow"/></svg></button>
-          </div>
-        </header>
-
-        <div class="deck" id="deck" data-reveal="tilt">
-          <article class="post post--tongue">
-            <p class="post__caps">Cepilla</p>
-            <p class="post__script">tu lengua</p>
-            <ol class="post__list">
-              <li>Muchas de las bacterias bucales se acumulan en la lengua y pueden afectar tu corazón y sentido del gusto.</li>
-              <li>Previene caries e infecciones en las encías.</li>
-              <li>Evita que las bacterias pasen de la lengua a otras zonas de la boca.</li>
-              <li>Previene el mal aliento.</li>
-            </ol>
-            <div class="post__bar"><span>La Dental</span><span data-phone-label>7979-5986</span></div>
-          </article>
-
-          <article class="post post--question">
-            <p class="post__q">¿Cuántas veces al día debo cepillar mis dientes?</p>
-            <p class="post__a"><strong>Al menos dos veces al día</strong>Dos minutos cada vez, sin olvidar la lengua. Y usa hilo dental una vez al día.</p>
-            <svg class="post__sparks" viewBox="0 0 100 40" aria-hidden="true"><use href="#i-spark" x="0" y="8" width="18" height="18"/><use href="#i-spark" x="70" y="0" width="26" height="26"/></svg>
-            <div class="post__bar"><span>La Dental</span><span data-phone-label>7979-5986</span></div>
-          </article>
-
-          <article class="post post--health">
-            <p class="post__caps post__caps--sm">Tu salud dental</p>
-            <p class="post__shout">¡Es importante!</p>
-            <p class="post__text">Pon la salud de tus dientes en manos de los especialistas y agenda tu consulta para un diagnóstico preventivo y oportuno.</p>
-            <a class="post__btn" href="#agenda">Agenda tu consulta</a>
-            <div class="post__bar"><span>Periplaza Apopa, local 31-D</span><span data-phone-label>7979-5986</span></div>
-          </article>
         </div>
       </div>
     </section>
@@ -598,7 +340,7 @@
     <section class="section faq" id="preguntas">
       <div class="container faq__inner">
         <header class="section__head">
-          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">07</span> Preguntas frecuentes</p>
+          <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">04</span> Preguntas frecuentes</p>
           <h2 class="title-3d" data-split>Resolvemos tus dudas</h2>
         </header>
 
@@ -608,20 +350,16 @@
             <div class="qa__body"><p>No. Tu tratamiento de ortodoncia empieza con 0% de prima y cuotas desde $24.99. Pregunta por las condiciones en la clínica.</p></div>
           </details>
           <details class="qa">
-            <summary>¿Dónde están ubicados?<span class="qa__icon" aria-hidden="true"></span></summary>
-            <div class="qa__body"><p>En el Centro Comercial Periplaza Apopa, local 31-D, Apopa, El Salvador.</p></div>
+            <summary>¿Qué tratamientos realizan?<span class="qa__icon" aria-hidden="true"></span></summary>
+            <div class="qa__body"><p>Ortodoncia, limpieza dental, tratamiento de caries, endodoncia, extracción de cordales y prótesis dentales.</p></div>
           </details>
           <details class="qa">
             <summary>¿Cómo agendo una consulta?<span class="qa__icon" aria-hidden="true"></span></summary>
             <div class="qa__body"><p>Escríbenos por WhatsApp, llámanos al <span data-phone-label>7979-5986</span> o llena el formulario de esta página y te contestamos.</p></div>
           </details>
           <details class="qa">
-            <summary>¿Qué tratamientos realizan?<span class="qa__icon" aria-hidden="true"></span></summary>
-            <div class="qa__body"><p>Ortodoncia, limpieza dental, tratamiento de caries, endodoncia, extracción de cordales y prótesis dentales.</p></div>
-          </details>
-          <details class="qa">
-            <summary>¿Por qué debo cepillar mi lengua?<span class="qa__icon" aria-hidden="true"></span></summary>
-            <div class="qa__body"><p>Porque ahí se acumulan muchas bacterias. Cepillarla previene caries, infecciones en las encías y el mal aliento.</p></div>
+            <summary>¿Dónde están ubicados?<span class="qa__icon" aria-hidden="true"></span></summary>
+            <div class="qa__body"><p>En el Centro Comercial Periplaza Apopa, local 31-D, Apopa, El Salvador.</p></div>
           </details>
         </div>
       </div>
@@ -631,7 +369,7 @@
     <section class="section book" id="agenda">
       <div class="container book__grid">
         <form class="form" id="bookForm" data-reveal="tilt" novalidate>
-          <p class="eyebrow eyebrow--gold"><span class="eyebrow__num">08</span> Agenda tu cita</p>
+          <p class="eyebrow eyebrow--gold"><span class="eyebrow__num">05</span> Agenda tu cita</p>
           <h2 class="form__title">Te esperamos</h2>
           <p class="form__lead">Llena tus datos y se abrirá WhatsApp con tu mensaje listo para enviar.</p>
 
@@ -706,7 +444,7 @@
       <nav class="footer__links" aria-label="Enlaces">
         <a href="#tratamientos">Tratamientos</a>
         <a href="#ortodoncia">Ortodoncia</a>
-        <a href="#nosotros">Nosotros</a>
+        <a href="#clinica">La clínica</a>
         <a href="#agenda">Agenda tu cita</a>
       </nav>
       <div class="footer__social">

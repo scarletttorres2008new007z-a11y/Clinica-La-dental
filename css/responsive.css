@@ -10,21 +10,13 @@
   body { font-size: 16px; }
   .container { padding: 0 16px; }
   .header .logo--sm { font-size: 24px; }
-  .hero__stage { height: 300px; }
-  .stage__circle { width: 236px; height: 236px; margin: -122px 0 0 -118px; }
-  .tooth3d { width: 156px; height: 156px; margin: -90px 0 0 -78px; }
-  .float-card strong { font-size: 24px; }
-  .quick__chips button { font-size: 13px; }
-  .treat__tabs { margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
-  .post { padding: 22px 18px 0; }
-  .post__bar { margin-left: -18px; margin-right: -18px; padding-left: 18px; padding-right: 18px; }
-  .post__caps { font-size: 34px; }
-  .post__q { font-size: 26px; }
-  .deck { height: 490px; }
-  .about__media { height: 370px; }
-  .seal { width: 100px; height: 100px; }
-  .seal__ring text { font-size: 10.2px; }
-  .wall-quote p { font-size: 26px; }
+  .hero__facts strong { font-size: 22px; }
+  .hero__facts span { font-size: 12px; }
+  .chip { font-size: 13px; }
+  .chip--price strong { font-size: 26px; }
+  .coin { width: 92px; height: 92px; }
+  .coin strong { font-size: 30px; }
+  .price strong { font-size: 48px; }
   .value { padding: 14px 12px; }
   .actionbar__main { font-size: 15px; }
 }
@@ -44,24 +36,9 @@
 
 /* ---------- Tablet ---------- */
 @media (min-width: 640px) {
-  .quick { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 20px; padding: 18px 22px; }
-  .quick__title { margin: 0; }
-  .quick__chips { grid-template-columns: repeat(6, auto); justify-content: end; }
-  .quick__chips button { padding: 11px 14px; }
-  .stats__grid { grid-template-columns: repeat(4, 1fr); }
   .values { grid-template-columns: 1fr 1fr; }
-  .pledge { grid-template-columns: repeat(3, 1fr); }
-  .about__media { height: 520px; max-width: 560px; }
-  .hero__stage { height: 380px; }
-  .float-card--a { left: 10%; }
-  .float-card--b { right: 10%; }
-  .panel { grid-template-columns: auto 1fr; gap: 30px; padding: 34px; }
-  .coupon { grid-template-columns: 1.1fr 1fr; }
-  .coupon__main { border-radius: 30px 0 0 30px; padding: 40px 34px; }
-  .coupon__side { border-radius: 0 30px 30px 0; border-top: 0; border-left: 3px dashed var(--mint); align-content: center; padding: 30px; }
-  .coupon__side::before { left: -18px; top: -17px; }
-  .coupon__side::after { left: -18px; right: auto; top: auto; bottom: -17px; }
-  .deck { max-width: 420px; width: 100%; justify-self: center; }
+  .carousel { --card-w: 340px; }
+  .clinic__gallery { max-width: 560px; margin: 0 auto; }
   .polaroid { width: 180px; right: -6px; }
   .footer__grid { grid-template-columns: 1.4fr 1fr auto; align-items: start; }
 }
@@ -80,58 +57,24 @@
   .nav a:not(.btn):hover { background: var(--mint-pale); color: var(--mint-deep); }
   .nav__cta { margin: 0 0 0 10px; min-height: 46px; padding: 0 20px; font-size: 15px; }
 
-  .hero { padding-top: 60px; }
-  .hero__blob--a { width: 520px; right: -140px; top: -160px; }
-  .hero__blob--b { width: 380px; left: -200px; bottom: 40px; }
-  .hero__grid { grid-template-columns: 1.1fr 1fr; align-items: center; gap: 30px; padding-bottom: 40px; }
+  .hero { padding: 64px 0 80px; }
+  .hero__grid { grid-template-columns: 1.05fr .95fr; align-items: center; gap: 50px; }
   .hero__actions .btn { flex: 0 0 auto; }
-  .hero__stage { height: 500px; margin: 0; }
-  .stage__circle { width: 420px; height: 420px; margin: -215px 0 0 -210px; }
-  .stage__arc { width: 360px; }
-  .tooth3d { width: 260px; height: 260px; margin: -150px 0 0 -130px; }
-  .float-card { padding: 14px 20px; }
-  .float-card strong { font-size: 36px; }
-  .float-card span { font-size: 14px; }
-  .float-card--a { left: 0; top: 8%; }
-  .float-card--b { right: 0; bottom: 12%; }
-  .quick { padding: 22px 30px; }
-  .quick__title { font-size: 20px; }
-  .quick__chips button { font-size: 15px; padding: 12px 18px; }
-
-  .stats { padding-top: 130px; }
-  .about__grid { grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .feed__grid { grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
-  .feed { gap: 12px; }
-  .wall-quote p { font-size: 38px; }
+  .hero__facts { max-width: 520px; }
+  .hero__facts strong { font-size: 30px; }
+  .hero__visual { max-width: 500px; margin: 0 0 0 auto; }
 
   .section { padding: 110px 0; }
   .section__head { margin-bottom: 50px; }
-
-  .mouth__grid { grid-template-columns: 1fr 1.05fr; grid-template-areas: "head stage" "info stage"; column-gap: 60px; align-items: start; }
-  .zone-info { margin-top: 0; }
-  .mouth__card { padding: 26px 22px 18px; }
-
-  .treat__box { grid-template-columns: 300px 1fr; gap: 30px; align-items: start; }
-  .treat__tabs { flex-direction: column; overflow: visible; margin: 0; padding: 0; }
-  .treat__tabs button { padding: 12px 18px 12px 12px; font-size: 16px; }
-  .treat__tabs button:not([aria-selected="true"]):hover { transform: translateX(6px); }
-  .panel { padding: 44px; gap: 40px; min-height: 420px; align-content: start; }
-  .panel__icon { width: 150px; height: 150px; }
-  .panel__icon svg { width: 96px; height: 96px; }
-  .panel h3 { font-size: 36px; }
+  .treat .section__head { margin-bottom: 10px; }
+  .carousel { --card-w: 370px; }
 
   .promo { padding: 110px 0; }
-  .coupon__main { padding: 54px 50px; }
+  .promo__grid { grid-template-columns: .9fr 1.1fr; gap: 80px; }
+  .promo__visual { max-width: 440px; }
 
-  .path { max-width: none; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  .path__line { left: 30px; right: 30px; top: 27px; bottom: auto; width: auto; height: 6px; }
-  .path__line span { height: 100%; width: calc(var(--p, 0) * 100%); }
-  .step { flex-direction: column; gap: 16px; }
-  .step div { width: 100%; }
-
-
-  .tips__grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
-  .deck { height: 500px; }
+  .clinic__grid { grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+  .clinic__gallery { max-width: none; }
 
   .book__grid { grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
   .form { padding: 40px 36px; }
