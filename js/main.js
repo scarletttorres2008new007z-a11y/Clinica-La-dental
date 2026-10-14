@@ -1,5 +1,5 @@
 /* ==========================================================
-   L.a Dental · Funciones de la página
+   La Dental · Funciones de la página
    Índice:
      1. Enlaces de contacto (WhatsApp, teléfono, mapa, redes)
      2. Encabezado y menú de celular
@@ -27,7 +27,7 @@ const NS = "http://www.w3.org/2000/svg";
 
 /* ---------- 1. Enlaces de contacto ---------- */
 const waLink = (msg) =>
-  `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg || "Hola L.a Dental, quisiera agendar una consulta.")}`;
+  `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg || "Hola La Dental, quisiera agendar una consulta.")}`;
 
 safe("contacto", () => {
   $$("[data-wa]").forEach((a) => {
@@ -273,7 +273,7 @@ safe("mapa de la sonrisa", () => {
     $("#zoneText").textContent = z.text;
     $("#zoneTags").innerHTML = z.tags.map(([label, tab]) => `<a href="#tratamientos" data-tab="${tab}">${label}</a>`).join("");
     const btn = $("#zoneBtn");
-    if (CONFIG.whatsapp) btn.href = waLink(`Hola L.a Dental, me molesta en la zona de ${z.name.toLowerCase()} y quisiera una revisión.`);
+    if (CONFIG.whatsapp) btn.href = waLink(`Hola La Dental, me molesta en la zona de ${z.name.toLowerCase()} y quisiera una revisión.`);
     if (animate) {
       info.classList.remove("is-swap");
       void info.offsetWidth;
@@ -440,7 +440,7 @@ safe("formulario", () => {
     error.hidden = true;
     const service = $("#fService").value;
     const when = form.querySelector("input[name=cuando]:checked").value;
-    const msg = `Hola L.a Dental, soy ${name}. Quisiera agendar una cita para: ${service}. Me gustaría ir ${when}.`;
+    const msg = `Hola La Dental, soy ${name}. Quisiera agendar una cita para: ${service}. Me gustaría ir ${when}.`;
     if (CONFIG.whatsapp) window.open(waLink(msg), "_blank", "noopener");
     else window.location.href = `tel:${CONFIG.phone}`;
   });

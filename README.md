@@ -1,6 +1,6 @@
-# L.a Dental · Landing page
+# La Dental · Landing page
 
-Página de una sola sección (landing) para **L.a Dental, Clínicas Especializadas**,
+Página de una sola sección (landing) para **La Dental, Clínicas Especializadas**,
 Centro Comercial Periplaza Apopa, local 31-D.
 
 Es HTML, CSS y JavaScript puros: no necesita instalar nada ni compilar.
