@@ -58,9 +58,19 @@
   transition: box-shadow .3s; will-change: transform;
 }
 .tcard.is-active { box-shadow: inset 0 0 0 2px var(--mint-soft), 0 8px 0 var(--mint-deep); }
-.tcard__photo { margin: 0; aspect-ratio: 4 / 3; overflow: hidden; background: var(--mint-soft); }
-/* La foto se desliza un poco dentro de su marco (profundidad) */
-.tcard__photo img { width: 100%; height: 100%; object-fit: cover; transform: translateX(var(--px, 0px)) scale(1.16); }
+/* Arriba de cada tarjeta: su publicación y la foto, apiladas en 3D */
+.tcard__media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--mint-pale); perspective: 800px; }
+.tile {
+  position: absolute; margin: 0; width: 52%; aspect-ratio: 1; border-radius: 16px; overflow: hidden;
+  border: 5px solid var(--white); background: var(--mint-soft);
+  transition: transform .6s var(--ease-back);
+}
+.tile img { width: 100%; height: 100%; object-fit: cover; }
+/* --px lo mueve js/main.js según la posición de la tarjeta (profundidad) */
+.tile--post { left: 5%; top: 7%; box-shadow: 0 6px 0 var(--mint-soft); transform: translateX(calc(var(--px, 0px) * .6)) rotate(-7deg) rotateY(12deg); }
+.tile--photo { right: 5%; bottom: 6%; box-shadow: 0 6px 0 var(--mint-deep); transform: translateX(calc(var(--px, 0px) * -1)) rotate(5deg) rotateY(-12deg) translateZ(30px); }
+.tcard.is-active .tile--post { transform: rotate(-9deg) rotateY(18deg) translate(-4px, -4px); }
+.tcard.is-active .tile--photo { transform: rotate(4deg) rotateY(-18deg) translateZ(40px) translate(4px, 4px); }
 .tcard__body { flex: 1; display: flex; flex-direction: column; padding: 18px 20px 22px; }
 .tcard__tag {
   align-self: flex-start; background: var(--gold); color: var(--ink); font-family: var(--font-display); font-weight: 700;
@@ -82,7 +92,7 @@
 /* ---------- Ortodoncia: su promoción ---------- */
 .promo { background: var(--ink); padding: 80px 0; overflow: clip; }
 .promo__grid { display: grid; gap: 54px; align-items: center; }
-.promo__visual { perspective: 1100px; width: 100%; max-width: 400px; margin: 0 auto; padding: 18px 16px 10px 6px; }
+.promo__visual { perspective: 1100px; width: 100%; max-width: 340px; margin: 0 auto; padding: 18px 16px 10px 6px; }
 #promoScene { --rx0: 4deg; --ry0: 14deg; }
 .photo--post img { border-color: var(--mint-pale); }
 .photo--post::after { background: var(--mint); }
@@ -137,6 +147,15 @@
 .qa[open] .qa__icon::after { transform: rotate(0); }
 .qa__body { padding: 0 20px 20px; color: var(--muted); transform-origin: 50% 0; }
 .qa[open] .qa__body { animation: qaOpen .5s var(--ease-back); }
+/* Respuesta con la publicación de la clínica al lado */
+.qa__body--post { display: flex; gap: 16px; align-items: center; perspective: 700px; }
+.qa__post {
+  flex: 0 0 120px; margin: 0; border-radius: 14px; overflow: hidden; border: 4px solid var(--white);
+  box-shadow: 0 5px 0 var(--mint-soft); transform: rotate(-4deg);
+}
+.qa__post img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.qa[open] .qa__post { animation: postFlip .8s var(--ease-back); }
+@keyframes postFlip { from { transform: rotateY(-90deg) rotate(-4deg); } to { transform: rotate(-4deg); } }
 @keyframes qaOpen { from { transform: rotateX(-70deg); opacity: 0; } to { transform: none; opacity: 1; } }
 
 /* ---------- Agenda tu cita + ubicación ---------- */

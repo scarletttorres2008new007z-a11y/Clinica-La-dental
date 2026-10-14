@@ -97,7 +97,7 @@
 .hero__facts span { display: block; font-size: 13px; font-weight: 700; line-height: 1.25; color: var(--ink); margin-top: 2px; }
 
 /* Foto de la entrada en 3D */
-.hero__visual { perspective: 1100px; width: 100%; max-width: 440px; margin: 34px auto 0; padding: 26px 22px 34px; }
+.hero__visual { perspective: 1100px; width: 100%; max-width: 380px; margin: 34px auto 0; padding: 26px 22px 34px; }
 #heroScene { --rx0: 6deg; --ry0: -14deg; }
 .photo--hero img { aspect-ratio: 1; }
 .chip {
