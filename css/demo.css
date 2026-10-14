@@ -1,0 +1,57 @@
+/* ==========================================================
+   L.a Dental · Solo en la vista previa (rama demo)
+   Aviso, marcas de agua y sellos de Scarlett.
+   La versión final (rama main) no lleva este archivo.
+   ========================================================== */
+
+/* ---------- Aviso "Vista previa" ---------- */
+.demo-badge {
+  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 1002;
+  display: flex; align-items: center; gap: 8px; max-width: calc(100% - 110px);
+  background: var(--ink); color: var(--white); padding: 10px 18px; border-radius: 999px;
+  font-size: 13.5px; line-height: 1.3; box-shadow: 0 5px 0 var(--gold);
+  pointer-events: none; /* no bloquea botones que queden debajo */
+}
+.demo-badge strong { color: var(--gold); }
+
+/* ---------- Marca de agua en toda la página ---------- */
+.demo-watermark {
+  position: fixed; inset: 0; z-index: 1001; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='260'%3E%3Cg transform='rotate(-24 210 130)' font-family='Arial, Helvetica, sans-serif' font-weight='700' text-anchor='middle' fill='%2317403A' fill-opacity='0.085'%3E%3Ctext x='210' y='122' font-size='22' letter-spacing='3'%3EDISEÑO DE SCARLETT%3C/text%3E%3Ctext x='210' y='152' font-size='13' letter-spacing='4'%3EVISTA PREVIA · NO AUTORIZADO%3C/text%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ---------- Sello sobre cada foto (lo agrega js/demo.js) ---------- */
+.demo-stamp {
+  position: absolute; left: 12px; top: 12px; z-index: 5; pointer-events: none;
+  background: var(--ink); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; padding: 5px 10px; border-radius: 999px; opacity: .85; white-space: nowrap;
+}
+.polaroid > .demo-stamp { font-size: 9px; padding: 4px 8px; left: 14px; top: 14px; }
+
+/* ---------- Crédito en el pie de página y bloqueo de copia ---------- */
+.demo-credit { margin-top: 6px; color: var(--gold); font-weight: 600; }
+body.demo-lock { -webkit-user-select: none; user-select: none; }
+body.demo-lock img { -webkit-user-drag: none; }
+
+/* Al imprimir solo sale el aviso */
+@media print {
+  body * { visibility: hidden !important; }
+  body::after {
+    content: "Vista previa protegida · Diseño de Scarlett para L.a Dental"; visibility: visible;
+    position: fixed; inset: 0; display: grid; place-items: center; font: 700 28px/1.3 sans-serif; text-align: center;
+  }
+}
+
+/* ---------- Celular parado o acostado ----------
+   Aviso compacto abajo a la izquierda; WhatsApp más arriba
+   para no chocar con la insignia de Netlify */
+@media (max-width: 600px), (max-height: 520px) and (orientation: landscape) {
+  .demo-badge {
+    left: 12px; bottom: calc(16px + env(safe-area-inset-bottom)); transform: none;
+    max-width: calc(100% - 100px); font-size: 12px; padding: 7px 14px; box-shadow: 0 4px 0 var(--gold); white-space: nowrap;
+  }
+  .demo-badge__more, .demo-stamp__pre { display: none; }
+  .wa-float { bottom: calc(66px + env(safe-area-inset-bottom)); }
+  .demo-stamp { font-size: 10px; padding: 4px 9px; }
+}
