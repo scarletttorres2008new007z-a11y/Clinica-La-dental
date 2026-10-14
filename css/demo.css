@@ -44,14 +44,16 @@ body.demo-lock img { -webkit-user-drag: none; }
 }
 
 /* ---------- Celular parado o acostado ----------
-   Aviso compacto abajo a la izquierda; WhatsApp más arriba
+   El aviso queda arriba de la barra de acciones; la barra sube un poco
    para no chocar con la insignia de Netlify */
-@media (max-width: 600px), (max-height: 520px) and (orientation: landscape) {
+@media (max-width: 979px) {
   .demo-badge {
-    left: 12px; bottom: calc(16px + env(safe-area-inset-bottom)); transform: none;
-    max-width: calc(100% - 100px); font-size: 12px; padding: 7px 14px; box-shadow: 0 4px 0 var(--gold); white-space: nowrap;
+    left: 12px; bottom: calc(86px + env(safe-area-inset-bottom)); transform: none;
+    max-width: calc(100% - 24px); font-size: 12px; padding: 6px 14px; box-shadow: 0 4px 0 var(--gold); white-space: nowrap;
   }
   .demo-badge__more, .demo-stamp__pre { display: none; }
-  .wa-float { bottom: calc(66px + env(safe-area-inset-bottom)); }
   .demo-stamp { font-size: 10px; padding: 4px 9px; }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  .demo-badge { bottom: 16px; }
 }
