@@ -19,8 +19,8 @@ const CONFIG = {
   facebook: "",
 
   // Mapa: búsqueda de Periplaza Apopa en Google Maps
-  maps: "https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Periplaza+Apopa",
-  mapEmbed: "https://maps.google.com/maps?q=Centro%20Comercial%20Periplaza%20Apopa%2C%20Apopa&z=16&output=embed"
+  maps: "https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Periplaza+Apopa%2C+Apopa%2C+El+Salvador",
+  mapEmbed: "https://maps.google.com/maps?q=Centro%20Comercial%20Periplaza%20Apopa%2C%20Apopa%2C%20El%20Salvador&z=16&output=embed"
 };
 
 /*
