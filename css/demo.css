@@ -1,5 +1,5 @@
 /* ==========================================================
-   L.a Dental · Solo en la vista previa (rama demo)
+   La Dental · Solo en la vista previa (rama demo)
    Aviso, marcas de agua y sellos de Scarlett.
    La versión final (rama main) no lleva este archivo.
    ========================================================== */
@@ -38,7 +38,7 @@ body.demo-lock img { -webkit-user-drag: none; }
 @media print {
   body * { visibility: hidden !important; }
   body::after {
-    content: "Vista previa protegida · Diseño de Scarlett para L.a Dental"; visibility: visible;
+    content: "Vista previa protegida · Diseño de Scarlett para La Dental"; visibility: visible;
     position: fixed; inset: 0; display: grid; place-items: center; font: 700 28px/1.3 sans-serif; text-align: center;
   }
 }

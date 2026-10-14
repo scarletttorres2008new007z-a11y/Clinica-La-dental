@@ -24,7 +24,7 @@
     if (!bottom || bottom.querySelector(".demo-credit")) return;
     const p = document.createElement("p");
     p.className = "demo-credit";
-    p.textContent = `Vista previa: ${CREDIT}. Propuesta para L.a Dental, no autorizada para publicarse ni copiarse.`;
+    p.textContent = `Vista previa: ${CREDIT}. Propuesta para La Dental, no autorizada para publicarse ni copiarse.`;
     bottom.appendChild(p);
   };
 
@@ -62,5 +62,5 @@
   setInterval(ensureMarks, 3000);
 
   console.log("%cVista previa protegida", "font-size:18px;font-weight:bold;color:#3F8F7A");
-  console.log(`Este sitio es una propuesta de ${CREDIT} para L.a Dental. No está autorizado copiarlo ni publicarlo.`);
+  console.log(`Este sitio es una propuesta de ${CREDIT} para La Dental. No está autorizado copiarlo ni publicarlo.`);
 })();
