@@ -20,9 +20,11 @@
 
   --font-display: "Poppins", "Segoe UI", Arial, sans-serif;
   --font-body: "Nunito", "Segoe UI", Arial, sans-serif;
+  --font-script: "Caveat", "Segoe Script", cursive; /* letra a mano, como en sus publicaciones */
 
   --radius: 22px;
   --header-h: 68px;
+  --actionbar-h: 0px;
   --ease-out: cubic-bezier(.2, .8, .2, 1);
   --ease-back: cubic-bezier(.34, 1.56, .64, 1);
 }

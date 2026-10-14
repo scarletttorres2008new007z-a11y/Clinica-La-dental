@@ -5,12 +5,14 @@
      2. Encabezado y menú de celular
      3. Títulos con letras 3D y animaciones al hacer scroll
      4. Diente 3D del inicio y efecto de inclinación
-     5. Cinta de servicios
-     6. Tarjetas que giran
-     7. Sonrisa con brackets
-     8. Guía "¿Qué le pasa a tu sonrisa?"
-     9. Carrusel 3D de la clínica
-    10. Mapa, horario y año
+     5. Atajo "¿Qué necesitas hoy?"
+     6. Mapa de tu sonrisa (toca un diente)
+     7. Pestañas de tratamientos
+     8. Sonrisa con brackets del cupón
+     9. Camino de "Tu primera visita"
+    10. Mazo de consejos
+    11. Formulario "Agenda tu cita"
+    12. Mapa, horario, año y barra de acciones
    Cada parte va protegida: si una falla, las demás siguen.
    ========================================================== */
 
@@ -21,6 +23,7 @@ const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 const isTouch = window.matchMedia("(hover: none)").matches;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const NS = "http://www.w3.org/2000/svg";
 
 /* ---------- 1. Enlaces de contacto ---------- */
 const waLink = (msg) =>
@@ -29,7 +32,7 @@ const waLink = (msg) =>
 safe("contacto", () => {
   $$("[data-wa]").forEach((a) => {
     if (!CONFIG.whatsapp) { a.hidden = true; return; }
-    a.href = waLink(a.dataset.wa);
+    if (a.dataset.wa) a.href = waLink(a.dataset.wa);
     a.target = "_blank";
     a.rel = "noopener";
   });
@@ -75,8 +78,8 @@ safe("animaciones", () => {
   $$("[data-split]").forEach((el) => splitLetters(el));
 
   // Retraso escalonado para elementos que aparecen juntos
-  $$(".services__grid, .tips__grid").forEach((grid) => {
-    $$("[data-reveal]", grid).forEach((el, i) => el.style.setProperty("--d", `${(i % 3) * 0.12}s`));
+  $$(".trust__grid, .path, .bento").forEach((group) => {
+    $$("[data-reveal]", group).forEach((el, i) => el.style.setProperty("--d", `${i * 0.1}s`));
   });
 
   const targets = $$("[data-reveal], [data-split]");
@@ -100,7 +103,7 @@ safe("animaciones", () => {
   }
 });
 
-/* ---------- 4. Diente 3D del inicio ---------- */
+/* ---------- 4. Diente 3D e inclinación ---------- */
 safe("diente 3D", () => {
   const tooth = $("#tooth3d");
   const base = $(".tooth3d__layer", tooth);
@@ -114,72 +117,234 @@ safe("diente 3D", () => {
   }
   base.classList.add("is-front");
   base.style.transform = "translateZ(1px)";
-  // Brillo en la parte de arriba del diente
-  const shine = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  const shine = document.createElementNS(NS, "path");
   shine.setAttribute("d", "M17 15C20 11 25 10 29 12");
   shine.setAttribute("class", "tooth3d__shine");
   base.appendChild(shine);
+});
 
-  // Inclinación con el mouse (computadora) o con el scroll (celular)
-  const tilt = (el, area) => {
-    if (reducedMotion) return;
+safe("inclinación", () => {
+  if (reducedMotion) return;
+  // Con el mouse en computadora; con el scroll en celular (solo donde no se toca)
+  const tilt = (el, area, { onTouch = true, strength = 1 } = {}) => {
+    if (!el || !area) return;
     if (!isTouch) {
       area.addEventListener("pointermove", (e) => {
         const r = area.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
-        el.style.setProperty("--ry", `${x * 22}deg`);
-        el.style.setProperty("--rx", `${-y * 16}deg`);
+        el.style.setProperty("--ry", `${x * 20 * strength}deg`);
+        el.style.setProperty("--rx", `${-y * 14 * strength}deg`);
       });
       area.addEventListener("pointerleave", () => {
         el.style.removeProperty("--ry");
         el.style.removeProperty("--rx");
       });
-    } else {
+    } else if (onTouch) {
       const onScroll = () => {
         const r = area.getBoundingClientRect();
-        const p = Math.max(-0.5, Math.min(0.5, (r.top + r.height / 2) / window.innerHeight - 0.5)); // -0.5 a 0.5
-        el.style.setProperty("--rx", `${p * 22}deg`);
-        el.style.setProperty("--ry", `${-p * 14}deg`);
+        const p = Math.max(-0.5, Math.min(0.5, (r.top + r.height / 2) / window.innerHeight - 0.5));
+        el.style.setProperty("--rx", `${p * 20 * strength}deg`);
+        el.style.setProperty("--ry", `${-p * 12 * strength}deg`);
       };
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
     }
   };
   tilt($("#stage"), $(".hero"));
-  tilt($("#smileCard"), $(".promo"));
+  tilt($("#coupon"), $(".promo"), { strength: 0.6 });
+  tilt($("#mouthCard"), $(".mouth__stage"), { onTouch: false, strength: 0.6 });
 });
 
-/* ---------- 5. Cinta de servicios (se duplica para que no tenga fin) ---------- */
-safe("cinta", () => {
-  const track = $("#ribbonTrack");
-  track.innerHTML += track.innerHTML;
+/* ---------- 5. Atajo "¿Qué necesitas hoy?" ---------- */
+// Elige el tratamiento en el formulario y baja hasta él
+const pickService = (name) => {
+  const select = $("#fService");
+  if (!select) return;
+  const option = Array.from(select.options).find((o) => o.text === name);
+  if (option) select.value = option.text;
+  $("#agenda").scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+  const field = select.closest(".field");
+  field.classList.remove("is-picked");
+  void field.offsetWidth;
+  field.classList.add("is-picked");
+};
+
+safe("atajo", () => {
+  $$("#quickChips [data-pick]").forEach((b) => b.addEventListener("click", () => pickService(b.dataset.pick)));
 });
 
-/* ---------- 6. Tarjetas que giran ---------- */
-safe("tarjetas", () => {
-  $$(".flip").forEach((card) => {
-    const toggle = () => card.classList.toggle("is-flipped");
-    card.addEventListener("click", (e) => {
-      if (e.target.closest("a")) return; // el botón de WhatsApp no gira la tarjeta
-      toggle();
-    });
-    card.addEventListener("keydown", (e) => {
-      if (e.target !== card) return;
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
-    });
-    // En computadora también gira al pasar el mouse
-    if (!isTouch) {
-      card.addEventListener("mouseenter", () => card.classList.add("is-flipped"));
-      card.addEventListener("mouseleave", () => card.classList.remove("is-flipped"));
+/* ---------- 6. Mapa de tu sonrisa ---------- */
+safe("mapa de la sonrisa", () => {
+  const ZONES = {
+    incisivos: {
+      name: "Incisivos",
+      title: "Los dientes de enfrente",
+      text: "Son los que más se ven al sonreír. Si están chuecos o separados, la ortodoncia los acomoda. Si tienen sarro o manchas, una limpieza los deja como nuevos.",
+      tags: [["Ortodoncia", "tab-orto"], ["Limpieza dental", "tab-limpieza"]]
+    },
+    caninos: {
+      name: "Caninos",
+      title: "Los colmillos",
+      text: "Guían tu mordida. Si salieron fuera de lugar o se ven montados, la ortodoncia los lleva a su sitio.",
+      tags: [["Ortodoncia", "tab-orto"]]
+    },
+    premolares: {
+      name: "Premolares",
+      title: "Entre colmillos y muelas",
+      text: "Si te molestan con lo frío o lo dulce, puede ser una caries. Tratada a tiempo, no llega al nervio.",
+      tags: [["Caries", "tab-caries"], ["Endodoncia", "tab-endo"]]
+    },
+    molares: {
+      name: "Molares",
+      title: "Las muelas",
+      text: "Hacen el trabajo pesado y es donde más aparecen las caries. Si el dolor es fuerte o no se quita, puede necesitar endodoncia. Si falta una, una prótesis la reemplaza.",
+      tags: [["Caries", "tab-caries"], ["Endodoncia", "tab-endo"], ["Prótesis dentales", "tab-protesis"]]
+    },
+    cordales: {
+      name: "Cordales",
+      title: "Las muelas del juicio",
+      text: "Salen al fondo de la boca. Si duelen, se inflaman o no tienen espacio, se revisan para valorar su extracción.",
+      tags: [["Extracción de cordales", "tab-cordales"]]
     }
+  };
+  // Del centro hacia atrás: tipo de diente y ancho
+  const TEETH = [
+    ["incisivos", 22], ["incisivos", 19], ["caninos", 20], ["premolares", 21],
+    ["premolares", 21], ["molares", 26], ["molares", 26], ["cordales", 24]
+  ];
+  const CX = 180, CY = 150, RX = 137, RY = 110, GAP = 3;
+  const group = $("#archTeeth");
+  const point = (deg) => {
+    const t = (deg * Math.PI) / 180;
+    return [CX + RX * Math.cos(t), CY + RY * Math.sin(t)];
+  };
+
+  // Reparte los dientes a lo largo del arco según su ancho
+  let count = 0;
+  const placeSide = (from, to) => {
+    const steps = 400;
+    const lens = [0];
+    let prev = point(from);
+    for (let s = 1; s <= steps; s++) {
+      const p = point(from + ((to - from) * s) / steps);
+      lens.push(lens[s - 1] + Math.hypot(p[0] - prev[0], p[1] - prev[1]));
+      prev = p;
+    }
+    const total = lens[steps];
+    const needed = TEETH.reduce((sum, [, w]) => sum + w + GAP, 0);
+    const scale = total / needed;
+    let offset = (GAP / 2) * scale;
+    TEETH.forEach(([zone, w], k) => {
+      const center = offset + (w * scale) / 2;
+      offset += (w + GAP) * scale;
+      const s = lens.findIndex((l) => l >= center);
+      const deg = from + ((to - from) * s) / steps;
+      const [x, y] = point(deg);
+      const tw = w * scale * 0.94;
+      const th = zone === "molares" || zone === "cordales" ? 30 : zone === "incisivos" ? 34 : 32;
+      const g = document.createElementNS(NS, "g");
+      g.setAttribute("class", "tooth");
+      g.setAttribute("tabindex", "0");
+      g.setAttribute("role", "button");
+      g.setAttribute("aria-label", ZONES[zone].name);
+      g.dataset.zone = zone;
+      g.style.setProperty("--i", String(count++ % 16));
+      g.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(deg + 90).toFixed(1)})`);
+      // Área invisible más grande para tocar fácil con el dedo
+      g.innerHTML =
+        `<rect class="tooth__hit" x="${-(w * scale) / 2}" y="-26" width="${w * scale}" height="52"/>` +
+        `<rect x="${-tw / 2}" y="${-th / 2}" width="${tw}" height="${th}" rx="${zone === "molares" || zone === "cordales" ? 9 : 7}"/>`;
+      group.appendChild(g);
+      void k;
+    });
+  };
+  placeSide(270, 192); placeSide(270, 348);   // arriba: izquierda y derecha
+  placeSide(90, 168); placeSide(90, 12);      // abajo: izquierda y derecha
+
+  const legend = $("#zoneLegend");
+  const info = $("#zoneInfo");
+  const select = (zone, animate) => {
+    const z = ZONES[zone];
+    $$(".tooth", group).forEach((t) => t.classList.toggle("is-zone", t.dataset.zone === zone));
+    $$("button", legend).forEach((b) => b.setAttribute("aria-selected", String(b.dataset.zone === zone)));
+    $("#zoneName").textContent = z.name;
+    $("#zoneTitle").textContent = z.title;
+    $("#zoneText").textContent = z.text;
+    $("#zoneTags").innerHTML = z.tags.map(([label, tab]) => `<a href="#tratamientos" data-tab="${tab}">${label}</a>`).join("");
+    const btn = $("#zoneBtn");
+    if (CONFIG.whatsapp) btn.href = waLink(`Hola L.a Dental, me molesta en la zona de ${z.name.toLowerCase()} y quisiera una revisión.`);
+    if (animate) {
+      info.classList.remove("is-swap");
+      void info.offsetWidth;
+      info.classList.add("is-swap");
+    }
+  };
+
+  Object.entries(ZONES).forEach(([key, z]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.dataset.zone = key;
+    b.textContent = z.name;
+    b.addEventListener("click", () => select(key, true));
+    legend.appendChild(b);
+  });
+  group.addEventListener("click", (e) => {
+    const t = e.target.closest(".tooth");
+    if (t) select(t.dataset.zone, true);
+  });
+  group.addEventListener("keydown", (e) => {
+    const t = e.target.closest(".tooth");
+    if (t && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); select(t.dataset.zone, true); }
+  });
+  select("molares", false);
+});
+
+/* ---------- 7. Pestañas de tratamientos ---------- */
+const openTab = (id, focus) => {
+  const tab = document.getElementById(id);
+  if (!tab) return;
+  const tabs = $$("#treatTabs [role=tab]");
+  tabs.forEach((t) => {
+    const on = t === tab;
+    t.setAttribute("aria-selected", String(on));
+    t.tabIndex = on ? 0 : -1;
+    const panel = document.getElementById(t.getAttribute("aria-controls"));
+    panel.hidden = !on;
+    if (on) {
+      panel.classList.remove("is-enter");
+      void panel.offsetWidth;
+      panel.classList.add("is-enter");
+    }
+  });
+  // En celular la pestaña elegida se centra en la fila
+  tab.scrollIntoView({ block: "nearest", inline: "center", behavior: reducedMotion ? "auto" : "smooth" });
+  if (focus) tab.focus({ preventScroll: true });
+};
+
+safe("pestañas", () => {
+  const tabs = $$("#treatTabs [role=tab]");
+  tabs.forEach((t, i) => {
+    t.tabIndex = i === 0 ? 0 : -1;
+    t.addEventListener("click", () => openTab(t.id));
+    t.addEventListener("keydown", (e) => {
+      const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+      if (!(e.key in keys)) return;
+      e.preventDefault();
+      openTab(tabs[(i + keys[e.key] + tabs.length) % tabs.length].id, true);
+    });
+  });
+  // Enlaces del mapa de la sonrisa que abren un tratamiento
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("[data-tab]");
+    if (link) openTab(link.dataset.tab);
   });
 });
 
-/* ---------- 7. Sonrisa con brackets ---------- */
+/* ---------- 8. Sonrisa con brackets ---------- */
 safe("sonrisa", () => {
   const g = $("#smileTeeth");
-  const NS = "http://www.w3.org/2000/svg";
   const angles = [-21, -15, -9, -3, 3, 9, 15, 21];
   // Colores de las ligas de los brackets
   const bands = ["#E98E9C", "#5BA4E6", "#D9A23A", "#3F8F7A", "#9B7BD4", "#E98E9C", "#5BA4E6", "#D9A23A"];
@@ -197,132 +362,91 @@ safe("sonrisa", () => {
   });
 });
 
-/* ---------- 8. Guía "¿Qué le pasa a tu sonrisa?" ---------- */
-safe("guía", () => {
-  const OPTIONS = [
-    {
-      chip: "Me duele una muela",
-      title: "Caries o endodoncia",
-      text: "Un dolor de muela puede venir de una caries o de un nervio inflamado. Con una revisión sabremos si basta tratar la caries o si necesitas endodoncia.",
-      msg: "Hola L.a Dental, me duele una muela y quisiera una consulta."
-    },
-    {
-      chip: "Me están saliendo las cordales",
-      title: "Extracción de cordales",
-      text: "Si las muelas del juicio te causan dolor, inflamación o no tienen espacio, lo mejor es revisarlas y valorar su extracción.",
-      msg: "Hola L.a Dental, me están saliendo las cordales y quisiera una consulta."
-    },
-    {
-      chip: "Quiero dientes derechos",
-      title: "Ortodoncia",
-      text: "Con brackets alineamos tus dientes y tu mordida. Ahora con 0% de prima y cuotas desde $24.99.",
-      msg: "Hola L.a Dental, quiero información sobre ortodoncia con 0% de prima."
-    },
-    {
-      chip: "Me falta una pieza",
-      title: "Prótesis dentales",
-      text: "Una prótesis te ayuda a recuperar las piezas que faltan para sonreír y masticar con confianza.",
-      msg: "Hola L.a Dental, me falta una pieza y quisiera información sobre prótesis."
-    },
-    {
-      chip: "Tengo sarro o mal aliento",
-      title: "Limpieza dental",
-      text: "Una limpieza retira el sarro y la placa que el cepillo no alcanza. Y recuerda cepillar también tu lengua.",
-      msg: "Hola L.a Dental, quisiera agendar una limpieza dental."
-    },
-    {
-      chip: "Solo quiero una revisión",
-      title: "Consulta preventiva",
-      text: "Tu salud dental es importante. Agenda tu consulta para un diagnóstico preventivo y oportuno.",
-      msg: "Hola L.a Dental, quisiera agendar una consulta de revisión."
-    }
-  ];
-
-  const chips = $("#helperChips");
-  const card = $("#helperAnswer");
-  const title = $("#answerTitle");
-  const text = $("#answerText");
-  const btn = $("#answerBtn");
-
-  const show = (index, animate) => {
-    const opt = OPTIONS[index];
-    $$(".chip", chips).forEach((c, i) => c.setAttribute("aria-selected", String(i === index)));
-    title.textContent = opt.title;
-    text.textContent = opt.text;
-    if (CONFIG.whatsapp) btn.href = waLink(opt.msg);
-    if (animate) {
-      card.classList.remove("is-swap");
-      void card.offsetWidth; // reinicia la animación
-      card.classList.add("is-swap");
-    }
-  };
-
-  OPTIONS.forEach((opt, i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "chip";
-    b.setAttribute("role", "tab");
-    b.textContent = opt.chip;
-    b.addEventListener("click", () => show(i, true));
-    chips.appendChild(b);
-  });
-  show(0, false);
-});
-
-/* ---------- 9. Carrusel 3D de la clínica ---------- */
-safe("carrusel", () => {
-  const track = $("#coverTrack");
-  const covers = $$(".cover", track);
-  const dots = $("#coverDots");
-
-  covers.forEach((_, i) => {
-    const d = document.createElement("button");
-    d.type = "button";
-    d.setAttribute("aria-label", `Foto ${i + 1}`);
-    d.addEventListener("click", () => goTo(i));
-    dots.appendChild(d);
-  });
-
-  const centerOf = (el) => el.offsetLeft + el.offsetWidth / 2;
-  const goTo = (i) => {
-    const el = covers[Math.max(0, Math.min(covers.length - 1, i))];
-    track.scrollTo({ left: centerOf(el) - track.clientWidth / 2, behavior: "smooth" });
-  };
-  let current = 0;
-
-  // Cada foto gira según qué tan lejos está del centro
+/* ---------- 9. Camino de "Tu primera visita" ---------- */
+safe("camino", () => {
+  const path = $("#path");
+  const fill = $("#pathFill");
+  const desktop = window.matchMedia("(min-width: 980px)");
   const update = () => {
-    const mid = track.scrollLeft + track.clientWidth / 2;
-    let best = 0, bestDist = Infinity;
-    covers.forEach((el, i) => {
-      const dist = (centerOf(el) - mid) / el.offsetWidth; // -1 a 1 aprox.
-      const c = Math.max(-1.4, Math.min(1.4, dist));
-      el.style.setProperty("--ry", `${-c * 38}deg`);
-      el.style.setProperty("--s", String(1 - Math.min(Math.abs(c), 1) * 0.16));
-      el.style.setProperty("--tz", `${-Math.abs(c) * 60}px`);
-      el.style.zIndex = String(10 - Math.round(Math.abs(c) * 3));
-      if (Math.abs(dist) < bestDist) { bestDist = Math.abs(dist); best = i; }
-    });
-    current = best;
-    $$("button", dots).forEach((d, i) => d.setAttribute("aria-current", String(i === best)));
+    const r = path.getBoundingClientRect();
+    const span = desktop.matches ? r.height + window.innerHeight * 0.3 : r.height;
+    const p = Math.max(0, Math.min(1, (window.innerHeight * 0.75 - r.top) / span));
+    fill.style.setProperty("--p", p.toFixed(3));
   };
-
-  track.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
   window.addEventListener("resize", update);
-  $("#coverPrev").addEventListener("click", () => goTo(current - 1));
-  $("#coverNext").addEventListener("click", () => goTo(current + 1));
-
-  // Empieza en la foto del centro
-  const startAt = () => {
-    const el = covers[1];
-    track.scrollLeft = centerOf(el) - track.clientWidth / 2;
-    update();
-  };
-  startAt();
-  window.addEventListener("load", startAt);
+  update();
 });
 
-/* ---------- 10. Mapa, horario, año y botón flotante ---------- */
+/* ---------- 10. Mazo de consejos ---------- */
+safe("consejos", () => {
+  const deck = $("#deck");
+  const cards = $$(".post", deck);
+  const count = $("#deckCount");
+  let order = cards.map((_, i) => i);
+  let busy = false;
+
+  const render = () => {
+    order.forEach((cardIndex, pos) => { cards[cardIndex].dataset.pos = String(pos); });
+    count.textContent = `${order[0] + 1} / ${cards.length}`;
+  };
+  const next = () => {
+    if (busy) return;
+    busy = true;
+    cards[order[0]].dataset.pos = "out";
+    setTimeout(() => { order.push(order.shift()); render(); busy = false; }, 380);
+  };
+  const prev = () => {
+    if (busy) return;
+    busy = true;
+    order.unshift(order.pop());
+    const card = cards[order[0]];
+    card.dataset.pos = "in";
+    void card.offsetWidth;
+    requestAnimationFrame(() => { render(); setTimeout(() => { busy = false; }, 300); });
+  };
+
+  $("#deckNext").addEventListener("click", next);
+  $("#deckPrev").addEventListener("click", prev);
+
+  // Deslizar con el dedo
+  let startX = null;
+  deck.addEventListener("pointerdown", (e) => { startX = e.clientX; });
+  deck.addEventListener("pointerup", (e) => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (dx < -45) next();
+    else if (dx > 45) prev();
+  });
+  deck.addEventListener("pointercancel", () => { startX = null; });
+  render();
+});
+
+/* ---------- 11. Formulario "Agenda tu cita" ---------- */
+safe("formulario", () => {
+  const form = $("#bookForm");
+  const error = $("#formError");
+  if (!CONFIG.whatsapp && !CONFIG.phone) { form.hidden = true; return; }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = $("#fName").value.trim();
+    if (!name) {
+      error.hidden = false;
+      $("#fName").focus();
+      return;
+    }
+    error.hidden = true;
+    const service = $("#fService").value;
+    const when = form.querySelector("input[name=cuando]:checked").value;
+    const msg = `Hola L.a Dental, soy ${name}. Quisiera agendar una cita para: ${service}. Me gustaría ir ${when}.`;
+    if (CONFIG.whatsapp) window.open(waLink(msg), "_blank", "noopener");
+    else window.location.href = `tel:${CONFIG.phone}`;
+  });
+});
+
+/* ---------- 12. Mapa, horario, año y barra de acciones ---------- */
 safe("visítanos", () => {
   // El mapa se carga solo cuando la persona llega cerca (página más rápida)
   const frame = $("#mapFrame");
@@ -346,9 +470,9 @@ safe("visítanos", () => {
   $("#year").textContent = new Date().getFullYear();
 });
 
-safe("botón flotante", () => {
-  const fab = $(".wa-float");
-  const show = () => fab.classList.add("is-visible");
+safe("barra de acciones", () => {
+  const bar = $("#actionbar");
+  const show = () => bar.classList.add("is-visible");
   if (document.body.classList.contains("is-intro")) {
     document.addEventListener("intro:open", () => setTimeout(show, 900), { once: true });
   } else show();

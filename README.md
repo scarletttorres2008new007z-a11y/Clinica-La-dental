@@ -9,12 +9,15 @@ Para publicarla basta con arrastrar la carpeta (o el .zip) a Netlify Drop.
 ## Qué tiene
 
 - Bienvenida con burbujas, el logo armándose letra por letra y una boca que se abre para entrar.
-- Inicio con un diente en 3D y tarjetas flotantes de la promoción.
-- Servicios en tarjetas que giran: ortodoncia, limpieza, caries, cordales, endodoncia y prótesis.
-- Promoción de ortodoncia: 0% de prima y cuotas desde $24.99.
-- Guía "¿Qué le pasa a tu sonrisa?" que recomienda un servicio y abre WhatsApp con el mensaje listo.
-- Carrusel 3D con fotos reales de la clínica.
-- Consejos, mapa, teléfono y botón flotante de WhatsApp.
+- Inicio en menta con formas blancas (como sus publicaciones), diente 3D y atajo "¿Qué necesitas hoy?".
+- Mapa de tu sonrisa: la persona toca el diente que le molesta y ve qué tratamiento le puede servir.
+- Tratamientos en pestañas: ortodoncia, limpieza, caries, endodoncia, cordales y prótesis.
+- Cupón de ortodoncia: 0% de prima y cuotas desde $24.99, con sonrisa de brackets.
+- Tu primera visita en 4 pasos.
+- Fotos reales de la clínica y la frase de la pared del consultorio.
+- Consejos en tarjetas estilo publicación que se pasan con el dedo.
+- Preguntas frecuentes y formulario "Agenda tu cita" que abre WhatsApp con el mensaje listo.
+- Mapa, rótulo de Periplaza y barra fija con WhatsApp, ubicación y llamada.
 
 ## Archivos
 
@@ -22,8 +25,8 @@ Para publicarla basta con arrastrar la carpeta (o el .zip) a Netlify Drop.
 index.html            Estructura de la página (cada sección está marcada con un comentario)
 css/base.css          Colores, letras, botones y logo
 css/intro.css         Pantalla de bienvenida
-css/layout.css        Encabezado, inicio, cinta, pie de página y botón flotante
-css/sections.css      Servicios, promoción, guía, clínica, consejos y visítanos
+css/layout.css        Encabezado, inicio, confianza, pie de página y barra de acciones
+css/sections.css      Mapa de la sonrisa, tratamientos, cupón, visita, clínica, consejos, preguntas y agenda
 css/responsive.css    Ajustes para celular, tablet y computadora
 js/config.js          Datos de la clínica (el único archivo que hay que editar)
 js/intro.js           Animación de bienvenida
