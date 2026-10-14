@@ -1,14 +1,23 @@
 /* ==========================================================
    L.a Dental · Estructura
-   Encabezado, inicio (hero), cinta, pie de página y botón flotante.
-   Primero celular; computadora en responsive.css.
+   Barra de datos, encabezado, inicio, confianza, pie de página
+   y barra de acciones del celular.
+   Primero celular; tablet y computadora en responsive.css.
    ========================================================== */
+
+/* ---------- Barra de datos (solo computadora) ---------- */
+.topbar { display: none; background: var(--ink); color: var(--mint-soft); font-size: 14px; }
+.topbar__inner { display: flex; align-items: center; gap: 28px; height: 40px; }
+.topbar span, .topbar a { display: inline-flex; align-items: center; gap: 8px; }
+.topbar svg { width: 16px; height: 16px; color: var(--gold); }
+.topbar__promo { margin-left: auto; }
+.topbar__promo strong { color: var(--gold); }
 
 /* ---------- Encabezado ---------- */
 .header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: var(--header-h);
+  position: sticky; top: 0; z-index: 900; height: var(--header-h);
   background: var(--white); border-bottom: 2px solid var(--mint-pale);
-  transition: box-shadow .3s, transform .4s var(--ease-out);
+  transition: box-shadow .3s;
 }
 .header.is-scrolled { box-shadow: 0 4px 0 var(--mint-pale); }
 .header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -39,40 +48,49 @@
 }
 .nav__cta { margin-top: 14px; }
 
-/* ---------- Inicio ---------- */
-.hero {
-  position: relative; padding: calc(var(--header-h) + 30px) 0 40px;
-  background: var(--mint-pale); overflow: clip;
-}
-/* Círculo menta grande de fondo */
-.hero::before {
-  content: ""; position: absolute; width: 520px; height: 520px; right: -260px; top: 90px;
-  border-radius: 50%; background: var(--mint-soft);
-}
-.hero__grid { position: relative; display: grid; gap: 10px; }
+/* ---------- Inicio (fondo menta con formas blancas, como sus publicaciones) ---------- */
+.hero { position: relative; background: var(--mint); padding: 34px 0 0; overflow: clip; }
+.hero__blob { position: absolute; fill: var(--white); opacity: .5; pointer-events: none; }
+.hero__blob--a { width: 300px; right: -120px; top: -90px; }
+.hero__blob--b { width: 240px; left: -130px; bottom: 60px; opacity: .35; }
+.hero__grid { position: relative; display: grid; gap: 4px; }
+
 .kicker {
-  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;
-  font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--mint-deep);
-  background: var(--white); padding: 7px 14px 7px 10px; border-radius: 999px; box-shadow: 0 3px 0 var(--mint-soft);
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px;
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink);
+  background: var(--white); padding: 7px 16px 7px 12px; border-radius: 999px; box-shadow: 0 3px 0 var(--mint-deep);
 }
-.kicker__icon { width: 18px; height: 18px; color: var(--gold); }
-.hero__title { font-size: clamp(38px, 11vw, 70px); }
-.hero__lead { margin-top: 18px; max-width: 34em; font-size: 17.5px; color: var(--muted); }
+.kicker__icon { width: 16px; height: 16px; color: var(--gold); }
+
+.hero__title { display: grid; font-size: clamp(42px, 12.5vw, 76px); line-height: 1.02; }
+.hero__title .title-3d { font-size: inherit; }
+/* En el fondo menta las letras 3D llevan grosor blanco y verde oscuro */
+.hero .title-3d .ch { text-shadow: 1px 1px 0 var(--white), 2px 2px 0 var(--white), 3px 3px 0 var(--mint-deep), 4px 4px 0 var(--mint-deep), 5px 5px 0 var(--mint-deep); }
+.hero__script {
+  font-family: var(--font-script); font-weight: 700; font-size: .78em; line-height: .9; color: var(--white);
+  text-shadow: 3px 3px 0 var(--mint-deep); transform: rotate(-3deg); transform-origin: 0 50%; margin: 2px 0 4px 6px;
+}
+.hero__lead { margin-top: 20px; max-width: 32em; font-size: 17.5px; color: var(--ink); font-weight: 600; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
 .hero__actions .btn { flex: 1 1 200px; }
+.hero .btn--ghost { box-shadow: inset 0 0 0 2px var(--ink), 0 5px 0 var(--mint-deep); color: var(--ink); }
 
-/* Escena 3D */
-.hero__stage { position: relative; height: 340px; perspective: 900px; margin-top: 8px; }
+/* Escena 3D: diente dentro de un círculo blanco */
+.hero__stage { position: relative; height: 330px; perspective: 900px; margin-top: 18px; }
 .stage {
   position: absolute; inset: 0; transform-style: preserve-3d;
   transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transition: transform .5s var(--ease-out);
 }
-.stage__arc { position: absolute; left: 50%; top: 55%; width: 300px; transform: translate(-50%, 0) translateZ(-60px); overflow: visible; }
+.stage__circle {
+  position: absolute; left: 50%; top: 50%; width: 270px; height: 270px; margin: -140px 0 0 -135px;
+  border-radius: 50%; background: var(--white); box-shadow: 0 10px 0 var(--mint-deep); transform: translateZ(-80px);
+}
+.stage__arc { position: absolute; left: 50%; top: 56%; width: 250px; transform: translate(-50%, 0) translateZ(-30px); overflow: visible; }
 .stage__arc path { fill: none; stroke: var(--gold); stroke-width: 12; stroke-linecap: round; }
 
 .tooth3d {
-  position: absolute; left: 50%; top: 50%; width: 210px; height: 210px; margin: -118px 0 0 -105px;
+  position: absolute; left: 50%; top: 50%; width: 180px; height: 180px; margin: -104px 0 0 -90px;
   transform-style: preserve-3d; animation: toothSwing 7s ease-in-out infinite;
 }
 .tooth3d__layer { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
@@ -81,49 +99,73 @@
 .tooth3d__shine { fill: none; stroke: var(--mint-soft); stroke-width: 3.2; stroke-linecap: round; }
 @keyframes toothSwing {
   0%, 100% { transform: translateY(0) rotateY(-26deg) rotateZ(-3deg); }
-  50% { transform: translateY(-14px) rotateY(26deg) rotateZ(3deg); }
+  50% { transform: translateY(-12px) rotateY(26deg) rotateZ(3deg); }
 }
 
 .stage__spark { position: absolute; color: var(--gold); transform: translateZ(40px); animation: twinkle 2.4s ease-in-out infinite; }
 .stage__spark svg { width: 100%; height: 100%; }
-.stage__spark--1 { width: 34px; height: 34px; left: 18%; top: 14%; }
-.stage__spark--2 { width: 22px; height: 22px; right: 20%; top: 22%; animation-delay: .8s; }
-.stage__spark--3 { width: 18px; height: 18px; left: 26%; bottom: 16%; animation-delay: 1.5s; }
+.stage__spark--1 { width: 30px; height: 30px; left: 16%; top: 12%; }
+.stage__spark--2 { width: 22px; height: 22px; right: 18%; top: 18%; animation-delay: .8s; }
+.stage__spark--3 { width: 18px; height: 18px; left: 22%; bottom: 14%; animation-delay: 1.5s; }
 @keyframes twinkle { 0%, 100% { transform: translateZ(40px) scale(1) rotate(0); } 50% { transform: translateZ(40px) scale(.55) rotate(45deg); } }
 
 .float-card {
   position: absolute; display: grid; padding: 10px 16px; border-radius: 18px;
-  background: var(--white); box-shadow: 0 6px 0 var(--mint); line-height: 1.15;
+  background: var(--white); box-shadow: 0 6px 0 var(--mint-deep); line-height: 1.15;
   font-family: var(--font-display); color: var(--ink); text-align: left;
   animation: bob 4.5s ease-in-out infinite;
 }
-.float-card strong { font-size: 30px; font-weight: 800; color: var(--mint-deep); }
-.float-card span { font-size: 12.5px; font-weight: 600; max-width: 10em; }
-.float-card--a { left: 0; top: 8%; --z: 90px; }
-.float-card--b { right: 0; bottom: 6%; --z: 120px; animation-delay: -2s; background: var(--gold); box-shadow: 0 6px 0 var(--gold-deep); }
+.float-card strong { font-size: 28px; font-weight: 800; color: var(--mint-deep); }
+.float-card span { font-size: 12.5px; font-weight: 600; max-width: 9em; }
+.float-card--a { left: 0; top: 4%; --z: 90px; }
+.float-card--b { right: 0; bottom: 8%; --z: 120px; animation-delay: -2s; background: var(--gold); box-shadow: 0 6px 0 var(--gold-deep); }
 .float-card--b strong { color: var(--ink); }
 @keyframes bob {
   0%, 100% { transform: translateZ(var(--z)) translateY(0); }
   50% { transform: translateZ(var(--z)) translateY(-10px); }
 }
 
-/* ---------- Cinta de servicios ---------- */
-.ribbon-wrap { position: relative; z-index: 2; overflow: hidden; margin-top: -30px; padding: 16px 0 22px; }
-.ribbon {
-  background: var(--gold); color: var(--ink);
-  transform: rotate(-2deg); margin: 0 -20px; padding: 14px 0; overflow: hidden;
-  box-shadow: 0 6px 0 var(--gold-deep);
+/* Atajo "¿Qué necesitas hoy?" que se monta sobre el borde del inicio */
+.quick {
+  position: relative; z-index: 3; margin-bottom: -70px;
+  background: var(--white); border-radius: 26px; padding: 20px 18px 22px;
+  box-shadow: 0 8px 0 var(--mint-soft), 0 16px 0 var(--mint-pale);
 }
-.ribbon__track { display: flex; align-items: center; gap: 22px; width: max-content; animation: marquee 30s linear infinite; }
-.ribbon__track span { font-family: var(--font-display); font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
-.ribbon__track svg { width: 24px; height: 24px; flex-shrink: 0; fill: var(--white); stroke: var(--ink); stroke-width: 3; }
-@keyframes marquee { to { transform: translateX(-50%); } }
+.quick__title { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink); margin-bottom: 14px; }
+.quick__title svg { width: 24px; height: 24px; color: var(--gold); }
+.quick__chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.quick__chips button {
+  border: 0; padding: 12px 6px; border-radius: 14px; background: var(--mint-pale); color: var(--ink);
+  font-family: var(--font-display); font-weight: 600; font-size: 14px;
+  box-shadow: 0 3px 0 var(--mint-soft); transition: transform .25s var(--ease-back), background-color .2s, color .2s;
+}
+.quick__chips button:hover { transform: translateY(-2px); background: var(--mint-deep); color: var(--white); }
+.quick__chips button:active { transform: translateY(2px); box-shadow: none; }
+
+/* ---------- Confianza ---------- */
+.trust { padding: 110px 0 50px; background: var(--paper); }
+.trust__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 14px; }
+.trust__item { display: grid; justify-items: center; text-align: center; gap: 10px; }
+.trust__icon {
+  width: 66px; height: 66px; border-radius: 22px; display: grid; place-items: center;
+  background: var(--mint-deep); color: var(--white); box-shadow: 0 5px 0 var(--ink);
+  transform: rotate(-6deg); transition: transform .4s var(--ease-back);
+}
+.trust__item:nth-child(even) .trust__icon { transform: rotate(6deg); }
+.trust__icon svg { width: 40px; height: 40px; fill: var(--white); stroke: var(--ink); stroke-width: 3; }
+.trust__icon--gold { background: var(--gold); color: var(--ink); box-shadow: 0 5px 0 var(--gold-deep); }
+.trust__icon--gold svg { fill: none; stroke: none; width: 32px; height: 32px; }
+.trust__icon b { font-family: var(--font-display); font-weight: 800; font-size: 22px; }
+.trust__item p { font-size: 14.5px; color: var(--muted); line-height: 1.35; }
+.trust__item strong { display: block; font-family: var(--font-display); color: var(--ink); font-size: 16.5px; }
 
 /* ---------- Pie de página ---------- */
-.footer { background: var(--ink); color: var(--mint-soft); padding: 54px 0 calc(96px + env(safe-area-inset-bottom)); }
+.footer { position: relative; background: var(--ink); color: var(--mint-soft); padding: 90px 0 0; }
+.footer__wave { position: absolute; top: -1px; left: 0; width: 100%; height: 60px; fill: var(--mint-pale); }
 .footer__grid { display: grid; gap: 30px; }
-.footer__brand p { margin-top: 14px; }
-.footer .logo--sm { font-size: 34px; }
+.footer__badge { display: inline-block; background: var(--white); padding: 18px 22px 14px; border-radius: 26px; box-shadow: 0 6px 0 var(--mint); }
+.footer__brand p { margin-top: 16px; font-family: var(--font-script); font-size: 26px; color: var(--white); }
+.footer .logo--sm { font-size: 32px; }
 .footer__links { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; }
 .footer__links a { font-family: var(--font-display); font-weight: 600; color: var(--white); padding: 10px 0; }
 .footer__social { display: flex; gap: 12px; }
@@ -134,15 +176,29 @@
 }
 .social svg { width: 22px; height: 22px; }
 .social:hover { transform: translateY(-3px); }
-.footer__bottom { margin-top: 34px; padding-top: 20px; border-top: 1px solid #2D5952; font-size: 14px; }
 
-/* ---------- Botón flotante de WhatsApp ---------- */
-.wa-float {
-  position: fixed; z-index: 950; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom));
-  width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center;
-  background: #25D366; color: var(--white); box-shadow: 0 5px 0 #128C4B;
-  transform: scale(0); transition: transform .45s var(--ease-back);
+/* Barra como el pie de sus publicaciones */
+.footer__bar { margin-top: 40px; background: var(--mint); color: var(--ink); }
+.footer__bar-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding-top: 16px; padding-bottom: 16px; font-weight: 700; font-size: 15px; }
+.footer__bar span, .footer__bar a { display: inline-flex; align-items: center; gap: 8px; }
+.footer__bar svg { width: 20px; height: 20px; color: var(--white); }
+.footer__pill { background: var(--mint-deep); color: var(--white); padding: 8px 18px; border-radius: 999px; font-family: var(--font-display); font-weight: 600; box-shadow: 0 3px 0 var(--ink); }
+.footer__copy { padding-top: 18px; padding-bottom: calc(96px + env(safe-area-inset-bottom)); font-size: 14px; }
+
+/* ---------- Barra de acciones fija (celular) ---------- */
+.actionbar {
+  position: fixed; z-index: 950; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom));
+  display: flex; gap: 8px; padding: 8px; border-radius: 22px;
+  background: var(--mint); box-shadow: 0 5px 0 var(--mint-deep);
+  transform: translateY(140%); transition: transform .55s var(--ease-back);
 }
-.wa-float svg { width: 32px; height: 32px; }
-.wa-float.is-visible { transform: scale(1); }
-.wa-float.is-visible:hover { transform: scale(1.08) rotate(-6deg); }
+.actionbar.is-visible { transform: none; }
+.actionbar a { display: grid; place-items: center; border-radius: 16px; min-height: 50px; }
+.actionbar__main {
+  flex: 1; display: flex !important; gap: 10px; justify-content: center; align-items: center;
+  background: var(--white); color: var(--ink); font-family: var(--font-display); font-weight: 700; font-size: 16px;
+  box-shadow: 0 3px 0 var(--mint-deep);
+}
+.actionbar__main svg { width: 22px; height: 22px; color: #1FAF57; }
+.actionbar__icon { width: 50px; background: var(--mint-deep); color: var(--white); box-shadow: 0 3px 0 var(--ink); }
+.actionbar__icon svg { width: 22px; height: 22px; }

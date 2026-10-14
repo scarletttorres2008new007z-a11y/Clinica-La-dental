@@ -5,21 +5,25 @@
    tablet y computadora.
    ========================================================== */
 
-/* ---------- Celulares angostos (360 px o menos) ---------- */
+/* ---------- Celulares angostos (380 px o menos) ---------- */
 @media (max-width: 380px) {
   body { font-size: 16px; }
   .container { padding: 0 16px; }
   .header .logo--sm { font-size: 24px; }
-  .services__grid { gap: 10px; }
-  .flip { min-height: 236px; }
-  .flip__face { padding: 14px 10px; }
-  .flip__back p { font-size: 13px; }
-  .svc-icon { width: 74px; height: 74px; }
-  .svc-icon svg { width: 50px; height: 50px; }
-  .float-card strong { font-size: 25px; }
-  .tooth3d { width: 184px; height: 184px; margin: -104px 0 0 -92px; }
-  .hero__stage { height: 310px; }
-  .chip { padding: 11px 15px; font-size: 14px; }
+  .hero__stage { height: 300px; }
+  .stage__circle { width: 236px; height: 236px; margin: -122px 0 0 -118px; }
+  .tooth3d { width: 156px; height: 156px; margin: -90px 0 0 -78px; }
+  .float-card strong { font-size: 24px; }
+  .quick__chips button { font-size: 13px; }
+  .treat__tabs { margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+  .post { padding: 22px 18px 0; }
+  .post__bar { margin-left: -18px; margin-right: -18px; padding-left: 18px; padding-right: 18px; }
+  .post__caps { font-size: 34px; }
+  .post__q { font-size: 26px; }
+  .deck { height: 490px; }
+  .bento__quote { padding-left: 96px; }
+  .bento__quote p { font-size: 26px; }
+  .actionbar__main { font-size: 15px; }
 }
 
 /* ---------- Celular acostado ---------- */
@@ -28,29 +32,39 @@
   .logo--xl { font-size: clamp(48px, 15vh, 80px); }
   .intro__btn { min-height: 50px; }
   .intro__teeth span { flex-basis: 44px; }
-  .hero { padding-top: calc(var(--header-h) + 20px); }
+  /* Celular acostado: solo los tres botones redondos, para no tapar contenido */
+  .actionbar { left: auto; right: 12px; padding: 6px; border-radius: 20px; }
+  .actionbar__main { flex: 0 0 50px; width: 50px; background: #25D366; box-shadow: 0 3px 0 #128C4B; }
+  .actionbar__main svg { color: var(--white); }
+  .actionbar__main span { display: none; }
 }
 
 /* ---------- Tablet ---------- */
 @media (min-width: 640px) {
-  .services__grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .flip { min-height: 250px; }
-  .flip__back p { font-size: 15px; }
-  .tips__grid { grid-template-columns: 1fr 1fr; }
-  .tip--list { grid-row: span 2; }
-  .cover { flex-basis: 340px; }
-  .coverflow__track { padding-left: calc(50% - 170px); padding-right: calc(50% - 170px); }
-  .polaroid { width: 190px; right: -6px; }
+  .quick { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 20px; padding: 18px 22px; }
+  .quick__title { margin: 0; }
+  .quick__chips { grid-template-columns: repeat(6, auto); justify-content: end; }
+  .quick__chips button { padding: 11px 14px; }
+  .trust__grid { grid-template-columns: repeat(4, 1fr); }
+  .hero__stage { height: 380px; }
+  .float-card--a { left: 10%; }
+  .float-card--b { right: 10%; }
+  .panel { grid-template-columns: auto 1fr; gap: 30px; padding: 34px; }
+  .coupon { grid-template-columns: 1.1fr 1fr; }
+  .coupon__main { border-radius: 30px 0 0 30px; padding: 40px 34px; }
+  .coupon__side { border-radius: 0 30px 30px 0; border-top: 0; border-left: 3px dashed var(--mint); align-content: center; padding: 30px; }
+  .coupon__side::before { left: -18px; top: -17px; }
+  .coupon__side::after { left: -18px; right: auto; top: auto; bottom: -17px; }
+  .deck { max-width: 420px; width: 100%; justify-self: center; }
+  .polaroid { width: 180px; right: -6px; }
   .footer__grid { grid-template-columns: 1.4fr 1fr auto; align-items: start; }
-  .hero__stage { height: 400px; }
-  .tooth3d { width: 240px; height: 240px; margin: -130px 0 0 -120px; }
-  .float-card--a { left: 8%; }
-  .float-card--b { right: 8%; }
+  .bento__quote p { font-size: 36px; }
 }
 
 /* ---------- Computadora ---------- */
 @media (min-width: 980px) {
   :root { --header-h: 80px; }
+  .topbar { display: block; }
   .header .logo--sm { font-size: 32px; }
   .burger { display: none; }
   .nav {
@@ -61,46 +75,68 @@
   .nav a:not(.btn):hover { background: var(--mint-pale); color: var(--mint-deep); }
   .nav__cta { margin: 0 0 0 10px; min-height: 46px; padding: 0 20px; font-size: 15px; }
 
-  .hero { padding: calc(var(--header-h) + 40px) 0 70px; min-height: 92vh; display: flex; align-items: center; }
-  .hero::before { width: 760px; height: 760px; right: -200px; top: 40px; }
-  .hero__grid { grid-template-columns: 1.08fr 1fr; align-items: center; gap: 30px; }
+  .hero { padding-top: 60px; }
+  .hero__blob--a { width: 520px; right: -140px; top: -160px; }
+  .hero__blob--b { width: 380px; left: -200px; bottom: 40px; }
+  .hero__grid { grid-template-columns: 1.1fr 1fr; align-items: center; gap: 30px; padding-bottom: 40px; }
   .hero__actions .btn { flex: 0 0 auto; }
-  .hero__stage { height: 520px; }
-  .tooth3d { width: 300px; height: 300px; margin: -165px 0 0 -150px; }
-  .stage__arc { width: 420px; }
+  .hero__stage { height: 500px; margin: 0; }
+  .stage__circle { width: 420px; height: 420px; margin: -215px 0 0 -210px; }
+  .stage__arc { width: 360px; }
+  .tooth3d { width: 260px; height: 260px; margin: -150px 0 0 -130px; }
   .float-card { padding: 14px 20px; }
-  .float-card strong { font-size: 38px; }
+  .float-card strong { font-size: 36px; }
   .float-card span { font-size: 14px; }
-  .float-card--a { left: 0; top: 10%; }
-  .float-card--b { right: 0; bottom: 10%; }
+  .float-card--a { left: 0; top: 8%; }
+  .float-card--b { right: 0; bottom: 12%; }
+  .quick { padding: 22px 30px; }
+  .quick__title { font-size: 20px; }
+  .quick__chips button { font-size: 15px; padding: 12px 18px; }
+
+  .trust { padding-top: 130px; }
 
   .section { padding: 110px 0; }
-  .section__head { margin-bottom: 52px; }
-  .services__grid { gap: 24px; }
-  .flip { min-height: 290px; }
-  .flip__front h3 { font-size: 21px; }
-  .flip__back h3 { font-size: 20px; }
-  .svc-icon { width: 104px; height: 104px; }
-  .svc-icon svg { width: 70px; height: 70px; }
-  .flip__face { padding: 26px 24px; gap: 14px; }
+  .section__head { margin-bottom: 50px; }
 
-  .promo { padding: 120px 0; }
-  .promo__grid { grid-template-columns: 1fr 1.05fr; align-items: center; gap: 60px; }
-  .smile-card { padding: 44px 30px 70px; }
+  .mouth__grid { grid-template-columns: 1fr 1.05fr; grid-template-areas: "head stage" "info stage"; column-gap: 60px; align-items: start; }
+  .zone-info { margin-top: 0; }
+  .mouth__card { padding: 26px 22px 18px; }
 
-  .tips__grid { grid-template-columns: 1.1fr 1fr 1fr; }
-  .tip--list { grid-row: auto; }
-  .tip { padding: 34px 30px; }
-  .tip--question { padding: 0; min-height: 300px; }
+  .treat__box { grid-template-columns: 300px 1fr; gap: 30px; align-items: start; }
+  .treat__tabs { flex-direction: column; overflow: visible; margin: 0; padding: 0; }
+  .treat__tabs button { padding: 12px 18px 12px 12px; font-size: 16px; }
+  .treat__tabs button:not([aria-selected="true"]):hover { transform: translateX(6px); }
+  .panel { padding: 44px; gap: 40px; min-height: 420px; align-content: start; }
+  .panel__icon { width: 150px; height: 150px; }
+  .panel__icon svg { width: 96px; height: 96px; }
+  .panel h3 { font-size: 36px; }
 
-  .cover { flex-basis: 380px; }
-  .coverflow__track { padding-left: calc(50% - 190px); padding-right: calc(50% - 190px); }
+  .promo { padding: 110px 0; }
+  .coupon__main { padding: 54px 50px; }
 
-  .visit__grid { grid-template-columns: 1fr 1.1fr; align-items: center; gap: 60px; }
-  .polaroid { width: 210px; right: -24px; bottom: 6px; }
+  .path { max-width: none; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .path__line { left: 30px; right: 30px; top: 27px; bottom: auto; width: auto; height: 6px; }
+  .path__line span { height: 100%; width: calc(var(--p, 0) * 100%); }
+  .step { flex-direction: column; gap: 16px; }
+  .step div { width: 100%; }
 
-  .footer { padding-bottom: 40px; }
-  .wa-float { right: 26px; bottom: 26px; width: 64px; height: 64px; }
+  .bento { grid-template-columns: 1.15fr 1fr 1fr; gap: 18px; }
+  .bento__item--tall { grid-row: span 2; }
+  .bento__quote { grid-column: 2 / 4; display: grid; align-content: center; }
+
+  .tips__grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
+  .deck { height: 500px; }
+
+  .book__grid { grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .form { padding: 40px 36px; }
+  .polaroid { width: 200px; right: -24px; }
+
+  .footer__copy { padding-bottom: 30px; }
+  /* En computadora la barra queda como tres botones redondos en la esquina */
+  .actionbar { left: auto; right: 22px; bottom: 22px; flex-direction: column; padding: 6px; border-radius: 20px; }
+  .actionbar__main { flex: 0 0 50px; width: 50px; background: #25D366; box-shadow: 0 3px 0 #128C4B; }
+  .actionbar__main svg { color: var(--white); }
+  .actionbar__main span { display: none; }
 }
 
 /* ---------- Menos movimiento ---------- */
