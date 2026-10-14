@@ -104,10 +104,21 @@
 .hero__facts strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1.1; color: var(--mint-deep); }
 .hero__facts span { display: block; font-size: 13px; font-weight: 700; line-height: 1.25; color: var(--ink); margin-top: 2px; }
 
-/* Foto de la entrada en 3D */
-.hero__visual { perspective: 1100px; width: 100%; max-width: 340px; margin: 8px auto 0; padding: 26px 22px 30px; }
-#heroScene { --rx0: 6deg; --ry0: -14deg; }
-.photo--hero img { aspect-ratio: 1; }
+/* Diente 3D dentro del círculo blanco y la sonrisa dorada del logo */
+.hero__visual { perspective: 1100px; width: 100%; max-width: 360px; margin: 6px auto 0; padding: 14px 10px 26px; }
+#heroScene { --rx0: 4deg; --ry0: -8deg; }
+.stage { position: relative; aspect-ratio: 1; transform-style: preserve-3d; }
+.stage__circle {
+  position: absolute; inset: 9%; border-radius: 50%; background: var(--white);
+  box-shadow: 0 10px 0 var(--mint-deep); transform: translateZ(-40px);
+}
+.stage__arc { position: absolute; left: 50%; top: 55%; width: 86%; transform: translateX(-50%) translateZ(-20px); overflow: visible; }
+.stage__arc path { fill: none; stroke: var(--gold); stroke-width: 12; stroke-linecap: round; }
+.stage__img, .stage__canvas { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateZ(40px); transition: opacity .6s; }
+.stage__canvas { opacity: 0; }
+.stage.is-3d .stage__canvas { opacity: 1; }
+.stage.is-3d .stage__img { opacity: 0; }
+
 .chip {
   position: absolute; display: flex; align-items: center; gap: 8px; margin: 0;
   background: var(--white); color: var(--ink); border-radius: 16px; padding: 10px 14px;
@@ -115,8 +126,10 @@
   box-shadow: 0 5px 0 var(--mint-deep);
 }
 .chip svg { width: 18px; height: 18px; color: var(--mint-deep); flex-shrink: 0; }
-.chip--top { left: -12px; top: -6px; transform: translateZ(70px); }
-.chip--price { right: -12px; bottom: -4px; display: grid; gap: 0; background: var(--gold); box-shadow: 0 5px 0 var(--gold-deep); transform: translateZ(100px); }
+.chip--top { left: -6px; top: 8%; gap: 10px; transform: translateZ(70px); }
+.chip--top strong { font-size: 26px; font-weight: 800; color: var(--mint-deep); }
+.chip--top span { font-size: 13px; }
+.chip--price { right: -6px; bottom: 6%; display: grid; gap: 0; background: var(--gold); box-shadow: 0 5px 0 var(--gold-deep); transform: translateZ(100px); }
 .chip--price span { font-size: 12.5px; }
 .chip--price strong { font-size: 30px; font-weight: 800; line-height: 1.05; }
 

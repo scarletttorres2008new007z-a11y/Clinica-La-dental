@@ -9,10 +9,10 @@ Para publicarla basta con arrastrar la carpeta (o el .zip) a Netlify Drop.
 ## Qué tiene
 
 - Bienvenida con burbujas, el logo armándose letra por letra y una boca que se abre para entrar.
-- Inicio con la foto real de la entrada en 3D y los datos clave: 6 tratamientos, 0% de prima y local 31-D.
+- Inicio con un diente 3D realista (con luz y brillo) que gira dentro del círculo y la sonrisa dorada del logo, y los datos clave: 6 tratamientos, 0% de prima y local 31-D.
 - 01 Tratamientos: carrusel 3D; cada tarjeta lleva su publicación de Instagram y una foto, apiladas en 3D.
 - 02 Ortodoncia: su publicación real en 3D con 0% de prima y cuotas desde $24.99.
-- 03 La clínica: fotos de la recepción y el consultorio que se abren como un libro al bajar.
+- 03 La clínica: la entrada, la recepción y el consultorio; las dos últimas se abren como un libro al bajar.
 - 04 Preguntas frecuentes; las de consejos muestran su publicación al abrirse.
 - 05 Agenda tu cita: formulario que abre WhatsApp con el mensaje listo, mapa y rótulo de Periplaza.
 - Barra fija con WhatsApp, ubicación y llamada.
@@ -32,6 +32,8 @@ css/responsive.css    Ajustes para celular, tablet y computadora
 js/config.js          Datos de la clínica (el único archivo que hay que editar)
 js/intro.js           Animación de bienvenida
 js/main.js            Funciones de la página
+js/tooth3d.js         Diente 3D del inicio (si el equipo no puede mostrar 3D, queda la imagen assets/img/diente-3d.webp)
+js/vendor/            Three.js, la librería que dibuja el 3D (licencia MIT)
 assets/img/           Fotos, ícono y la imagen para compartir el enlace
 ```
 
