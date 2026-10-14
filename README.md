@@ -10,10 +10,10 @@ Para publicarla basta con arrastrar la carpeta (o el .zip) a Netlify Drop.
 
 - Bienvenida con burbujas, el logo armándose letra por letra y una boca que se abre para entrar.
 - Inicio con la foto real de la entrada en 3D y los datos clave: 6 tratamientos, 0% de prima y local 31-D.
-- 01 Tratamientos: carrusel 3D con una foto por tratamiento (ortodoncia, limpieza, caries, endodoncia, cordales y prótesis).
+- 01 Tratamientos: carrusel 3D; cada tarjeta lleva su publicación de Instagram y una foto, apiladas en 3D.
 - 02 Ortodoncia: su publicación real en 3D con 0% de prima y cuotas desde $24.99.
 - 03 La clínica: fotos de la recepción y el consultorio que se abren como un libro al bajar.
-- 04 Preguntas frecuentes.
+- 04 Preguntas frecuentes; las de consejos muestran su publicación al abrirse.
 - 05 Agenda tu cita: formulario que abre WhatsApp con el mensaje listo, mapa y rótulo de Periplaza.
 - Barra fija con WhatsApp, ubicación y llamada.
 

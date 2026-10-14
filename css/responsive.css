@@ -62,7 +62,7 @@
   .hero__actions .btn { flex: 0 0 auto; }
   .hero__facts { max-width: 520px; }
   .hero__facts strong { font-size: 30px; }
-  .hero__visual { max-width: 500px; margin: 0 0 0 auto; }
+  .hero__visual { max-width: 440px; margin: 0 0 0 auto; }
 
   .section { padding: 110px 0; }
   .section__head { margin-bottom: 50px; }
@@ -71,10 +71,10 @@
 
   .promo { padding: 110px 0; }
   .promo__grid { grid-template-columns: .9fr 1.1fr; gap: 80px; }
-  .promo__visual { max-width: 440px; }
+  .promo__visual { max-width: 400px; }
 
   .clinic__grid { grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-  .clinic__gallery { max-width: none; }
+  .clinic__gallery { max-width: 500px; margin: 0 auto; }
 
   .book__grid { grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
   .form { padding: 40px 36px; }
