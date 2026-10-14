@@ -4,7 +4,7 @@
      1. Enlaces de contacto (WhatsApp, teléfono, mapa, redes)
      2. Encabezado y menú de celular
      3. Títulos con letras 3D y animaciones al hacer scroll
-     4. Fotos en 3D que se inclinan
+     4. Fotos en 3D que se inclinan y pista para girar la muela
      5. Carrusel 3D de tratamientos
      6. Fotos de la clínica que se abren al bajar
      7. Formulario "Agenda tu cita"
@@ -127,8 +127,13 @@ safe("inclinación", () => {
       onScroll();
     }
   };
-  tilt($("#heroScene"), $(".hero"));
   tilt($("#promoScene"), $(".promo"), 0.8);
+});
+
+safe("pista de la muela", () => {
+  // En celular se gira deslizando el dedo; en computadora, arrastrando con el mouse
+  const hint = $("#toothHint");
+  if (hint) hint.textContent = isTouch ? "Desliza a los lados para girarla" : "Arrastra para girarla";
 });
 
 /* ---------- 5. Carrusel 3D de tratamientos ---------- */
