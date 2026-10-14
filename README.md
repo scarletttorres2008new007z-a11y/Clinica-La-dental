@@ -9,15 +9,16 @@ Para publicarla basta con arrastrar la carpeta (o el .zip) a Netlify Drop.
 ## Qué tiene
 
 - Bienvenida con burbujas, el logo armándose letra por letra y una boca que se abre para entrar.
-- Inicio en menta con formas blancas (como sus publicaciones), diente 3D y atajo "¿Qué necesitas hoy?".
-- Mapa de tu sonrisa: la persona toca el diente que le molesta y ve qué tratamiento le puede servir.
-- Tratamientos en pestañas: ortodoncia, limpieza, caries, endodoncia, cordales y prótesis.
-- Cupón de ortodoncia: 0% de prima y cuotas desde $24.99, con sonrisa de brackets.
-- Tu primera visita en 4 pasos.
-- Fotos reales de la clínica y la frase de la pared del consultorio.
-- Consejos en tarjetas estilo publicación que se pasan con el dedo.
-- Preguntas frecuentes y formulario "Agenda tu cita" que abre WhatsApp con el mensaje listo.
-- Mapa, rótulo de Periplaza y barra fija con WhatsApp, ubicación y llamada.
+- Inicio con la foto real de la entrada en 3D y los datos clave: 6 tratamientos, 0% de prima y local 31-D.
+- 01 Tratamientos: carrusel 3D con una foto por tratamiento (ortodoncia, limpieza, caries, endodoncia, cordales y prótesis).
+- 02 Ortodoncia: su publicación real en 3D con 0% de prima y cuotas desde $24.99.
+- 03 La clínica: fotos de la recepción y el consultorio que se abren como un libro al bajar.
+- 04 Preguntas frecuentes.
+- 05 Agenda tu cita: formulario que abre WhatsApp con el mensaje listo, mapa y rótulo de Periplaza.
+- Barra fija con WhatsApp, ubicación y llamada.
+
+Todas las fotos salen de las imágenes de la clínica. Si la clínica manda fotos con más
+resolución, basta con reemplazar los archivos de `assets/img/` con el mismo nombre.
 
 ## Archivos
 
@@ -25,8 +26,8 @@ Para publicarla basta con arrastrar la carpeta (o el .zip) a Netlify Drop.
 index.html            Estructura de la página (cada sección está marcada con un comentario)
 css/base.css          Colores, letras, botones y logo
 css/intro.css         Pantalla de bienvenida
-css/layout.css        Encabezado, inicio, confianza, pie de página y barra de acciones
-css/sections.css      Mapa de la sonrisa, tratamientos, cupón, visita, clínica, consejos, preguntas y agenda
+css/layout.css        Encabezado, fotos en 3D, inicio, pie de página y barra de acciones
+css/sections.css      Tratamientos, ortodoncia, la clínica, preguntas y agenda
 css/responsive.css    Ajustes para celular, tablet y computadora
 js/config.js          Datos de la clínica (el único archivo que hay que editar)
 js/intro.js           Animación de bienvenida
