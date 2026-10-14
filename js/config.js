@@ -1,5 +1,5 @@
 /* ==========================================================
-   L.a Dental · Datos de la clínica
+   La Dental · Datos de la clínica
    Este es el único archivo que hay que tocar para cambiar
    teléfono, WhatsApp, redes u horario. La página se actualiza sola.
    ========================================================== */

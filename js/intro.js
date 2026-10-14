@@ -1,5 +1,5 @@
 /* ==========================================================
-   L.a Dental · Pantalla de bienvenida
+   La Dental · Pantalla de bienvenida
    1. Arma las letras del logo y los dientes de las mandíbulas
    2. Dibuja burbujas que suben (como espuma de cepillado)
    3. Al tocar "Quiero mi sonrisa", la boca se abre y entra la página
