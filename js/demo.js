@@ -20,12 +20,12 @@
 
   // Crédito en el pie de página
   const addCredit = () => {
-    const bottom = document.querySelector(".footer__bottom");
-    if (!bottom || bottom.querySelector(".demo-credit")) return;
+    const copy = document.querySelector(".footer__copy");
+    if (!copy || document.querySelector(".demo-credit")) return;
     const p = document.createElement("p");
-    p.className = "demo-credit";
+    p.className = "demo-credit container";
     p.textContent = `Vista previa: ${CREDIT}. Propuesta para La Dental, no autorizada para publicarse ni copiarse.`;
-    bottom.appendChild(p);
+    copy.before(p);
   };
 
   // Si alguien borra el aviso o la marca de agua, vuelven a aparecer

@@ -33,7 +33,7 @@
 .photo > .demo-stamp { left: 18px; top: 18px; transform: translateZ(32px); }
 
 /* ---------- Crédito en el pie de página y bloqueo de copia ---------- */
-.demo-credit { margin-top: 6px; color: var(--gold); font-weight: 600; }
+.demo-credit { padding-top: 14px; color: var(--gold); font-weight: 600; font-size: 13.5px; }
 body.demo-lock { -webkit-user-select: none; user-select: none; }
 body.demo-lock img { -webkit-user-drag: none; }
 
