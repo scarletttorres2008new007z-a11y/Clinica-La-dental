@@ -1,0 +1,237 @@
+/* ==========================================================
+   L.a Dental · Secciones
+   Servicios, promoción, guía rápida, clínica, consejos,
+   visítanos y llamado final.
+   ========================================================== */
+
+/* ---------- Animaciones al hacer scroll (las activa js/main.js) ---------- */
+.js [data-reveal] { opacity: 0; transition: opacity .8s var(--ease-out), transform .9s var(--ease-out); transition-delay: var(--d, 0s); }
+.js [data-reveal="up"] { transform: translateY(34px); }
+.js [data-reveal="tilt"] { transform: perspective(900px) rotateX(24deg) translateY(50px); transform-origin: 50% 100%; }
+.js [data-reveal="flip"] { transform: perspective(900px) rotateY(-70deg) translateZ(-40px); transform-origin: 0 50%; }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Letras de títulos 3D: suben girando */
+.js .title-3d .ch { opacity: 0; transform: translateY(.5em) rotateX(-85deg); transition: opacity .5s, transform .7s var(--ease-back); transition-delay: calc(var(--i) * 28ms); }
+.js .title-3d.is-in .ch { opacity: 1; transform: none; }
+
+/* ---------- Encabezado de sección ---------- */
+.section { position: relative; padding: 76px 0; overflow-x: clip; }
+.section__head { text-align: center; margin-bottom: 36px; }
+.section__lead { margin-top: 12px; color: var(--muted); }
+
+/* ---------- Servicios: tarjetas que giran ---------- */
+.services { padding-top: 92px; }
+.services__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.flip { perspective: 1000px; cursor: pointer; min-height: 220px; outline: none; }
+.flip:focus-visible .flip__inner { outline: 3px solid var(--gold); outline-offset: 4px; border-radius: var(--radius); }
+.flip__inner { position: relative; width: 100%; height: 100%; min-height: inherit; transform-style: preserve-3d; transition: transform .75s var(--ease-back); }
+.flip.is-flipped .flip__inner { transform: rotateY(180deg); }
+.flip__face {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  padding: 18px 14px; border-radius: var(--radius); text-align: center;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+}
+.flip__front { background: var(--white); box-shadow: inset 0 0 0 2px var(--mint-pale), 0 6px 0 var(--mint-soft); }
+.flip__back { background: var(--mint-deep); color: var(--white); transform: rotateY(180deg); box-shadow: 0 6px 0 var(--ink); }
+.flip__front h3 { font-size: 17px; }
+.flip__back h3 { font-size: 16px; color: var(--white); }
+.flip__back p { font-size: 14px; line-height: 1.45; }
+.flip__hint { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--mint-deep); }
+.flip__hint svg { width: 14px; height: 14px; transition: transform .3s; }
+.flip__link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; padding: 8px 16px; border-radius: 999px;
+  background: var(--gold); color: var(--ink); font-family: var(--font-display); font-weight: 600; font-size: 14px; box-shadow: 0 3px 0 var(--gold-deep);
+}
+.flip__link svg { width: 16px; height: 16px; }
+
+/* Íconos de servicio */
+.svc-icon {
+  width: 84px; height: 84px; border-radius: 26px; display: grid; place-items: center;
+  background: var(--mint-pale); transform: rotate(-6deg); transition: transform .4s var(--ease-back);
+}
+.svc-icon svg { width: 58px; height: 58px; overflow: visible; }
+.svc-icon__tooth { fill: var(--white); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.svc-icon__gold { fill: var(--gold); }
+.svc-icon__dark { fill: var(--ink); }
+.svc-icon__line { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+.svc-icon__root { fill: none; stroke: var(--gold); stroke-width: 3.2; stroke-linecap: round; }
+.svc-icon__arrow { fill: none; stroke: var(--gold); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+@media (hover: hover) {
+  .flip:hover .svc-icon { transform: rotate(6deg) scale(1.08); }
+  .flip:hover .flip__hint svg { transform: translateX(4px); }
+}
+
+/* ---------- Promoción de ortodoncia ---------- */
+.promo { position: relative; background: var(--ink); color: var(--mint-soft); padding: 80px 0; overflow: clip; }
+.promo::before { /* sonrisa dorada gigante de fondo */
+  content: ""; position: absolute; width: 640px; height: 640px; left: -320px; bottom: -420px;
+  border-radius: 50%; border: 26px solid #1F5049;
+}
+.promo__grid { position: relative; display: grid; gap: 40px; }
+.promo__big { display: flex; align-items: flex-end; gap: 12px; font-family: var(--font-display); line-height: .85; }
+.promo__num {
+  font-size: clamp(104px, 32vw, 190px); font-weight: 800; color: var(--white); letter-spacing: -.04em;
+  text-shadow: 2px 2px 0 var(--mint), 4px 4px 0 var(--mint), 6px 6px 0 var(--mint-deep), 8px 8px 0 var(--mint-deep), 10px 10px 0 #0E2B27;
+}
+.promo__small { font-size: 26px; font-weight: 700; color: var(--gold); padding-bottom: 14px; }
+.promo__title { margin-top: 14px; font-size: clamp(26px, 6.6vw, 40px); color: var(--white); }
+.promo__price {
+  display: inline-flex; align-items: baseline; gap: 12px; margin: 22px 0 28px; padding: 12px 22px;
+  border-radius: 18px; background: var(--white); color: var(--ink); box-shadow: 0 6px 0 var(--gold);
+  font-family: var(--font-display); font-weight: 600; transform: rotate(-2deg);
+}
+.promo__price strong { font-size: 38px; font-weight: 800; color: var(--mint-deep); }
+.promo__note { margin-top: 18px; font-size: 14px; color: var(--mint); }
+.promo__text .btn { display: flex; width: max-content; }
+
+.promo__visual { perspective: 1000px; }
+.smile-card {
+  position: relative; background: var(--mint); border-radius: 30px; padding: 30px 18px 56px;
+  box-shadow: 0 10px 0 var(--mint-deep), 0 20px 0 #0E2B27;
+  transform: rotateX(var(--rx, 8deg)) rotateY(var(--ry, -10deg)); transition: transform .5s var(--ease-out);
+  transform-style: preserve-3d;
+}
+.smile { width: 100%; overflow: visible; transform: translateZ(40px); }
+.smile__gum { fill: none; stroke: var(--gum); stroke-width: 34; stroke-linecap: round; }
+.smile__tooth { fill: var(--white); stroke: var(--ink); stroke-width: 3; }
+.smile__bracket { fill: #C9D3D1; stroke: var(--ink); stroke-width: 2; }
+.smile__wire { fill: none; stroke: #7F8C8A; stroke-width: 3; }
+.smile__band { fill: none; stroke-width: 4; }
+.smile-card__tag {
+  position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%) translateZ(60px);
+  white-space: nowrap; background: var(--gold); color: var(--ink); padding: 8px 18px; border-radius: 999px;
+  font-family: var(--font-display); font-weight: 700; font-size: 14px; box-shadow: 0 4px 0 var(--gold-deep);
+}
+/* Los dientes saltan uno por uno cuando aparece la tarjeta */
+.js .smile__teeth > g { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); transition: transform .5s var(--ease-back); transition-delay: calc(.3s + var(--i) * 60ms); }
+.promo__visual.is-in .smile__teeth > g { transform: none; }
+
+/* ---------- Guía rápida ---------- */
+.helper { background: var(--mint-pale); }
+.helper__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px; }
+.chip {
+  border: 0; padding: 12px 18px; border-radius: 999px; background: var(--white); color: var(--ink);
+  font-family: var(--font-display); font-weight: 600; font-size: 15px; box-shadow: 0 4px 0 var(--mint-soft);
+  transition: transform .25s var(--ease-back), background-color .2s, box-shadow .2s;
+}
+.chip:hover { transform: translateY(-2px); }
+.chip[aria-selected="true"] { background: var(--mint-deep); color: var(--white); box-shadow: 0 4px 0 var(--ink); }
+
+.helper__stage { perspective: 1100px; max-width: 620px; margin: 0 auto; }
+.answer {
+  position: relative; display: grid; justify-items: center; gap: 10px; text-align: center;
+  background: var(--white); border-radius: 28px; padding: 64px 22px 30px; margin-top: 40px;
+  box-shadow: 0 8px 0 var(--mint), 0 16px 0 var(--mint-soft);
+  transform-origin: 50% 0;
+}
+.answer.is-swap { animation: answerSwap .7s var(--ease-back); }
+@keyframes answerSwap { from { transform: rotateX(-80deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.answer__icon {
+  position: absolute; top: -44px; width: 88px; height: 88px; border-radius: 28px; display: grid; place-items: center;
+  background: var(--gold); box-shadow: 0 5px 0 var(--gold-deep); transform: rotate(8deg);
+}
+.answer__icon svg { width: 54px; height: 54px; fill: var(--white); stroke: var(--ink); stroke-width: 3; }
+.answer__eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-deep); }
+.answer__title { font-size: 28px; }
+.answer__text { color: var(--muted); max-width: 30em; }
+.answer .btn { margin-top: 10px; }
+
+/* ---------- La clínica: carrusel 3D ---------- */
+.clinic { padding-bottom: 60px; }
+.coverflow { position: relative; perspective: 1100px; }
+.coverflow__track {
+  display: flex; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  padding: 20px calc(50% - 140px) 34px; transform-style: preserve-3d;
+  -webkit-overflow-scrolling: touch;
+}
+.coverflow__track::-webkit-scrollbar { display: none; }
+.cover {
+  flex: 0 0 280px; margin: 0; scroll-snap-align: center; position: relative;
+  transform: rotateY(var(--ry, 0deg)) scale(var(--s, 1)) translateZ(var(--tz, 0px));
+  transition: transform .15s linear; transform-style: preserve-3d;
+}
+.cover img {
+  width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 26px;
+  border: 6px solid var(--white); box-shadow: 0 8px 0 var(--mint);
+}
+.cover figcaption {
+  position: absolute; left: 16px; right: 16px; bottom: -18px; display: grid;
+  background: var(--white); border-radius: 16px; padding: 10px 14px; box-shadow: 0 4px 0 var(--mint-soft);
+  font-size: 14px; color: var(--muted); line-height: 1.3; text-align: center;
+  transform: translateZ(40px);
+}
+.cover figcaption strong { font-family: var(--font-display); color: var(--ink); font-size: 16px; }
+.coverflow__nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 18px; }
+.round-btn {
+  width: 50px; height: 50px; border: 0; border-radius: 50%; display: grid; place-items: center;
+  background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 2px var(--mint-soft), 0 4px 0 var(--mint-soft);
+  transition: transform .25s var(--ease-back);
+}
+.round-btn svg { width: 22px; height: 22px; }
+#coverPrev svg { transform: rotate(180deg); }
+.round-btn:active { transform: scale(.92); }
+.coverflow__dots { display: flex; gap: 8px; }
+.coverflow__dots button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px; background: var(--mint-soft); transition: width .3s, background-color .3s; }
+.coverflow__dots button[aria-current="true"] { width: 28px; background: var(--mint-deep); }
+
+/* ---------- Consejos ---------- */
+.tips__grid { display: grid; gap: 20px; }
+.tip { border-radius: 26px; padding: 28px 24px; margin: 0; }
+.tip h3 { font-size: 24px; margin-bottom: 16px; }
+.tip--list { background: var(--white); box-shadow: inset 0 0 0 2px var(--mint-pale), 0 7px 0 var(--mint-soft); }
+.tip--list ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: tip; }
+.tip--list li { position: relative; padding-left: 44px; counter-increment: tip; line-height: 1.45; }
+.tip--list li::before {
+  content: counter(tip); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 10px;
+  display: grid; place-items: center; background: var(--gold); color: var(--ink);
+  font-family: var(--font-display); font-weight: 700; font-size: 15px; transform: rotate(-6deg);
+}
+.tip--question { padding: 0; min-height: 230px; }
+.tip--question .flip__front { background: var(--mint); box-shadow: 0 7px 0 var(--mint-deep); }
+.tip--question .flip__back { background: var(--gold); color: var(--ink); box-shadow: 0 7px 0 var(--gold-deep); }
+.tip__q { font-family: var(--font-display); font-weight: 700; font-size: 25px; line-height: 1.2; color: var(--ink); }
+.tip--question .flip__hint { color: var(--ink); }
+.tip__a { font-size: 19px; line-height: 1.45; }
+.tip__a strong { display: block; font-family: var(--font-display); font-size: 26px; margin-bottom: 6px; }
+.tip--quote {
+  background: var(--mint-deep); color: var(--white); position: relative; overflow: hidden;
+  box-shadow: 0 7px 0 var(--ink);
+}
+.tip--quote::before { content: "\201C"; position: absolute; right: 14px; top: -34px; font: 800 150px/1 var(--font-display); color: var(--mint); }
+.tip--quote p { position: relative; font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1.2; }
+.tip--quote footer { position: relative; margin-top: 12px; font-weight: 700; color: var(--gold); font-size: 18px; }
+
+/* ---------- Visítanos ---------- */
+.visit { background: var(--mint-pale); }
+.visit__grid { display: grid; gap: 40px; }
+.visit__info .title-3d { font-size: clamp(30px, 8vw, 50px); }
+.visit__list { list-style: none; margin: 26px 0; padding: 0; display: grid; gap: 14px; }
+.visit__list li { display: flex; gap: 14px; align-items: flex-start; background: var(--white); border-radius: 18px; padding: 14px 16px; box-shadow: 0 4px 0 var(--mint-soft); }
+.visit__list svg { flex: 0 0 26px; width: 26px; height: 26px; color: var(--mint-deep); margin-top: 2px; }
+.visit__list div { display: grid; }
+.visit__list strong { font-family: var(--font-display); color: var(--ink); }
+.visit__list a { color: var(--mint-deep); font-weight: 700; }
+.visit__actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.visit__actions .btn { flex: 1 1 180px; }
+
+.visit__media { position: relative; padding-bottom: 70px; }
+.map-card { border-radius: 26px; overflow: hidden; border: 6px solid var(--white); box-shadow: 0 8px 0 var(--mint); background: var(--mint-soft); aspect-ratio: 4 / 3.4; }
+.map-card iframe { width: 100%; height: 100%; border: 0; display: block; }
+.polaroid {
+  position: absolute; right: 8px; bottom: 0; width: 150px; margin: 0; padding: 8px 8px 0; background: var(--white);
+  border-radius: 10px; box-shadow: 0 6px 0 var(--mint-soft); transform: rotate(5deg);
+}
+.polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; }
+.polaroid figcaption { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--ink); text-align: center; padding: 6px 0 8px; }
+
+/* ---------- Llamado final ---------- */
+.cta { background: var(--mint); padding: 84px 0; text-align: center; overflow: clip; }
+.cta__inner { display: grid; justify-items: center; gap: 16px; }
+.cta__arc { width: 180px; overflow: visible; margin-bottom: 4px; }
+.cta__arc path { fill: none; stroke: var(--gold); stroke-width: 14; stroke-linecap: round; }
+.cta .title-3d { max-width: 15em; font-size: clamp(30px, 8vw, 54px); }
+.cta p { font-size: 19px; color: var(--ink); font-weight: 600; }
+.cta__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 10px; }
+.cta__actions .btn--outline-light { color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }

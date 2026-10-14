@@ -1,0 +1,112 @@
+/* ==========================================================
+   L.a Dental · Pantalla de bienvenida
+   Burbujas que suben, el logo se arma letra por letra,
+   la sonrisa dorada se dibuja y al entrar "la boca se abre".
+   ========================================================== */
+
+.intro {
+  position: fixed; inset: 0; z-index: 2000;
+  display: grid; place-items: center;
+  perspective: 1200px; overflow: hidden;
+}
+.intro.is-gone { display: none; }
+
+/* ---------- Mandíbulas (dos mitades de la pantalla) ---------- */
+.intro__jaw {
+  position: absolute; left: 0; right: 0; height: 50.5%; z-index: 1;
+  background: var(--mint);
+  transition: transform 1.05s cubic-bezier(.7, 0, .2, 1);
+}
+.intro__jaw--top { top: 0; transform-origin: 50% 0; }
+.intro__jaw--bottom { bottom: 0; transform-origin: 50% 100%; }
+
+/* Encía: franja rosada en el borde, aparece al abrir */
+.intro__jaw::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 16px; background: var(--gum);
+  transform: scaleY(0); transition: transform .3s var(--ease-out);
+}
+.intro__jaw--top::after { bottom: 44px; transform-origin: 50% 100%; }
+.intro__jaw--bottom::after { top: 44px; transform-origin: 50% 0; }
+
+/* Dientes: los crea js/intro.js según el ancho de la pantalla */
+.intro__teeth { position: absolute; left: -30px; right: -30px; display: flex; justify-content: center; z-index: 2; }
+.intro__jaw--top .intro__teeth { bottom: 0; }
+.intro__jaw--bottom .intro__teeth { top: 0; padding-left: 28px; }
+.intro__teeth span {
+  flex: 0 0 52px; height: 44px; margin: 0 2px; background: var(--white);
+  transform: scaleY(0); transition: transform .35s var(--ease-back);
+  transition-delay: calc(var(--i, 0) * 18ms);
+}
+.intro__jaw--top .intro__teeth span { border-radius: 4px 4px 22px 22px; transform-origin: 50% 0; box-shadow: inset 0 -6px 0 var(--mint-pale); }
+.intro__jaw--bottom .intro__teeth span { border-radius: 22px 22px 4px 4px; transform-origin: 50% 100%; box-shadow: inset 0 6px 0 var(--mint-pale); }
+
+/* ---------- Burbujas ---------- */
+.intro__bubbles { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; transition: opacity .4s; }
+
+/* ---------- Contenido central ---------- */
+.intro__content {
+  position: relative; z-index: 3; display: grid; justify-items: center; gap: 22px;
+  padding: 24px; text-align: center;
+  transition: transform .5s var(--ease-out), opacity .4s;
+}
+
+/* Logo grande en blanco con volumen */
+.intro__logo { color: var(--white); perspective: 700px; }
+.intro__logo .logo__word {
+  text-shadow: 1px 1px 0 var(--mint-soft), 2px 2px 0 var(--mint-deep), 3px 3px 0 var(--mint-deep), 4px 4px 0 var(--mint-deep), 5px 5px 0 var(--ink);
+}
+.intro__logo .logo__dot { color: var(--gold); }
+.intro__logo .logo__tag { color: var(--ink); font-size: max(10px, .14em); letter-spacing: .14em; }
+.intro__logo .logo__brush path { stroke: var(--mint-deep); }
+
+/* Letras: caen girando una por una */
+.intro__logo .ch {
+  display: inline-block; transform-origin: 50% 100%;
+  opacity: 0; transform: translateY(-60px) rotateX(95deg);
+  animation: letterIn .7s var(--ease-back) forwards;
+  animation-delay: calc(.25s + var(--i) * 75ms);
+}
+@keyframes letterIn { to { opacity: 1; transform: none; } }
+
+/* La sonrisa dorada se dibuja */
+.intro__logo .logo__arc { stroke-dasharray: 140; stroke-dashoffset: 140; animation: drawArc .9s var(--ease-out) 1.15s forwards; }
+@keyframes drawArc { to { stroke-dashoffset: 0; } }
+.intro__logo .logo__brush { opacity: 0; transform-box: fill-box; transform-origin: 0 50%; transform: scale(0) rotate(-40deg); animation: popIn .5s var(--ease-back) 1.85s forwards; }
+.intro__logo .logo__tag { opacity: 0; transform: translateY(8px); animation: fadeUp .6s var(--ease-out) 1.9s forwards; }
+
+.intro__line {
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(16px, 4.4vw, 22px); color: var(--ink);
+  opacity: 0; transform: translateY(10px); animation: fadeUp .6s var(--ease-out) 2.1s forwards;
+}
+.intro__btn {
+  opacity: 0; transform: translateY(24px) scale(.9);
+  animation: btnIn .7s var(--ease-back) 2.35s forwards;
+  min-height: 58px; padding: 0 30px; font-size: 18px;
+}
+.intro__btn .btn__icon { transition: transform .3s; }
+.intro__btn:hover .btn__icon { transform: translateX(4px); }
+
+@keyframes popIn { to { opacity: 1; transform: none; } }
+@keyframes fadeUp { to { opacity: 1; transform: none; } }
+@keyframes btnIn { to { opacity: 1; transform: none; } }
+
+/* ---------- Secuencia al entrar ---------- */
+/* 1) el contenido se aleja */
+.intro.is-leaving .intro__content { opacity: 0; transform: scale(.85) translateZ(-200px); pointer-events: none; }
+.intro.is-leaving .intro__bubbles { opacity: 0; }
+/* 2) aparecen encías y dientes */
+.intro.is-teeth .intro__jaw::after { transform: scaleY(1); }
+.intro.is-teeth .intro__teeth span { transform: scaleY(1); }
+/* 3) la boca se abre */
+.intro.is-open .intro__jaw--top { transform: translateY(-112%) rotateX(28deg); }
+.intro.is-open .intro__jaw--bottom { transform: translateY(112%) rotateX(-28deg); }
+
+/* Mientras la boca se abre, la página aparece desde el fondo */
+body.is-entering main, body.is-entering .header { animation: pageIn 1.1s var(--ease-out) both; }
+@keyframes pageIn { from { transform: scale(.94); opacity: .3; } to { transform: none; opacity: 1; } }
+
+/* Menos movimiento si la persona lo pidió en su teléfono */
+@media (prefers-reduced-motion: reduce) {
+  .intro__logo .ch, .intro__logo .logo__arc, .intro__logo .logo__brush, .intro__logo .logo__tag,
+  .intro__line, .intro__btn { animation-duration: .01s; animation-delay: 0s; }
+}

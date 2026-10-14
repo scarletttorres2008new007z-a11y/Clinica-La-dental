@@ -1,0 +1,148 @@
+/* ==========================================================
+   L.a Dental · Estructura
+   Encabezado, inicio (hero), cinta, pie de página y botón flotante.
+   Primero celular; computadora en responsive.css.
+   ========================================================== */
+
+/* ---------- Encabezado ---------- */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: var(--header-h);
+  background: var(--white); border-bottom: 2px solid var(--mint-pale);
+  transition: box-shadow .3s, transform .4s var(--ease-out);
+}
+.header.is-scrolled { box-shadow: 0 4px 0 var(--mint-pale); }
+.header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.header .logo--sm { font-size: 27px; }
+
+/* Botón de menú (tres rayas que se vuelven X) */
+.burger {
+  position: relative; z-index: 2; width: 48px; height: 48px; border: 0; border-radius: 14px;
+  background: var(--mint-pale); display: grid; place-content: center; gap: 5px;
+}
+.burger span { display: block; width: 22px; height: 2.6px; border-radius: 2px; background: var(--ink); transition: transform .3s var(--ease-out), opacity .2s; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7.6px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7.6px) rotate(-45deg); }
+
+/* Menú en celular: baja doblándose en 3D */
+.nav {
+  position: fixed; top: var(--header-h); left: 0; right: 0;
+  display: grid; gap: 4px; padding: 18px 20px 26px;
+  background: var(--white); border-bottom: 4px solid var(--mint);
+  transform-origin: 50% 0; transform: perspective(900px) rotateX(-90deg); opacity: 0; visibility: hidden;
+  transition: transform .45s var(--ease-out), opacity .3s, visibility 0s .45s;
+}
+.nav.is-open { transform: none; opacity: 1; visibility: visible; transition: transform .45s var(--ease-back), opacity .2s, visibility 0s; }
+.nav a:not(.btn) {
+  font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--ink);
+  padding: 12px 6px; border-bottom: 2px solid var(--mint-pale);
+}
+.nav__cta { margin-top: 14px; }
+
+/* ---------- Inicio ---------- */
+.hero {
+  position: relative; padding: calc(var(--header-h) + 30px) 0 40px;
+  background: var(--mint-pale); overflow: clip;
+}
+/* Círculo menta grande de fondo */
+.hero::before {
+  content: ""; position: absolute; width: 520px; height: 520px; right: -260px; top: 90px;
+  border-radius: 50%; background: var(--mint-soft);
+}
+.hero__grid { position: relative; display: grid; gap: 10px; }
+.kicker {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--mint-deep);
+  background: var(--white); padding: 7px 14px 7px 10px; border-radius: 999px; box-shadow: 0 3px 0 var(--mint-soft);
+}
+.kicker__icon { width: 18px; height: 18px; color: var(--gold); }
+.hero__title { font-size: clamp(38px, 11vw, 70px); }
+.hero__lead { margin-top: 18px; max-width: 34em; font-size: 17.5px; color: var(--muted); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+.hero__actions .btn { flex: 1 1 200px; }
+
+/* Escena 3D */
+.hero__stage { position: relative; height: 340px; perspective: 900px; margin-top: 8px; }
+.stage {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .5s var(--ease-out);
+}
+.stage__arc { position: absolute; left: 50%; top: 55%; width: 300px; transform: translate(-50%, 0) translateZ(-60px); overflow: visible; }
+.stage__arc path { fill: none; stroke: var(--gold); stroke-width: 12; stroke-linecap: round; }
+
+.tooth3d {
+  position: absolute; left: 50%; top: 50%; width: 210px; height: 210px; margin: -118px 0 0 -105px;
+  transform-style: preserve-3d; animation: toothSwing 7s ease-in-out infinite;
+}
+.tooth3d__layer { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.tooth3d__layer use { fill: var(--mint-deep); stroke: var(--mint-deep); stroke-width: 2; stroke-linejoin: round; }
+.tooth3d__layer.is-front use { fill: var(--white); stroke: var(--ink); stroke-width: 2.2; }
+.tooth3d__shine { fill: none; stroke: var(--mint-soft); stroke-width: 3.2; stroke-linecap: round; }
+@keyframes toothSwing {
+  0%, 100% { transform: translateY(0) rotateY(-26deg) rotateZ(-3deg); }
+  50% { transform: translateY(-14px) rotateY(26deg) rotateZ(3deg); }
+}
+
+.stage__spark { position: absolute; color: var(--gold); transform: translateZ(40px); animation: twinkle 2.4s ease-in-out infinite; }
+.stage__spark svg { width: 100%; height: 100%; }
+.stage__spark--1 { width: 34px; height: 34px; left: 18%; top: 14%; }
+.stage__spark--2 { width: 22px; height: 22px; right: 20%; top: 22%; animation-delay: .8s; }
+.stage__spark--3 { width: 18px; height: 18px; left: 26%; bottom: 16%; animation-delay: 1.5s; }
+@keyframes twinkle { 0%, 100% { transform: translateZ(40px) scale(1) rotate(0); } 50% { transform: translateZ(40px) scale(.55) rotate(45deg); } }
+
+.float-card {
+  position: absolute; display: grid; padding: 10px 16px; border-radius: 18px;
+  background: var(--white); box-shadow: 0 6px 0 var(--mint); line-height: 1.15;
+  font-family: var(--font-display); color: var(--ink); text-align: left;
+  animation: bob 4.5s ease-in-out infinite;
+}
+.float-card strong { font-size: 30px; font-weight: 800; color: var(--mint-deep); }
+.float-card span { font-size: 12.5px; font-weight: 600; max-width: 10em; }
+.float-card--a { left: 0; top: 8%; --z: 90px; }
+.float-card--b { right: 0; bottom: 6%; --z: 120px; animation-delay: -2s; background: var(--gold); box-shadow: 0 6px 0 var(--gold-deep); }
+.float-card--b strong { color: var(--ink); }
+@keyframes bob {
+  0%, 100% { transform: translateZ(var(--z)) translateY(0); }
+  50% { transform: translateZ(var(--z)) translateY(-10px); }
+}
+
+/* ---------- Cinta de servicios ---------- */
+.ribbon-wrap { position: relative; z-index: 2; overflow: hidden; margin-top: -30px; padding: 16px 0 22px; }
+.ribbon {
+  background: var(--gold); color: var(--ink);
+  transform: rotate(-2deg); margin: 0 -20px; padding: 14px 0; overflow: hidden;
+  box-shadow: 0 6px 0 var(--gold-deep);
+}
+.ribbon__track { display: flex; align-items: center; gap: 22px; width: max-content; animation: marquee 30s linear infinite; }
+.ribbon__track span { font-family: var(--font-display); font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
+.ribbon__track svg { width: 24px; height: 24px; flex-shrink: 0; fill: var(--white); stroke: var(--ink); stroke-width: 3; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- Pie de página ---------- */
+.footer { background: var(--ink); color: var(--mint-soft); padding: 54px 0 calc(96px + env(safe-area-inset-bottom)); }
+.footer__grid { display: grid; gap: 30px; }
+.footer__brand p { margin-top: 14px; }
+.footer .logo--sm { font-size: 34px; }
+.footer__links { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; }
+.footer__links a { font-family: var(--font-display); font-weight: 600; color: var(--white); padding: 10px 0; }
+.footer__social { display: flex; gap: 12px; }
+.social {
+  width: 50px; height: 50px; border-radius: 16px; display: grid; place-items: center;
+  background: var(--mint-deep); color: var(--white); box-shadow: 0 4px 0 #0E2B27;
+  transition: transform .25s var(--ease-back);
+}
+.social svg { width: 22px; height: 22px; }
+.social:hover { transform: translateY(-3px); }
+.footer__bottom { margin-top: 34px; padding-top: 20px; border-top: 1px solid #2D5952; font-size: 14px; }
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+.wa-float {
+  position: fixed; z-index: 950; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom));
+  width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center;
+  background: #25D366; color: var(--white); box-shadow: 0 5px 0 #128C4B;
+  transform: scale(0); transition: transform .45s var(--ease-back);
+}
+.wa-float svg { width: 32px; height: 32px; }
+.wa-float.is-visible { transform: scale(1); }
+.wa-float.is-visible:hover { transform: scale(1.08) rotate(-6deg); }

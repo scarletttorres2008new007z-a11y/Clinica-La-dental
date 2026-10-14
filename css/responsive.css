@@ -1,0 +1,109 @@
+/* ==========================================================
+   L.a Dental · Tamaños de pantalla
+   La página se diseñó primero para celular.
+   Aquí se ajusta para celulares angostos, celular acostado,
+   tablet y computadora.
+   ========================================================== */
+
+/* ---------- Celulares angostos (360 px o menos) ---------- */
+@media (max-width: 380px) {
+  body { font-size: 16px; }
+  .container { padding: 0 16px; }
+  .header .logo--sm { font-size: 24px; }
+  .services__grid { gap: 10px; }
+  .flip { min-height: 236px; }
+  .flip__face { padding: 14px 10px; }
+  .flip__back p { font-size: 13px; }
+  .svc-icon { width: 74px; height: 74px; }
+  .svc-icon svg { width: 50px; height: 50px; }
+  .float-card strong { font-size: 25px; }
+  .tooth3d { width: 184px; height: 184px; margin: -104px 0 0 -92px; }
+  .hero__stage { height: 310px; }
+  .chip { padding: 11px 15px; font-size: 14px; }
+}
+
+/* ---------- Celular acostado ---------- */
+@media (max-height: 520px) and (orientation: landscape) {
+  .intro__content { gap: 12px; }
+  .logo--xl { font-size: clamp(48px, 15vh, 80px); }
+  .intro__btn { min-height: 50px; }
+  .intro__teeth span { flex-basis: 44px; }
+  .hero { padding-top: calc(var(--header-h) + 20px); }
+}
+
+/* ---------- Tablet ---------- */
+@media (min-width: 640px) {
+  .services__grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .flip { min-height: 250px; }
+  .flip__back p { font-size: 15px; }
+  .tips__grid { grid-template-columns: 1fr 1fr; }
+  .tip--list { grid-row: span 2; }
+  .cover { flex-basis: 340px; }
+  .coverflow__track { padding-left: calc(50% - 170px); padding-right: calc(50% - 170px); }
+  .polaroid { width: 190px; right: -6px; }
+  .footer__grid { grid-template-columns: 1.4fr 1fr auto; align-items: start; }
+  .hero__stage { height: 400px; }
+  .tooth3d { width: 240px; height: 240px; margin: -130px 0 0 -120px; }
+  .float-card--a { left: 8%; }
+  .float-card--b { right: 8%; }
+}
+
+/* ---------- Computadora ---------- */
+@media (min-width: 980px) {
+  :root { --header-h: 80px; }
+  .header .logo--sm { font-size: 32px; }
+  .burger { display: none; }
+  .nav {
+    position: static; display: flex; align-items: center; gap: 4px; padding: 0; background: none; border: 0;
+    transform: none; opacity: 1; visibility: visible; transition: none;
+  }
+  .nav a:not(.btn) { font-size: 15.5px; padding: 10px 12px; border: 0; border-radius: 12px; transition: background-color .2s, color .2s; }
+  .nav a:not(.btn):hover { background: var(--mint-pale); color: var(--mint-deep); }
+  .nav__cta { margin: 0 0 0 10px; min-height: 46px; padding: 0 20px; font-size: 15px; }
+
+  .hero { padding: calc(var(--header-h) + 40px) 0 70px; min-height: 92vh; display: flex; align-items: center; }
+  .hero::before { width: 760px; height: 760px; right: -200px; top: 40px; }
+  .hero__grid { grid-template-columns: 1.08fr 1fr; align-items: center; gap: 30px; }
+  .hero__actions .btn { flex: 0 0 auto; }
+  .hero__stage { height: 520px; }
+  .tooth3d { width: 300px; height: 300px; margin: -165px 0 0 -150px; }
+  .stage__arc { width: 420px; }
+  .float-card { padding: 14px 20px; }
+  .float-card strong { font-size: 38px; }
+  .float-card span { font-size: 14px; }
+  .float-card--a { left: 0; top: 10%; }
+  .float-card--b { right: 0; bottom: 10%; }
+
+  .section { padding: 110px 0; }
+  .section__head { margin-bottom: 52px; }
+  .services__grid { gap: 24px; }
+  .flip { min-height: 290px; }
+  .flip__front h3 { font-size: 21px; }
+  .flip__back h3 { font-size: 20px; }
+  .svc-icon { width: 104px; height: 104px; }
+  .svc-icon svg { width: 70px; height: 70px; }
+  .flip__face { padding: 26px 24px; gap: 14px; }
+
+  .promo { padding: 120px 0; }
+  .promo__grid { grid-template-columns: 1fr 1.05fr; align-items: center; gap: 60px; }
+  .smile-card { padding: 44px 30px 70px; }
+
+  .tips__grid { grid-template-columns: 1.1fr 1fr 1fr; }
+  .tip--list { grid-row: auto; }
+  .tip { padding: 34px 30px; }
+  .tip--question { padding: 0; min-height: 300px; }
+
+  .cover { flex-basis: 380px; }
+  .coverflow__track { padding-left: calc(50% - 190px); padding-right: calc(50% - 190px); }
+
+  .visit__grid { grid-template-columns: 1fr 1.1fr; align-items: center; gap: 60px; }
+  .polaroid { width: 210px; right: -24px; bottom: 6px; }
+
+  .footer { padding-bottom: 40px; }
+  .wa-float { right: 26px; bottom: 26px; width: 64px; height: 64px; }
+}
+
+/* ---------- Menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; transition-duration: .01s !important; scroll-behavior: auto !important; }
+}
