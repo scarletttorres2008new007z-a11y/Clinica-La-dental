@@ -142,22 +142,16 @@
 .quick__chips button:hover { transform: translateY(-2px); background: var(--mint-deep); color: var(--white); }
 .quick__chips button:active { transform: translateY(2px); box-shadow: none; }
 
-/* ---------- Confianza ---------- */
-.trust { padding: 110px 0 50px; background: var(--paper); }
-.trust__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 14px; }
-.trust__item { display: grid; justify-items: center; text-align: center; gap: 10px; }
-.trust__icon {
-  width: 66px; height: 66px; border-radius: 22px; display: grid; place-items: center;
-  background: var(--mint-deep); color: var(--white); box-shadow: 0 5px 0 var(--ink);
-  transform: rotate(-6deg); transition: transform .4s var(--ease-back);
+/* ---------- La clínica en números ---------- */
+.stats { padding: 110px 0 40px; background: var(--paper); }
+.stats__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 16px; }
+.stat { text-align: center; padding: 6px 4px; }
+.stat__num {
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(44px, 13vw, 64px); line-height: 1; color: var(--mint-deep);
+  text-shadow: 2px 2px 0 var(--mint-soft), 4px 4px 0 var(--mint-soft), 6px 6px 0 var(--mint);
 }
-.trust__item:nth-child(even) .trust__icon { transform: rotate(6deg); }
-.trust__icon svg { width: 40px; height: 40px; fill: var(--white); stroke: var(--ink); stroke-width: 3; }
-.trust__icon--gold { background: var(--gold); color: var(--ink); box-shadow: 0 5px 0 var(--gold-deep); }
-.trust__icon--gold svg { fill: none; stroke: none; width: 32px; height: 32px; }
-.trust__icon b { font-family: var(--font-display); font-weight: 800; font-size: 22px; }
-.trust__item p { font-size: 14.5px; color: var(--muted); line-height: 1.35; }
-.trust__item strong { display: block; font-family: var(--font-display); color: var(--ink); font-size: 16.5px; }
+.stat:nth-child(even) .stat__num { color: var(--gold); text-shadow: 2px 2px 0 #F2DDB0, 4px 4px 0 #F2DDB0, 6px 6px 0 var(--gold-deep); }
+.stat__label { margin-top: 10px; font-size: 14.5px; font-weight: 700; color: var(--muted); line-height: 1.3; max-width: 13em; margin-left: auto; margin-right: auto; }
 
 /* ---------- Pie de página ---------- */
 .footer { position: relative; background: var(--ink); color: var(--mint-soft); padding: 90px 0 0; }

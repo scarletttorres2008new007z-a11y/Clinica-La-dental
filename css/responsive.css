@@ -21,8 +21,11 @@
   .post__caps { font-size: 34px; }
   .post__q { font-size: 26px; }
   .deck { height: 490px; }
-  .bento__quote { padding-left: 96px; }
-  .bento__quote p { font-size: 26px; }
+  .about__media { height: 370px; }
+  .seal { width: 100px; height: 100px; }
+  .seal__ring text { font-size: 10.2px; }
+  .wall-quote p { font-size: 26px; }
+  .value { padding: 14px 12px; }
   .actionbar__main { font-size: 15px; }
 }
 
@@ -45,7 +48,10 @@
   .quick__title { margin: 0; }
   .quick__chips { grid-template-columns: repeat(6, auto); justify-content: end; }
   .quick__chips button { padding: 11px 14px; }
-  .trust__grid { grid-template-columns: repeat(4, 1fr); }
+  .stats__grid { grid-template-columns: repeat(4, 1fr); }
+  .values { grid-template-columns: 1fr 1fr; }
+  .pledge { grid-template-columns: repeat(3, 1fr); }
+  .about__media { height: 520px; max-width: 560px; }
   .hero__stage { height: 380px; }
   .float-card--a { left: 10%; }
   .float-card--b { right: 10%; }
@@ -58,7 +64,6 @@
   .deck { max-width: 420px; width: 100%; justify-self: center; }
   .polaroid { width: 180px; right: -6px; }
   .footer__grid { grid-template-columns: 1.4fr 1fr auto; align-items: start; }
-  .bento__quote p { font-size: 36px; }
 }
 
 /* ---------- Computadora ---------- */
@@ -71,7 +76,7 @@
     position: static; display: flex; align-items: center; gap: 4px; padding: 0; background: none; border: 0;
     transform: none; opacity: 1; visibility: visible; transition: none;
   }
-  .nav a:not(.btn) { font-size: 15.5px; padding: 10px 12px; border: 0; border-radius: 12px; transition: background-color .2s, color .2s; }
+  .nav a:not(.btn) { white-space: nowrap; font-size: 15.5px; padding: 10px 12px; border: 0; border-radius: 12px; transition: background-color .2s, color .2s; }
   .nav a:not(.btn):hover { background: var(--mint-pale); color: var(--mint-deep); }
   .nav__cta { margin: 0 0 0 10px; min-height: 46px; padding: 0 20px; font-size: 15px; }
 
@@ -93,7 +98,11 @@
   .quick__title { font-size: 20px; }
   .quick__chips button { font-size: 15px; padding: 12px 18px; }
 
-  .trust { padding-top: 130px; }
+  .stats { padding-top: 130px; }
+  .about__grid { grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .feed__grid { grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
+  .feed { gap: 12px; }
+  .wall-quote p { font-size: 38px; }
 
   .section { padding: 110px 0; }
   .section__head { margin-bottom: 50px; }
@@ -120,9 +129,6 @@
   .step { flex-direction: column; gap: 16px; }
   .step div { width: 100%; }
 
-  .bento { grid-template-columns: 1.15fr 1fr 1fr; gap: 18px; }
-  .bento__item--tall { grid-row: span 2; }
-  .bento__quote { grid-column: 2 / 4; display: grid; align-content: center; }
 
   .tips__grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
   .deck { height: 500px; }
@@ -137,6 +143,14 @@
   .actionbar__main { flex: 0 0 50px; width: 50px; background: #25D366; box-shadow: 0 3px 0 #128C4B; }
   .actionbar__main svg { color: var(--white); }
   .actionbar__main span { display: none; }
+}
+
+/* ---------- Computadora pequeña: el menú cabe en una línea ---------- */
+@media (min-width: 980px) and (max-width: 1180px) {
+  .header .logo--sm { font-size: 28px; }
+  .nav { gap: 0; }
+  .nav a:not(.btn) { font-size: 14.5px; padding: 10px 8px; }
+  .nav__cta { margin-left: 6px; padding: 0 16px; font-size: 14px; }
 }
 
 /* ---------- Menos movimiento ---------- */

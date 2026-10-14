@@ -19,6 +19,8 @@
 .section__head { text-align: center; margin-bottom: 34px; }
 .section__head--left { text-align: left; }
 .section__lead { margin-top: 12px; color: var(--muted); }
+.eyebrow__num { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 999px; background: var(--mint-deep); color: var(--white); letter-spacing: .04em; }
+.eyebrow--gold .eyebrow__num { background: var(--ink); }
 
 /* Botón redondo (flechas) */
 .round-btn {
@@ -197,32 +199,90 @@
 .step h3 { font-size: 19px; }
 .step p { color: var(--muted); font-size: 15.5px; margin-top: 2px; }
 
-/* ---------- La clínica (mosaico de fotos) ---------- */
-.bento { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.bento__item { position: relative; margin: 0; border-radius: 24px; overflow: hidden; box-shadow: 0 6px 0 var(--mint); background: var(--mint-soft); }
-.bento__item img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; transition: transform .8s var(--ease-out); }
-.bento__item--tall { grid-row: span 2; }
-.bento__item--tall img { aspect-ratio: auto; }
-.bento__item figcaption {
-  position: absolute; left: 10px; bottom: 10px; right: 10px; width: max-content; max-width: calc(100% - 20px);
-  background: var(--white); color: var(--ink); padding: 6px 12px; border-radius: 999px;
-  font-family: var(--font-display); font-weight: 600; font-size: 13px; box-shadow: 0 3px 0 var(--mint-soft);
+/* ---------- Conócenos ---------- */
+.about { padding-top: 60px; }
+.about__grid { display: grid; gap: 40px; }
+.about__media { position: relative; height: 410px; perspective: 1100px; }
+.about__photo {
+  position: absolute; margin: 0; border-radius: 26px; overflow: hidden; background: var(--mint-soft);
+  border: 6px solid var(--white); box-shadow: 0 8px 0 var(--mint);
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(var(--rot, 0deg)) translateZ(var(--z, 0px));
+  transition: transform .6s var(--ease-out);
 }
-@media (hover: hover) { .bento__item:hover img { transform: scale(1.06); } }
+.about__photo img { width: 100%; height: 100%; object-fit: cover; }
+.about__photo figcaption {
+  position: absolute; left: 8px; bottom: 8px; background: var(--white); color: var(--ink); padding: 4px 10px; border-radius: 999px;
+  font-family: var(--font-display); font-weight: 600; font-size: 12px; box-shadow: 0 3px 0 var(--mint-soft);
+}
+.about__photo--main { left: 0; top: 34px; width: 64%; aspect-ratio: 1; --rot: -3deg; z-index: 2; }
+.about__photo--door { right: 0; top: 0; width: 42%; aspect-ratio: 1; --rot: 4deg; z-index: 1; }
+.about__photo--room { right: 4%; bottom: 0; width: 48%; aspect-ratio: 1; --rot: 3deg; z-index: 3; --z: 30px; }
 
-/* La frase de la pared, dibujada como en el consultorio */
-.bento__quote {
-  grid-column: 1 / -1; margin: 0; position: relative; padding: 26px 24px 26px 110px; border-radius: 24px;
+/* Sello que gira */
+.seal { position: absolute; left: 4%; bottom: 8px; z-index: 4; width: 116px; height: 116px; border-radius: 50%; background: var(--gold); box-shadow: 0 6px 0 var(--gold-deep); display: grid; place-items: center; }
+.seal__ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 16s linear infinite; }
+.seal__ring text { font-family: var(--font-display); font-weight: 700; font-size: 10.6px; letter-spacing: .14em; fill: var(--ink); }
+.seal__tooth { width: 42px; height: 42px; fill: var(--white); stroke: var(--ink); stroke-width: 3; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.about__lead { font-size: 18px; color: var(--text); margin-top: 16px; }
+.about__lead--soft { color: var(--muted); font-size: 16.5px; margin-top: 10px; }
+.values { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.value { display: grid; gap: 10px; align-content: start; background: var(--white); border-radius: 20px; padding: 16px 14px; box-shadow: inset 0 0 0 2px var(--mint-pale), 0 5px 0 var(--mint-soft); }
+.value__icon { width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center; background: var(--mint-deep); box-shadow: 0 4px 0 var(--ink); transform: rotate(-6deg); }
+.value__icon svg { width: 28px; height: 28px; fill: var(--white); stroke: var(--ink); stroke-width: 3; color: var(--white); }
+.value__icon--gold { background: var(--gold); box-shadow: 0 4px 0 var(--gold-deep); }
+.value__icon--gold svg { fill: currentColor; stroke: none; color: var(--ink); }
+.value strong { display: block; font-family: var(--font-display); color: var(--ink); font-size: 16px; }
+.value span { display: block; font-size: 14px; color: var(--muted); line-height: 1.35; }
+
+/* Nuestro compromiso */
+.pledge { display: grid; gap: 14px; margin-top: 56px; perspective: 1000px; }
+.pledge__item { position: relative; background: var(--mint-deep); color: var(--white); border-radius: 26px; padding: 26px 22px 24px; box-shadow: 0 7px 0 var(--ink); overflow: hidden; }
+.pledge__num {
+  position: absolute; right: 14px; top: -6px; font-family: var(--font-display); font-weight: 800; font-size: 76px; line-height: 1;
+  color: var(--mint-deep); -webkit-text-stroke: 2px var(--mint); text-shadow: 4px 4px 0 var(--ink);
+}
+.pledge__item h3 { color: var(--white); font-size: 26px; margin-bottom: 8px; }
+.pledge__item:nth-child(2) { background: var(--gold); color: var(--ink); box-shadow: 0 7px 0 var(--gold-deep); }
+.pledge__item:nth-child(2) h3 { color: var(--ink); }
+.pledge__item:nth-child(2) .pledge__num { color: var(--gold); -webkit-text-stroke: 2px var(--white); text-shadow: 4px 4px 0 var(--gold-deep); }
+
+/* La frase de la pared */
+.wall-quote {
+  display: flex; align-items: center; gap: 18px; margin: 40px 0 0; padding: 24px 22px; border-radius: 26px;
   background: var(--white); box-shadow: inset 0 0 0 3px var(--mint-soft), 0 6px 0 var(--mint);
   font-family: var(--font-script); color: var(--ink);
 }
-.bento__tooth { position: absolute; left: 20px; top: 50%; width: 76px; height: 76px; margin-top: -40px; animation: iconFloat 4s ease-in-out infinite; }
-.bento__tooth use { fill: var(--white); stroke: var(--ink); stroke-width: 2.6; }
-.bento__tooth circle { fill: var(--ink); }
-.bento__tooth path { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
-.bento__quote p { font-size: 30px; font-weight: 700; line-height: 1.05; }
-.bento__quote p span { display: inline-block; margin-top: 4px; background: var(--mint-deep); color: var(--white); padding: 0 10px; border-radius: 8px; }
-.bento__quote footer { margin-top: 6px; font-size: 24px; color: var(--mint-deep); font-weight: 700; }
+.wall-quote__tooth { flex: 0 0 70px; width: 70px; height: 70px; animation: iconFloat 4s ease-in-out infinite; }
+.wall-quote__tooth use { fill: var(--white); stroke: var(--ink); stroke-width: 2.6; }
+.wall-quote__tooth circle { fill: var(--ink); }
+.wall-quote__tooth path { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+.wall-quote p { font-size: 30px; font-weight: 700; line-height: 1.1; }
+.wall-quote p span { display: inline-block; background: var(--mint-deep); color: var(--white); padding: 0 10px; border-radius: 8px; }
+.wall-quote footer { margin-top: 6px; font-size: 21px; color: var(--mint-deep); font-weight: 700; }
+
+/* ---------- Así nos ves en redes ---------- */
+.social-feed { background: var(--paper); }
+.feed__grid { display: grid; gap: 30px; }
+.profile { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.profile__avatar {
+  flex: 0 0 64px; height: 64px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--mint); box-shadow: 0 0 0 3px var(--white), 0 0 0 6px var(--gold);
+}
+.profile__avatar svg { width: 36px; height: 36px; fill: var(--white); stroke: var(--ink); stroke-width: 3; }
+.profile__name { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--ink); }
+.profile__bio { font-size: 14px; color: var(--muted); }
+.feed__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.feed__actions .btn { flex: 1 1 160px; }
+.feed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; perspective: 1000px; }
+.feed__post { margin: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 0 var(--mint-soft); background: var(--mint-soft); transition: transform .45s var(--ease-back), box-shadow .3s; }
+.feed__post img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.js .feed__post { opacity: 0; transform: rotateY(-80deg) scale(.8); }
+.feed.is-in .feed__post { opacity: 1; transform: none; transition: transform .7s var(--ease-back), opacity .4s; transition-delay: calc(var(--i) * 70ms); }
+@media (hover: hover) {
+  .feed.is-in .feed__post:hover { transform: translateY(-6px) rotate(-2deg) scale(1.04); box-shadow: 0 10px 0 var(--mint); transition-delay: 0s; }
+}
 
 /* ---------- Consejos: mazo de tarjetas como sus publicaciones ---------- */
 .tips { background: var(--mint); }

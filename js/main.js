@@ -5,6 +5,7 @@
      2. Encabezado y menú de celular
      3. Títulos con letras 3D y animaciones al hacer scroll
      4. Diente 3D del inicio y efecto de inclinación
+     4b. Números que cuentan
      5. Atajo "¿Qué necesitas hoy?"
      6. Mapa de tu sonrisa (toca un diente)
      7. Pestañas de tratamientos
@@ -78,11 +79,14 @@ safe("animaciones", () => {
   $$("[data-split]").forEach((el) => splitLetters(el));
 
   // Retraso escalonado para elementos que aparecen juntos
-  $$(".trust__grid, .path, .bento").forEach((group) => {
+  $$(".stats__grid, .path, .values, .pledge").forEach((group) => {
     $$("[data-reveal]", group).forEach((el, i) => el.style.setProperty("--d", `${i * 0.1}s`));
   });
 
-  const targets = $$("[data-reveal], [data-split]");
+  // Publicaciones de redes: giran una por una
+  $$("#feed .feed__post").forEach((post, i) => post.style.setProperty("--i", i));
+
+  const targets = $$("[data-reveal], [data-split], #feed");
   const start = () => {
     if (!("IntersectionObserver" in window)) { targets.forEach((el) => el.classList.add("is-in")); return; }
     const io = new IntersectionObserver((entries) => {
@@ -152,8 +156,35 @@ safe("inclinación", () => {
     }
   };
   tilt($("#stage"), $(".hero"));
+  $$(".about__photo").forEach((photo) => tilt(photo, $("#aboutMedia"), { strength: 0.8 }));
   tilt($("#coupon"), $(".promo"), { strength: 0.6 });
   tilt($("#mouthCard"), $(".mouth__stage"), { onTouch: false, strength: 0.6 });
+});
+
+/* ---------- Números que cuentan al aparecer ---------- */
+safe("contadores", () => {
+  const nums = $$("[data-count]");
+  if (reducedMotion || !("IntersectionObserver" in window)) return;
+  const run = (el) => {
+    const target = parseFloat(el.dataset.count);
+    const decimals = parseInt(el.dataset.decimals || "0", 10);
+    // El 0% cuenta hacia abajo desde 100: así se nota que es "cero"
+    const from = target === 0 ? 100 : 0;
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / 1400);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = (from + (target - from) * eased).toFixed(decimals);
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  const start = () => nums.forEach((n) => io.observe(n));
+  if (document.body.classList.contains("is-intro")) document.addEventListener("intro:open", start, { once: true });
+  else start();
 });
 
 /* ---------- 5. Atajo "¿Qué necesitas hoy?" ---------- */
