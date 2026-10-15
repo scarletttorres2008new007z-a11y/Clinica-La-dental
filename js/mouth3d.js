@@ -33,7 +33,9 @@ function start() {
   const fit = () => {
     if (!resize()) return;
     const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    camera.userData.dist = Math.max(1.55 / tan, 1.45 / (tan * camera.aspect)) + 0.6;
+    // En celular la boca llena más el espacio para que se vea grande
+    const fit = camera.aspect < 1.3 ? 0.25 : 0.6;
+    camera.userData.dist = Math.max(1.4 / tan, 1.5 / (tan * camera.aspect)) + fit;
   };
   fit();
 

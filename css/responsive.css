@@ -21,6 +21,47 @@
   .actionbar__main { font-size: 15px; }
 }
 
+/* ---------- Celular parado: todo más grande y claro ---------- */
+@media (max-width: 979px) and (orientation: portrait) {
+  .eyebrow { font-size: 13px; }
+  .hero__facts span { font-size: 14px; }
+
+  /* Boca 3D: el texto ocupa menos y la boca toma el resto de la pantalla */
+  .smile__text { padding-top: 20px; }
+  .smile__text .heading { font-size: clamp(28px, 8vw, 36px); }
+  .smile__text p:not(.eyebrow) { font-size: 15.5px; margin-top: 8px; }
+  .smile__text .arc { margin-top: 8px; }
+  /* Los pasos se quitan para que nada tape la boca (esa información ya está en la página) */
+  .smile__steps { display: none; }
+
+  /* Tratamientos: tarjeta más ancha, publicación y modelo 3D más grandes */
+  .carousel { --card-w: min(88vw, 400px); }
+  .carousel__track { gap: 14px; }
+  .tcard__media { aspect-ratio: 1 / .84; }
+  .tile { left: 3%; width: 60%; }
+  .tcard__3d { right: 2%; width: 42%; top: 56%; }
+  .tile--3d { right: 3%; width: 42%; top: 58%; }
+  .tcard h3 { font-size: 25px; }
+  .tcard__body > p:not(.tcard__tag) { font-size: 16px; }
+  .tcard .checks { font-size: 15.5px; }
+
+  .qa summary { font-size: 17px; }
+  .qa__post { flex-basis: 132px; }
+  .polaroid { width: 156px; }
+}
+/* Pantallas bajitas: el texto corto de la boca se quita para que se vea grande */
+@media (max-width: 979px) and (orientation: portrait) and (max-height: 680px) {
+  .smile__text p:not(.eyebrow) { display: none; }
+}
+
+/* Celulares: cada ventaja en una fila, con letra más grande */
+@media (max-width: 479px) {
+  .values { grid-template-columns: 1fr; gap: 10px; }
+  .value { grid-template-columns: auto 1fr; align-items: center; gap: 14px; padding: 16px; }
+  .value strong { font-size: 16.5px; }
+  .value span { font-size: 15px; }
+}
+
 /* ---------- Celular acostado ---------- */
 @media (max-height: 520px) and (orientation: landscape) {
   .intro__content { gap: 12px; }
