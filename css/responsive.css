@@ -91,11 +91,12 @@
 
   .section { padding: 110px 0; }
   .section__head { margin-bottom: 50px; }
+  .footer { padding-top: 130px; }
   .treat { padding-top: 90px; }
   .treat .section__head { margin-bottom: 10px; }
   .carousel { --card-w: 370px; }
 
-  .promo { padding: 110px 0; }
+  .promo { padding: 160px 0 110px; }
   .promo__grid { grid-template-columns: .9fr 1.1fr; gap: 80px; }
   .promo__visual { max-width: 400px; }
 

@@ -91,7 +91,7 @@ safe("animaciones", () => {
   $$("[data-split]").forEach((el) => splitLetters(el));
 
   // Retraso escalonado para elementos que aparecen juntos
-  $$(".hero__facts, .values").forEach((group) => {
+  $$(".hero__facts, .values, .faq__list").forEach((group) => {
     $$("[data-reveal]", group).forEach((el, i) => el.style.setProperty("--d", `${i * 0.1}s`));
   });
 
