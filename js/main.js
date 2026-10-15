@@ -54,7 +54,13 @@ safe("menú", () => {
   const burger = $("#burger");
   const nav = $("#nav");
 
-  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 10);
+  const progress = $("#progress");
+  const onScroll = () => {
+    header.classList.toggle("is-scrolled", window.scrollY > 10);
+    // Línea dorada: cuánto de la página ya viste
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progress) progress.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+  };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -66,6 +72,18 @@ safe("menú", () => {
   burger.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
   $$("a", nav).forEach((a) => a.addEventListener("click", () => setMenu(false)));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+
+  // Marca en el menú la sección que estás viendo
+  if ("IntersectionObserver" in window) {
+    const links = $$('a[href^="#"]:not(.btn)', nav);
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((a) => a.classList.toggle("is-current", a.getAttribute("href") === `#${entry.target.id}`));
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    links.forEach((a) => { const s = $(a.getAttribute("href")); if (s) spy.observe(s); });
+  }
 });
 
 /* ---------- 3. Títulos 3D y animaciones al hacer scroll ---------- */

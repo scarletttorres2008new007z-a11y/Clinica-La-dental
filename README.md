@@ -32,6 +32,7 @@ css/base.css          Colores, letras, botones y logo
 css/intro.css         Pantalla de bienvenida
 css/layout.css        Encabezado, fotos en 3D, inicio, pie de página y barra de acciones
 css/sections.css      Boca 3D, tratamientos, ortodoncia, la clínica, preguntas y agenda
+css/details.css       Detalles: sonrisa dorada bajo los títulos, barra de avance, efectos y pie de página
 css/responsive.css    Ajustes para celular, tablet y computadora
 js/config.js          Datos de la clínica (el único archivo que hay que editar)
 js/intro.js           Animación de bienvenida
