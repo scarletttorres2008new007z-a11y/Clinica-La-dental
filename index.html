@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="css/intro.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/details.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body class="is-intro">
@@ -81,7 +82,7 @@
       <div class="intro__logo logo logo--xl" aria-label="La Dental, Clínicas Especializadas">
         <span class="logo__word" data-split-letters>L<b class="logo__dot">.</b>a Dental</span>
         <svg class="logo__smile" viewBox="0 0 120 40" aria-hidden="true">
-          <path class="logo__arc" d="M4 4 C 14 44, 92 44, 104 8" />
+          <path class="logo__arc" d="M4 4 C 14 44, 92 44, 104 8" pathLength="1" />
           <g class="logo__brush"><rect x="100" y="0" width="16" height="9" rx="2"/><path d="M102 3h12M102 6h12"/></g>
         </svg>
         <span class="logo__tag">Clínicas especializadas</span>
@@ -122,6 +123,8 @@
         <a href="#agenda">Ubicación</a>
         <a class="btn btn--gold nav__cta" href="#agenda">Agenda tu cita</a>
       </nav>
+
+      <span class="header__progress" id="progress" aria-hidden="true"></span>
 
       <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
         <span></span><span></span><span></span>
@@ -172,6 +175,7 @@
         <div class="smile__text container">
           <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">01</span> Tratamientos</p>
           <h2 class="heading" id="smileTitle" data-split>Cuidamos toda tu sonrisa</h2>
+          <span class="arc" data-reveal="arc" aria-hidden="true"></span>
           <p data-reveal="up">Un diagnóstico preventivo y oportuno para cada diente, de la limpieza a la ortodoncia.</p>
         </div>
         <div class="smile__stage" id="mouthStage">
@@ -191,6 +195,7 @@
       <div class="container">
         <header class="section__head">
           <h2 class="heading" data-split>¿En qué te podemos ayudar?</h2>
+          <span class="arc" data-reveal="arc" aria-hidden="true"></span>
           <p class="section__lead" data-reveal="up">Desliza para conocer cada tratamiento y escríbenos por el que necesitas.</p>
         </header>
       </div>
@@ -322,6 +327,7 @@
         <div class="promo__text">
           <p class="eyebrow eyebrow--dark" data-reveal="up"><span class="eyebrow__num">02</span> Ortodoncia</p>
           <h2 class="heading heading--light" data-split>Empieza tus brackets sin prima</h2>
+          <span class="arc" data-reveal="arc" aria-hidden="true"></span>
           <p class="promo__lead" data-reveal="up">Alinea tus dientes y corrige tu mordida. Empiezas con 0% de prima y pagas tu tratamiento en cuotas.</p>
           <p class="price" data-reveal="up"><span>Cuotas desde</span><strong>$24.99</strong></p>
           <div class="promo__actions" data-reveal="up">
@@ -353,6 +359,7 @@
         <div class="clinic__text">
           <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">03</span> La clínica</p>
           <h2 class="heading" data-split>Conoce La Dental</h2>
+          <span class="arc" data-reveal="arc" aria-hidden="true"></span>
           <p class="clinic__lead" data-reveal="up">
             Cuidamos tu boca de principio a fin: desde la limpieza y la revisión preventiva hasta tratamientos especializados, todo en el Centro Comercial Periplaza Apopa.
           </p>
@@ -384,6 +391,7 @@
         <header class="section__head">
           <p class="eyebrow" data-reveal="up"><span class="eyebrow__num">04</span> Preguntas frecuentes</p>
           <h2 class="heading" data-split>Resolvemos tus dudas</h2>
+          <span class="arc" data-reveal="arc" aria-hidden="true"></span>
         </header>
 
         <div class="faq__list" data-reveal="up">
@@ -469,6 +477,7 @@
 
         <div class="place" data-reveal="up">
           <h2 class="heading" data-split>Estamos en Periplaza Apopa</h2>
+          <span class="arc" data-reveal="arc" aria-hidden="true"></span>
           <ul class="place__list">
             <li><svg><use href="#i-pin"/></svg><div><strong>Centro Comercial Periplaza Apopa</strong><span>Local 31-D, Apopa, El Salvador</span></div></li>
             <li data-needs="phone"><svg><use href="#i-phone"/></svg><div><strong>Teléfono</strong><a data-tel><span data-phone-label>7979-5986</span></a></div></li>
@@ -489,6 +498,8 @@
 
   <!-- ========== Pie de página ========== -->
   <footer class="footer">
+    <!-- La sonrisa dorada del logo abre el pie de página -->
+    <svg class="footer__arc" data-reveal="draw" viewBox="0 0 300 60" aria-hidden="true"><path d="M10 6 C 60 66, 240 66, 290 6" pathLength="1"/></svg>
     <div class="container footer__grid">
       <div class="footer__brand">
         <span class="footer__badge">
@@ -503,12 +514,27 @@
         </span>
         <p>Tu sonrisa en manos de especialistas.</p>
       </div>
-      <nav class="footer__links" aria-label="Enlaces">
-        <a href="#tratamientos">Tratamientos</a>
-        <a href="#ortodoncia">Ortodoncia</a>
-        <a href="#clinica">La clínica</a>
-        <a href="#agenda">Agenda tu cita</a>
-      </nav>
+      <div>
+        <p class="footer__title">Secciones</p>
+        <nav class="footer__links" aria-label="Enlaces">
+          <a href="#tratamientos">Tratamientos</a>
+          <a href="#ortodoncia">Ortodoncia</a>
+          <a href="#clinica">La clínica</a>
+          <a href="#preguntas">Preguntas</a>
+          <a href="#agenda">Agenda tu cita</a>
+        </nav>
+      </div>
+      <div>
+        <p class="footer__title">Tratamientos</p>
+        <ul class="footer__services">
+          <li>Ortodoncia</li>
+          <li>Limpieza dental</li>
+          <li>Caries</li>
+          <li>Endodoncia</li>
+          <li>Extracción de cordales</li>
+          <li>Prótesis dentales</li>
+        </ul>
+      </div>
       <div class="footer__social">
         <a class="social" data-wa="Hola La Dental, quisiera agendar una consulta." aria-label="WhatsApp"><svg><use href="#i-whatsapp"/></svg></a>
         <a class="social" data-tel aria-label="Llamar"><svg><use href="#i-phone"/></svg></a>
@@ -522,6 +548,7 @@
         <a class="footer__pill" href="#agenda">Agenda tu consulta</a>
         <span><svg><use href="#i-pin"/></svg> C.C. Periplaza Apopa, local 31-D</span>
         <a data-tel><svg><use href="#i-phone"/></svg> <span data-phone-label>7979-5986</span></a>
+        <a class="footer__top" href="#inicio">Volver arriba <svg><use href="#i-arrow"/></svg></a>
       </div>
     </div>
     <p class="footer__copy container">© <span id="year">2026</span> La Dental · Clínicas Especializadas</p>
